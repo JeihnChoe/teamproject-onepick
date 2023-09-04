@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class NoticeController {
 
     @GetMapping("/writeNoticeForm")
-    public String manageNotice() {
-        return "/biz/writeNoticeForm";
+    public String writeNoticeForm() {
+        return "/notice/writeNoticeForm";
     }
 }
