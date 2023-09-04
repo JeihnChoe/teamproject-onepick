@@ -41,6 +41,9 @@ public class User {
     @Column(nullable = true, length = 10000)
     String address; // 주소
 
+    @Column(nullable = true, length = 10000)
+    String address2; // 주소
+
     @Column(nullable = false, length = 10000)
     String tel; // 전화번호
 
@@ -53,7 +56,7 @@ public class User {
 
     // 개인 기업 구분 코드 -> 개인이면 1, 기업이면 2
     @Column(nullable = false)
-    int code;
+    int usercode;
 
     private Timestamp createdAt;
 
@@ -69,7 +72,7 @@ public class User {
         this.tel = tel;
         this.birth = birth;
         this.bizname = bizname;
-        this.code = code;
+        this.usercode = code;
         this.createdAt = createdAt;
     }
 
