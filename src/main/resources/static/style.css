@@ -1,0 +1,128 @@
+:root {
+    --primary_01: #6E8FE5;
+    --primary_02: #AC85DE;
+    --sub_01: #DFE7FC;
+    --sub_02: #EBDDFC;
+    --point_01: #5C6BC0;
+    --point_02: #EA6161;
+    --point_03: #28D1B3;
+    --line_01: #DCDCDC;
+    --font_01: #333;
+    --font_02: #9F9F9F;
+    --font_03: #7F7F7F;
+    --back_01: #F7F7F7;
+    --back_02: #EFEFEF;
+    --def_wh: #fff;
+    --def_bl: #000;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    z-index: 1;
+    width: 100%;
+}
+
+body {
+    padding-top: 50px;
+
+}
+
+footer {
+    position: sticky;
+    bottom: 0;
+}
+
+.main-container {
+
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    border-radius: 0;
+
+    padding: 10px;
+}
+
+.line {
+
+    height: 0.5px;
+    background-color: rgba(0, 0, 0, 0.15);
+    border: 0;
+
+}
+
+.button {
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+    border-color: rgba(0, 0, 0, 0.10);
+
+
+}
+
+.box {
+    margin: 0 auto;
+
+    border-radius: 20px;
+    border-color: (0, 0, 0, 0.15);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+.box-invisible {
+    margin: 0 auto;
+
+    border-radius: 0;
+
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    padding: 10px;
+}
+
+/*-------- 스타일 추가는 여기서부터 -------*/
+
+/*-- 성훈작업 --*/
+
+.body-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body-main {
+    display: flex;
+    justify-content: flex-end;
+    /* 요소들을 오른쪽으로 정렬 */
+}
+
+.body-head {
+
+    display: flex;
+    align-items: center;
+
+}
+
+.input-box {
+    width: 300px;
+    height: 30px;
+    border: transparent;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: black;
+
+}
+
+
+
+.input-smallbox {
+    width: 100px;
+    height: 15px;
+    border: transparent;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: black;
+
+}
