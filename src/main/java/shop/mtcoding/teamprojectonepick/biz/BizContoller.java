@@ -18,7 +18,7 @@ public class BizContoller {
 
     @GetMapping("/bizJoinForm")
     public String bizJoinForm() {
-        return "/biz/bizJoinForm";
+        return "/bizJoinForm";
     }
 
 }
