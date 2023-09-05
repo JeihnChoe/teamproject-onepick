@@ -83,19 +83,12 @@ public class Resume {
     @Column(length = 10000)
     String etc3;
 
-    String etc1;
     @Column(length = 10000)
-    String etc2;
+    String etcPeriod1;
     @Column(length = 10000)
-    String etc3;
-
+    String etcPeriod2;
     @Column(length = 10000)
-    String etc_period1;
-    @Column(length = 10000)
-    String etc_period2;
-    @Column(length = 10000)
-    String etc_period3;
-
+    String etcPeriod3;
 
     @Column(length = 10000)
     String link1; // 리스트중에 여러개 선택

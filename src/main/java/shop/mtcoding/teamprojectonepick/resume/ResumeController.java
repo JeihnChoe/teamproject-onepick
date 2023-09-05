@@ -60,7 +60,7 @@ public class ResumeController {
         System.out.println("테스트WorkField : " + saveDTO.getWorkField());
         System.out.println("테스트ResumeImg : " + saveDTO.getResumeImg());
         resumeService.이력서작성(saveDTO);
-        TechResumeService.이력서기술저장();
+
         return "/userBoard/manageResumeForm";
     }
 }

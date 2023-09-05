@@ -17,7 +17,7 @@
                 <h1>당신의 픽, It's OnePick</h1>
                 <div style="color: #7F7F7F;">환영해요. 구직자님</div>
             </div>
-            <form action="/join" method="post">
+            <form id="login-form" action="/userJoin" method="post">
                 <div class="body-container">
                     <div style="margin-left: 50px; margin-right: 100px; margin-top: 20px;">
                         <br>
@@ -29,7 +29,7 @@
                                 ID
                             </div>
                             <div class="body-main">
-                                <input class="input-box" contenteditable="true" placeholder="onepick">
+                                <input class="input-box" contenteditable="true" placeholder="onepick" name="loginId">
                                 </input>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                                 비밀번호
                             </div>
                             <div class="body-main">
-                                <input class="input-box" contenteditable="true">
+                                <input class="input-box" contenteditable="true" name="password">
                                 </input>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
                                 이름
                             </div>
                             <div class="body-main">
-                                <input class="input-box" contenteditable="true" placeholder="김원픽">
+                                <input class="input-box" contenteditable="true" placeholder="김원픽" name="username">
                                 </input>
                             </div>
                         </div>
@@ -80,7 +80,8 @@
                                 이메일
                             </div>
                             <div class="body-main">
-                                <input class="input-box" contenteditable="true" placeholder="ex) onepick@onepick.com">
+                                <input class="input-box" contenteditable="true" placeholder="ex) onepick@onepick.com"
+                                    name="email">
                                 </input>
                             </div>
                         </div>
@@ -90,7 +91,7 @@
                                 연락처
                             </div>
                             <div class="body-main">
-                                <input class="input-box" contenteditable="true" placeholder="01094719693">
+                                <input class="input-box" contenteditable="true" placeholder="01094719693" name="tel">
                                 </input>
                             </div>
                         </div>
@@ -100,25 +101,36 @@
                                 생년월일
                             </div>
                             <div class="body-main">
-                                <input class="input-box" contenteditable="true" placeholder="1993.04.22">
+                                <input class="input-box" contenteditable="true" placeholder="1993.04.22" name="birth">
                                 </input>
                             </div>
                         </div>
+                        <input type="hidden" name="usercode" value="1"></input>
                         <hr class="line" style="margin-top: 0px;">
                     </div>
-
                     <br>
                     <br>
                     <div style="display: flex; justify-content: center;">
                         <button type="submit" class="button" style="width: 200px;">개인회원가입하기</button>
                     </div>
                 </div>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
 
 
         </div>
+
+
+
+
+
+
     </div>
 
-    </form>
     </div>
 </body>
 
