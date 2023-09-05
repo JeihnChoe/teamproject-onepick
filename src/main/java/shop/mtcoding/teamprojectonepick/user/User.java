@@ -56,24 +56,26 @@ public class User {
 
     // 개인 기업 구분 코드 -> 개인이면 1, 기업이면 2
     @Column(nullable = false)
-    int usercode;
+    Integer usercode;
 
     private Timestamp createdAt;
 
     @Builder
-    public User(Integer id, String loginId, String password, String username, String email, String address, String tel,
-            String birth, String bizname, int code, Timestamp createdAt) {
+    public User(Integer id, String loginId, String password, String username, String email, String address,
+            String address2, String tel,
+            String birth, String bizname, int usercode, Timestamp createdAt) {
         this.id = id;
         this.loginId = loginId;
         this.password = password;
         this.username = username;
         this.email = email;
         this.address = address;
+        this.address2 = address2;
         this.tel = tel;
         this.birth = birth;
         this.bizname = bizname;
-        this.usercode = code;
-        this.createdAt = createdAt;
+
+        this.usercode = usercode;
     }
 
 }

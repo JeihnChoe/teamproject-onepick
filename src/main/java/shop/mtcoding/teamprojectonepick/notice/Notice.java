@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
+
 import javax.persistence.Column;
 import lombok.Builder;
 import lombok.Getter;
