@@ -74,8 +74,8 @@ public class User {
         this.tel = tel;
         this.birth = birth;
         this.bizname = bizname;
+
         this.usercode = usercode;
-        this.createdAt = createdAt;
     }
 
 }

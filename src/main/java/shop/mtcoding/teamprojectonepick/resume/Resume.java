@@ -21,6 +21,7 @@ import lombok.Builder;
 import shop.mtcoding.teamprojectonepick.tech.TechResume;
 import shop.mtcoding.teamprojectonepick.user.User;
 
+@Builder
 @Table(name = "resume_tb")
 @Entity
 public class Resume {
@@ -82,12 +83,19 @@ public class Resume {
     @Column(length = 10000)
     String etc3;
 
+    String etc1;
     @Column(length = 10000)
-    String etcPeriod1;
+    String etc2;
     @Column(length = 10000)
-    String etcPeriod2;
+    String etc3;
+
     @Column(length = 10000)
-    String etcPeriod3;
+    String etc_period1;
+    @Column(length = 10000)
+    String etc_period2;
+    @Column(length = 10000)
+    String etc_period3;
+
 
     @Column(length = 10000)
     String link1; // 리스트중에 여러개 선택
@@ -112,11 +120,13 @@ public class Resume {
 
     @Builder
     public Resume(Integer id, String title, String semiContent, String content, String education, String school,
+
             String major,
             String career1, String careerPeriod1, String careerPeriod1_1, String career2, String careerPeriod2,
             String careerPeriod2_1, String career3, String careerPeriod3, String careerPeriod3_1, String open,
             String etc1, String etc2, String etc3, String etcPeriod1, String etcPeriod2, String etcPeriod3,
             String link1, String link2, String link3, String workField, User user, String resumeImg) {
+
         this.id = id;
         this.title = title;
         this.semiContent = semiContent;
@@ -137,9 +147,11 @@ public class Resume {
         this.etc1 = etc1;
         this.etc2 = etc2;
         this.etc3 = etc3;
+
         this.etcPeriod1 = etcPeriod1;
         this.etcPeriod2 = etcPeriod2;
         this.etcPeriod3 = etcPeriod3;
+
         this.link1 = link1;
         this.link2 = link2;
         this.link3 = link3;
