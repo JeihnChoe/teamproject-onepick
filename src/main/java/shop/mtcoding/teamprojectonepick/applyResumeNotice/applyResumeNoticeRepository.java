@@ -1,5 +1,7 @@
 package shop.mtcoding.teamprojectonepick.applyResumeNotice;
 
-public class ApplyResumeNoticeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ApplyResumeNoticeRepository extends JpaRepository {
 
 }

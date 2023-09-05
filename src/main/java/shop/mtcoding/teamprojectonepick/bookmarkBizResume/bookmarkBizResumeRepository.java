@@ -1,5 +1,7 @@
 package shop.mtcoding.teamprojectonepick.bookmarkBizResume;
 
-public class BookmarkBizResumeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BookmarkBizResumeRepository extends JpaRepository {
 
 }

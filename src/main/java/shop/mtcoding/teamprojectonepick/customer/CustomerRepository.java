@@ -1,5 +1,7 @@
 package shop.mtcoding.teamprojectonepick.customer;
 
-public class CustomerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CustomerRepository extends JpaRepository {
 
 }

@@ -1,5 +1,5 @@
 package shop.mtcoding.teamprojectonepick.customer;
 
-public class CustomerRequest {
+public class CustomerRequestDTO {
 
 }

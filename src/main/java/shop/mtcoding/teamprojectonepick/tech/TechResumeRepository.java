@@ -1,5 +1,5 @@
 package shop.mtcoding.teamprojectonepick.tech;
 
-public class TechResumeRepository {
+public interface TechResumeRepository<TechResume, Integer> {
 
 }

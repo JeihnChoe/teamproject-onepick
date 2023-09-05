@@ -1,5 +1,5 @@
 package shop.mtcoding.teamprojectonepick.user;
 
-public class UserRequest {
+public class UserRequestDTO {
 
 }
