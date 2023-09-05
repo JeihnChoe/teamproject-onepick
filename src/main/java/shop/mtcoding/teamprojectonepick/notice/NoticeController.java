@@ -2,7 +2,9 @@ package shop.mtcoding.teamprojectonepick.notice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -26,6 +28,13 @@ public class NoticeController {
     }
 
     // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+    @GetMapping("/notice/{id}")
+    public String detailNotice(@PathVariable Integer id, Model model){
+        Notice notice = noticeService.상세보기(id);
+        model.addAttribute("notice", notice);
+        return "noteic/detailNoticeForm";
+    }
 
     // 공고수정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 

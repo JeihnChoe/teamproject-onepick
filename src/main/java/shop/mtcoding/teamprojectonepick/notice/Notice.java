@@ -1,6 +1,7 @@
 package shop.mtcoding.teamprojectonepick.notice;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
@@ -28,7 +31,6 @@ public class Notice {
     @Column(nullable = false, length = 10000)
     private String open;// 공개 비공개 여부
 
-    @Column(nullable = false, length = 10000)
     private String userImg; // 기업 대표이미지
 
     @Column(nullable = false, length = 10000)
@@ -58,11 +60,12 @@ public class Notice {
     @Column(nullable = false, length = 10000)
     private String deadLine; // 마감일
 
+
     
-    // //회사랑 포링키 엮어주기
-    // @JsonIgnore
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // private User user; // 1+N
+    //회사랑 포링키 엮어주기
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private User user; // 1+N
 
     
     // @JsonIgnore //아래는 양방향 매핑이다.

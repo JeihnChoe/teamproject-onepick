@@ -24,13 +24,13 @@
 //     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //     Integer id;
 
-//     // @ManyToOne(fetch = FetchType.LAZY)
-//     // @JoinColumn(name = "notice_id")
-//     // private Notice notice;
+//     @ManyToOne(fetch = FetchType.LAZY)
+//     @JoinColumn(name = "notice_id")
+//     private Notice notice;
 
-//     // @ManyToOne(fetch = FetchType.LAZY)
-//     // @JoinColumn(name = "tech_id") // tech 엔티티의 외래 키 컬럼과 매핑
-//     // private Tech tech;
+//     @ManyToOne(fetch = FetchType.LAZY)
+//     @JoinColumn(name = "tech_id") // tech 엔티티의 외래 키 컬럼과 매핑
+//     private Tech tech;
 
 //     }
 
