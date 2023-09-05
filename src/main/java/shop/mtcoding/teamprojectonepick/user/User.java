@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -45,6 +46,7 @@ public class User {
 
     private Timestamp createdAt;
 
+    @Builder
     public User(Integer id, String loginId, String password, String email, String username, String address,
             String school, String career, String tel, String birth, Timestamp createdAt) {
         this.id = id;

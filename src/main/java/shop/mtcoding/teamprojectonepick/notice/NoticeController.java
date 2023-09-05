@@ -21,7 +21,7 @@ public class NoticeController {
     public String writeNotice(NoticeRequestDTO.SaveDTO saveDTO) {
         noticeService.공고등록(saveDTO, 1);
 
-        return "redirect: /bizProfileForm";
+        return "redirect:/bizProfileForm";
     }
 
     // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
