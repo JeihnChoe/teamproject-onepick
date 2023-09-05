@@ -32,7 +32,7 @@ public class ApplyResumeNotice {
     Integer noticeId;
 
     @Builder
-    public ApplyResumeNotice(Integer id, Integer resumeId, Integer noticeId) {
+    public applyResumeNotice(Integer id, Integer resumeId, Integer noticeId) {
         this.id = id;
         this.resumeId = resumeId;
         this.noticeId = noticeId;
