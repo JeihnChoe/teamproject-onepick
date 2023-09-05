@@ -18,9 +18,14 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechResume;
 import shop.mtcoding.teamprojectonepick.user.User;
 
+@Data
+@NoArgsConstructor
 @Table(name = "resume_tb")
 @Entity
 public class Resume {

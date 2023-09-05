@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.mtcoding.teamprojectonepick.resume.ResumeRequestDTO.SaveDTO;
-import shop.mtcoding.teamprojectonepick.tech.TechResumeRepository;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
@@ -19,9 +18,6 @@ public class ResumeService {
 
     @Autowired
     private ResumeRepository resumeRepository;
-
-    @Autowired
-    private TechResumeRepository techResumeRepository;
 
     @Transactional
     public void 이력서작성(SaveDTO saveDTO) {
