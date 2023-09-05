@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.mtcoding.teamprojectonepick.resume.ResumeRequestDTO.SaveDTO;
+import shop.mtcoding.teamprojectonepick.tech.TechResumeRepository;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
@@ -19,9 +20,11 @@ public class ResumeService {
     @Autowired
     private ResumeRepository resumeRepository;
 
-    @Transactional
-    public void 이력서작성(SaveDTO saveDTO, Integer sessionId) {
+    @Autowired
+    private TechResumeRepository techResumeRepository;
 
+    @Transactional
+    public void 이력서작성(SaveDTO saveDTO) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
@@ -42,29 +45,31 @@ public class ResumeService {
                 .school(saveDTO.getSchool())
                 .major(saveDTO.getMajor())
                 .career1(saveDTO.getCareer1())
-                .career1(saveDTO.getCareer_period1())
-                .career1(saveDTO.getCareer_period1_1())
-                .career1(saveDTO.getCareer2())
-                .career1(saveDTO.getCareer_period2())
-                .career1(saveDTO.getCareer_period2_1())
-                .career1(saveDTO.getCareer3())
-                .career1(saveDTO.getCareer_period3())
-                .career1(saveDTO.getCareer_period3_1())
-                .open(false)
+                .careerPeriod1(saveDTO.getCareerPeriod1())
+                .careerPeriod1_1(saveDTO.getCareerPeriod1_1())
+                .career2(saveDTO.getCareer2())
+                .careerPeriod2(saveDTO.getCareerPeriod2())
+                .careerPeriod2_1(saveDTO.getCareerPeriod2_1())
+                .career3(saveDTO.getCareer3())
+                .careerPeriod3(saveDTO.getCareerPeriod3())
+                .careerPeriod3_1(saveDTO.getCareerPeriod3_1())
+                .open(saveDTO.getOpen())
                 .etc1(saveDTO.getEtc1())
-                .etc1(saveDTO.getEtc_period1())
-                .etc1(saveDTO.getEtc2())
-                .etc1(saveDTO.getEtc_period2())
-                .etc1(saveDTO.getEtc3())
-                .etc1(saveDTO.getEtc_period3())
+                .etcPeriod1(saveDTO.getEtcPeriod1())
+                .etc2(saveDTO.getEtc2())
+                .etcPeriod2(saveDTO.getEtcPeriod2())
+                .etc3(saveDTO.getEtc3())
+                .etcPeriod3(saveDTO.getEtcPeriod3())
                 .link1(saveDTO.getLink1())
                 .link2(saveDTO.getLink2())
                 .link3(saveDTO.getLink3())
                 .workField(saveDTO.getWorkField())
-                .resumeImg(fileName)
+                .resumeImg(fileName) // 29dcac58-b578-42c2-a807-68bf435cfb5f_기업.png -> 이렇게
+                // 들어옴
                 .user(user)
                 .build();
         resumeRepository.save(resume);
+
     }
 
     // public Resume 이력서목록보기(Integer id) {

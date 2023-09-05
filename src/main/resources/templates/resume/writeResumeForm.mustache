@@ -88,9 +88,9 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-box" type="text" placeholder="네이버" name="career1"
                                 style="width: 100px; margin-left: 0;">
-                            <input type="month" style="border: transparent;" name="career_period1">
+                            <input type="month" style="border: transparent;" name="careerPeriod1">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                            <input type="month" style="border: transparent;" name="career_period1_1">
+                            <input type="month" style="border: transparent;" name="careerPeriod1_1">
                         </div>
                     </div>
                     <div class="box-invisible"
@@ -98,18 +98,18 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-box" type="text" placeholder="카카오톡" name="career2"
                                 style="width: 100px; margin-left: 0;">
-                            <input type="month" style="border: transparent;" name="career_period2">
+                            <input type="month" style="border: transparent;" name="careerPeriod2">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                            <input type="month" style="border: transparent;" name="career_period2_1">
+                            <input type="month" style="border: transparent;" name="careerPeriod2_1">
                         </div>
                     </div>
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-smallbox" type="text" placeholder="라쿠배몰두센" name="career3">
-                            <input type="month" style="border: transparent;" name="career_period3">
+                            <input type="month" style="border: transparent;" name="careerPeriod3">
                             <div style="margin-left: 10px; margin-right: 10px; "> ~ </div>
-                            <input type="month" style="border: transparent;" name="career_period3_1">
+                            <input type="month" style="border: transparent;" name="careerPeriod3_1">
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-smallbox" name="etc1" type="text" placeholder="해커대회 금상"
                                 style="width: 200px;">
-                            <input type="month" name="etc_period1" style="border: transparent;">
+                            <input type="month" name="etcPeriod1" style="border: transparent;">
                         </div>
                     </div>
                     <div class="box-invisible"
@@ -140,7 +140,7 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-smallbox" name="etc2" type="text" placeholder="창업대회 대상"
                                 style="width: 200px;">
-                            <input type="month" name="etc_period2" style="border: transparent;">
+                            <input type="month" name="etcPeriod2" style="border: transparent;">
                         </div>
                     </div>
                     <div class="box-invisible"
@@ -148,7 +148,7 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-smallbox" name="etc3" type="text" placeholder="창업망함"
                                 style="width: 200px;">
-                            <input type="month" name="etc_period3" style="border: transparent;">
+                            <input type="month" name="etcPeriod3" style="border: transparent;">
                         </div>
                     </div>
                 </div>
@@ -227,29 +227,9 @@
                 <div style=" display: flex; flex-direction: row;">
 
                     <input type="checkbox" name="tech-resume">
-                    <label>자바</label>
-
-                    <input type="checkbox" name="tech-resume" style="margin-left: 30px;">
-                    <label>자바</label>
-
-                    <input type="checkbox" name="tech-resume" style="margin-left: 30px;">
-                    <label>자바</label>
-
-                    <input type="checkbox" name="tech-resume" style="margin-left: 30px;">
-                    <label>자바</label>
-
-                    <input type="checkbox" name="tech-resume" style="margin-left: 30px;">
-                    <label>자바</label>
+                    <label>{{tech.techname}}</label>
 
 
-                    <input type="checkbox" name="tech-resume" style="margin-left: 30px;">
-                    <label>자바</label>
-
-                    <input type="checkbox" name="tech-resume" style="margin-left: 30px;">
-                    <label>자바</label>
-
-                    <input type="checkbox" name="tech-resume" style="margin-left: 30px;">
-                    <label>자바</label>
                 </div>
 
             </div>
@@ -276,7 +256,7 @@
         </div>
 
         <div style="display: flex; justify-content: center; margin-top: 50px;">
-            <button class="button" type="submit">작성완료</button>
+            <button class="button" type="submit" onclick="saveTechResume()">작성완료</button>
 
         </div>
         <input class="input-box" name="workField" value="백엔드"></input>
@@ -302,6 +282,33 @@
 
         reader.readAsDataURL(f); // 파일 읽기. 이벤트 루프에 등록해놓고 main 빠져나옴(비동기). 다 읽으면 onload()를 실행 ↑
     }
+
+    async function saveTechResume() { // ajax로 할라면 form태그(action과 method) 의미없음
+        let requestBody = {
+      : document.querySelector("#boardId").value,
+            comment: document.querySelector("#comment").value
+    };
+
+    console.log(requestBody);
+
+    let response = await fetch("/api/reply/save", { // js오브젝트 타입이므로 {}로 묶음
+        method: "post",
+        headers: { // post와 put만 body와 content-type을 들고 간다.
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+    });
+
+    let responseBody = await response.json();
+    console.log(responseBody);
+
+    if (responseBody.success) {
+        location.reload(); // ssr
+    } else {
+        alert(responseBody.data);
+    }
+
+  }
 </script>
 </body>
 
