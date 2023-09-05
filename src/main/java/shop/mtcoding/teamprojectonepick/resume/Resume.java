@@ -1,10 +1,10 @@
 
 package shop.mtcoding.teamprojectonepick.resume;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,14 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import shop.mtcoding.teamprojectonepick.user.User;
 
+@Builder
 @Table(name = "resume_tb")
 @Entity
 public class Resume {
@@ -45,6 +43,9 @@ public class Resume {
 
     @Column(length = 10000)
     String school; // 학교
+
+    @Column(length = 10000)
+    String major; // 전공
 
     @Column(length = 10000)
     String career1;
@@ -75,7 +76,18 @@ public class Resume {
     boolean open = false;
 
     @Column(length = 10000)
-    String etc;
+    String etc1;
+    @Column(length = 10000)
+    String etc2;
+    @Column(length = 10000)
+    String etc3;
+
+    @Column(length = 10000)
+    String etc_period1;
+    @Column(length = 10000)
+    String etc_period2;
+    @Column(length = 10000)
+    String etc_period3;
 
     @Column(length = 10000)
     String link1; // 리스트중에 여러개 선택
@@ -96,7 +108,8 @@ public class Resume {
     public Resume(Integer id, String title, String semiContent, String content, String education, String school,
             String career1, String career_period1, String career_period1_1, String career2, String career_period2,
             String career_period2_1, String career3, String career_period3, String career_period3_1, boolean open,
-            String etc, String link1, String link2, String link3, String workField, User user) {
+            String etc1, String etc2, String etc3, String etc_period1, String etc_period2, String etc_period3,
+            String link1, String link2, String link3, String workField, User user) {
         this.id = id;
         this.title = title;
         this.semiContent = semiContent;
@@ -113,7 +126,12 @@ public class Resume {
         this.career_period3 = career_period3;
         this.career_period3_1 = career_period3_1;
         this.open = open;
-        this.etc = etc;
+        this.etc1 = etc1;
+        this.etc2 = etc2;
+        this.etc3 = etc3;
+        this.etc_period1 = etc_period1;
+        this.etc_period2 = etc_period2;
+        this.etc_period3 = etc_period3;
         this.link1 = link1;
         this.link2 = link2;
         this.link3 = link3;
