@@ -12,3 +12,9 @@ values('samsung', '1234',  '삼성', '최제인', '010-1234-5678','ss@naver.com'
 
 -- notice_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, user_address, career, education, main_content, dead_line) values('ublic','베이직2.jpg','백엔드대모집','모집모집 노예모집', '백엔드','그린','대전','신입','고졸','많은 사람들을 모집합니다','2023-10-05')
+
+insert into tech_tb(techName) values('자바');
+insert into tech_tb(techName) values('javaScript');
+insert into tech_tb(techName) values('C++');
+insert into tech_tb(techName) values('HTML/CSS');
+insert into tech_tb(techName) values('루비');

@@ -5,12 +5,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
+import shop.mtcoding.teamprojectonepick.tech.Tech;
 
 @Component
 public class NoticeRequestDTO {
 
-    @Getter@Setter
-    public static class SaveDTO{
+    @Getter
+    @Setter
+    public static class SaveDTO {
         private String open;
         private MultipartFile userImg;
         private String semiTitle;
@@ -22,8 +24,7 @@ public class NoticeRequestDTO {
         private String education;
         private String mainContent;
         private String deadLine;
-        
+        private String techNotice;
     }
 
-    
 }

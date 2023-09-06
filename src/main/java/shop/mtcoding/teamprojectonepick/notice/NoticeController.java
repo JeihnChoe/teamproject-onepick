@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-
 @Controller
 public class NoticeController {
 
@@ -23,14 +22,13 @@ public class NoticeController {
     @PostMapping("/notice/writeNotice")
     public String writeNotice(NoticeRequestDTO.SaveDTO saveDTO) {
         noticeService.공고등록(saveDTO, 1);
-
         return "redirect:/bizProfileForm";
     }
 
     // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     @GetMapping("/notice/{id}")
-    public String detailNotice(@PathVariable Integer id, Model model){
+    public String detailNotice(@PathVariable Integer id, Model model) {
         Notice notice = noticeService.상세보기(id);
         model.addAttribute("notice", notice);
         return "noteic/detailNoticeForm";
