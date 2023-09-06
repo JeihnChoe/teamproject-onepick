@@ -26,7 +26,7 @@
             <div style="display: flex; margin-right: 0; align-items: center">
 
                 <!-- 세션 = null 일때 출력 -->
-
+                {{^sessionUser}}
                 <div style="color: var(--font_03);">
                     <a href="/">채용공고보기</a>
                 </div>
@@ -36,10 +36,10 @@
                 <div style="color: var(--font_03);">
                     <a href="/joinForm">회원가입</a>
                 </div>
-
+                {{/sessionUser}}
 
                 <!-- 개인세션 로그인시 출력 -->
-
+                {{#user}}
                 <div style="color: var(--font_03);">
                     <a href="/">채용공고보기</a>
                 </div>
@@ -50,10 +50,16 @@
                 <div style="color: var(--font_03);">
                     <a href="/userProfileForm">My 원픽</a>
                 </div>
-
+                <div>
+                    <button onclick="(() => {
+                        document.logoutForm.submit() 
+                    })()">로그아웃</button>
+                    <form action="/logout" method="post" name="logoutForm" hidden></form>
+                </div>
+                {{/user}}
 
                 <!-- 기업세션 로그인시 출력 -->
-
+                {{#sessionBiz}}
                 <div style="color: var(--font_03);">
                     <a href="/">채용공고보기</a>
                 </div>
@@ -63,6 +69,13 @@
                 <div style="color: var(--font_03);">
                     <a href="/bizProfileForm">Biz 원픽</a>
                 </div>
+                <div>
+                    <button onclick="(() => {
+                        document.logoutForm.submit() 
+                    })()">로그아웃</button>
+                    <form action="/logout" method="post" name="logoutForm" hidden></form>
+                </div>
+                {{/sessionBiz}}
             </div>
         </div>
     </div>
