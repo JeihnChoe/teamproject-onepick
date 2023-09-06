@@ -83,19 +83,12 @@ public class Resume {
     @Column(length = 10000)
     String etc3;
 
-    String etc1;
-    @Column(length = 10000)
-    String etc2;
-    @Column(length = 10000)
-    String etc3;
-
     @Column(length = 10000)
     String etc_period1;
     @Column(length = 10000)
     String etc_period2;
     @Column(length = 10000)
     String etc_period3;
-
 
     @Column(length = 10000)
     String link1; // 리스트중에 여러개 선택
@@ -147,10 +140,6 @@ public class Resume {
         this.etc1 = etc1;
         this.etc2 = etc2;
         this.etc3 = etc3;
-
-        this.etcPeriod1 = etcPeriod1;
-        this.etcPeriod2 = etcPeriod2;
-        this.etcPeriod3 = etcPeriod3;
 
         this.link1 = link1;
         this.link2 = link2;
