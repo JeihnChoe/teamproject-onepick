@@ -1,5 +1,5 @@
 {{>/layout/header}}
-<form action="/resume/writeResume" method="post" enctype="multipart/form-data" s>
+<form action="/resume/writeResume" method="post" enctype="multipart/form-data">
     <div class="main-container" style="display: flex; flex-direction: column;">
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
@@ -219,19 +219,17 @@
 
 
 
-        <div style="display: flex; margin-left: 100px; margin-top: 30px" ;>
-            <div style=" font-weight: bold; font-size: 20px; ">기술스택</div>
+        <div style="display: flex; flex-direction: column; margin-left: 100px; margin-top: 30px" ;>
+            <div style="margin-left: 0; font-weight: bold; font-size: 20px; ">기술스택</div>
 
-            <div style=" display: flex; flex-direction: column; margin-top: 30px;">
+            <div style=" display: flex;flex-wrap: wrap; flex-direction: row; margin-top: 30px; width: 1000px;">
                 <br>
+                {{#techs}}
                 <div style=" display: flex; flex-direction: row;">
-
-                    <input type="checkbox" name="tech-resume">
-                    <label>{{tech.techname}}</label>
-
-
+                    <input type="checkbox" name="tech-resume" value="{{id}}">
+                    <div style="margin-right: 10px;">{{techname}}</div>
                 </div>
-
+                {{/techs}}
             </div>
         </div>
 
@@ -264,7 +262,7 @@
 </form>
 </div>
 <script>
-    function changePic(e1) {
+    function changePic(e1) { // 이력서 사진 저장 함수
         // console.log(e1);
 
         let f = e1.srcElement.files[0];
@@ -283,32 +281,31 @@
         reader.readAsDataURL(f); // 파일 읽기. 이벤트 루프에 등록해놓고 main 빠져나옴(비동기). 다 읽으면 onload()를 실행 ↑
     }
 
-    async function saveTechResume() { // ajax로 할라면 form태그(action과 method) 의미없음
+    async function saveTechResume() { // TechResume에 저장하는 함수
         let requestBody = {
-      : document.querySelector("#boardId").value,
-            comment: document.querySelector("#comment").value
-    };
+            techname: document.querySelector("#techname").value
+        };
 
-    console.log(requestBody);
+        console.log(requestBody);
 
-    let response = await fetch("/api/reply/save", { // js오브젝트 타입이므로 {}로 묶음
-        method: "post",
-        headers: { // post와 put만 body와 content-type을 들고 간다.
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(requestBody)
-    });
+        let response = await fetch("/api/reply/save", { // js오브젝트 타입이므로 {}로 묶음
+            method: "post",
+            headers: { // post와 put만 body와 content-type을 들고 간다.
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        });
 
-    let responseBody = await response.json();
-    console.log(responseBody);
+        let responseBody = await response.json();
+        console.log(responseBody);
 
-    if (responseBody.success) {
-        location.reload(); // ssr
-    } else {
-        alert(responseBody.data);
+        if (responseBody.success) {
+            location.reload(); // ssr
+        } else {
+            alert(responseBody.data);
+        }
+
     }
-
-  }
 </script>
 </body>
 

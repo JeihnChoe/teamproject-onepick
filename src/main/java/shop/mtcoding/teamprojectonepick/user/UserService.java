@@ -80,6 +80,7 @@ public class UserService {
         try {
             Files.write(filePath, updateDTO.getPic().getBytes());
         } catch (Exception e) {
+
             throw new MyException(e);
         }
 

@@ -1,4 +1,4 @@
-package shop.mtcoding.teamprojectonepick.tech;
+package shop.mtcoding.teamprojectonepick.techResume;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

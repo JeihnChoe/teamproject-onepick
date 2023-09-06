@@ -3,6 +3,8 @@ package shop.mtcoding.teamprojectonepick.resume;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -11,7 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.mtcoding.teamprojectonepick.resume.ResumeRequestDTO.SaveDTO;
-import shop.mtcoding.teamprojectonepick.tech.TechResumeRepository;
+import shop.mtcoding.teamprojectonepick.tech.Tech;
+import shop.mtcoding.teamprojectonepick.tech.TechRepository;
+import shop.mtcoding.teamprojectonepick.techResume.TechResume;
+import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
+import shop.mtcoding.teamprojectonepick.techResume.TechResumeRequestDTO.TechResumeSaveDTO;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
@@ -19,12 +25,13 @@ public class ResumeService {
 
     @Autowired
     private ResumeRepository resumeRepository;
-
     @Autowired
     private TechResumeRepository techResumeRepository;
+    @Autowired
+    private TechRepository techRepository;
 
     @Transactional
-    public void 이력서작성(SaveDTO saveDTO) {
+    public void 이력서작성(SaveDTO saveDTO, List<Integer> techId) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
@@ -45,14 +52,14 @@ public class ResumeService {
                 .school(saveDTO.getSchool())
                 .major(saveDTO.getMajor())
                 .career1(saveDTO.getCareer1())
-                .careerPeriod1(saveDTO.getCareerPeriod1())
-                .careerPeriod1_1(saveDTO.getCareerPeriod1_1())
+                .careerPeriodS1(saveDTO.getCareerPeriodS1())
+                .careerPeriodE1(saveDTO.getCareerPeriodE1())
                 .career2(saveDTO.getCareer2())
-                .careerPeriod2(saveDTO.getCareerPeriod2())
-                .careerPeriod2_1(saveDTO.getCareerPeriod2_1())
+                .careerPeriodS2(saveDTO.getCareerPeriodS2())
+                .careerPeriodE2(saveDTO.getCareerPeriodE2())
                 .career3(saveDTO.getCareer3())
-                .careerPeriod3(saveDTO.getCareerPeriod3())
-                .careerPeriod3_1(saveDTO.getCareerPeriod3_1())
+                .careerPeriodS3(saveDTO.getCareerPeriodS3())
+                .careerPeriodE3(saveDTO.getCareerPeriodE3())
                 .open(saveDTO.getOpen())
                 .etc1(saveDTO.getEtc1())
                 .etcPeriod1(saveDTO.getEtcPeriod1())
@@ -69,6 +76,12 @@ public class ResumeService {
                 .user(user)
                 .build();
         resumeRepository.save(resume);
+
+        for (Integer techIds : techId) {
+            Tech tech = techRepository.findById(techIds).get();
+            TechResume techResume = TechResume.builder().resume(resume).tech(tech).build();
+            techResumeRepository.save(techResume);
+        }
 
     }
 
