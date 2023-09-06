@@ -2,13 +2,15 @@
 
 <div class="main-container" style="display: flex; flex-direction: column;">
     <div class="box" style="width: 700px; margin-top: 80px;">
-        <div style="text-align: center; margin-top: 50px;">
-            <img src="/images/베이직2.jpg" style="border-radius: 50%; width: 180px; height: 180px;" id="preview">
-            <br>
-            <input type="file" name="id" style="margin-left: 70px;" onchange="changePic(event)" name="pic" />
-            <h2>최제인담당자님, 안녕하세요.</h2>
-        </div>
-        <form action="/bizUserUpdate" method="post" name="BizUpdateDTO">
+
+        <form action="/bizUserUpdate" method="post" name="BizUpdateDTO" enctype="multipart/form-data">
+            <div style="text-align: center; margin-top: 50px;">
+                <img src="/images/베이직2.jpg" style="border-radius: 50%; width: 180px; height: 180px;" id="preview">
+                <br>
+                <input type="file" name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
+                <h2>최제인담당자님, 안녕하세요.</h2>
+            </div>
+
             <div class="body-container">
                 <div style="margin-left: 50px; margin-right: 100px;">
                     <br>
