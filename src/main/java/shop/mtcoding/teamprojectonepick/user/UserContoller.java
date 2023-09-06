@@ -6,13 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
+
 public class UserContoller {
     @Autowired
     private HttpSession session;
     @Autowired
     private UserService userService;
+
+    @PostMapping("/logout")
+    public String logout() {
+        session.invalidate();
+        System.out.println("로그아웃테스트 : ");
+        return "redirect:/";
+    }
 
     @PostMapping("/userUpdate")
     public String update(UserRequestDTO.UpdateDTO updateDTO) {
@@ -40,9 +50,15 @@ public class UserContoller {
     @PostMapping("/userLogin")
     public String userLogin(UserRequestDTO.LoginDTO loginDTO) {
         User sessionUser = userService.유저로그인(loginDTO);
+        if (sessionUser.usercode == 1) {
+            session.setAttribute("user", sessionUser);
+
+        } else if (sessionUser.usercode == 2) {
+            session.setAttribute("sessionBiz", sessionUser);
+        }
+
         session.setAttribute("sessionUser", sessionUser);
 
-        System.out.println("테스트: " + sessionUser.getLoginId());
         return "redirect:/";
     }
 
