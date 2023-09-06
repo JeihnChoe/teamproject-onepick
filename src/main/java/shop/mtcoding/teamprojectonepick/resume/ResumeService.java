@@ -85,6 +85,11 @@ public class ResumeService {
 
     }
 
+    public Resume 이력서상세보기(Integer id) {
+        Resume resume = resumeRepository.mFindByIdJoinTechResumeInUser(id);
+        return resume;
+    }
+
     // public Resume 이력서목록보기(Integer id) {
     // return resumeRepository.findById(id).get();
     // }

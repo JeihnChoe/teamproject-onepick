@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +38,7 @@ public class ResumeController {
         @Autowired
         private HttpSession session;
 
+        // 완료
         @GetMapping("/writeResumeForm")
         public String writeResumeForm(HttpServletRequest request) {
                 // TechResume techResume = techResumeRepository.mFindByIdJoinResume(3);
@@ -57,6 +59,25 @@ public class ResumeController {
 
                 return "/userBoard/manageResumeForm";
         }
+
+        @GetMapping("/viewResumeForm/{id}")
+        public String viewResumeForm(@PathVariable Integer id, HttpServletRequest request) {
+                Resume resume = resumeService.이력서상세보기(4);
+                List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResume(4);
+                request.setAttribute("resume", resume);
+                request.setAttribute("techResumes", techResumes);
+                return "/resume/viewResumeForm";
+        }
+
+        // @PostMapping("/resume/viewResume")
+        // public String viewResume(ResumeRequestDTO.SaveDTO saveDTO,
+        // @RequestParam(name = "tech-resume") List<Integer> techId) {
+        // User sessionUser = (User) session.getAttribute("sessionUser");
+        // System.out.println(techId);
+        // resumeService.이력서작성(saveDTO, techId);
+
+        // return "/userBoard/manageResumeForm";
+        // }
 
 }
 
