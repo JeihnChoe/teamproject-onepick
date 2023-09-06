@@ -115,6 +115,7 @@ public class Resume {
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private List<TechResume> techResume = new ArrayList<>();
 
+
     @Builder
     public Resume(Integer id, String title, String semiContent, String content, String education, String school,
 
@@ -152,4 +153,5 @@ public class Resume {
         this.user = user;
         this.resumeImg = resumeImg;
     }
+
 }
