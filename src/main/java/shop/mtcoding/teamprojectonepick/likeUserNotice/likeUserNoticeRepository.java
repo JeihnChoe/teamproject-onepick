@@ -1,5 +1,7 @@
 package shop.mtcoding.teamprojectonepick.likeUserNotice;
 
-public class LikeUserNoticeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LikeUserNoticeRepository extends JpaRepository<LikeUserNotice, Integer> {
 
 }

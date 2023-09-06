@@ -25,37 +25,38 @@ import shop.mtcoding.teamprojectonepick.user.User;
 @Controller
 public class ResumeController {
 
-    @Autowired
-    private ResumeService resumeService;
+        @Autowired
+        private ResumeService resumeService;
 
-    @Autowired
-    private TechResumeRepository techResumeRepository;
+        @Autowired
+        private TechResumeRepository techResumeRepository;
 
-    @Autowired
-    private TechRepository techRepository;
+        @Autowired
+        private TechRepository techRepository;
 
-    @Autowired
-    private HttpSession session;
+        @Autowired
+        private HttpSession session;
 
-    @GetMapping("/writeResumeForm")
-    public String writeResumeForm(HttpServletRequest request) {
-        // TechResume techResume = techResumeRepository.mFindByIdJoinResume(3);
-        // request.setAttribute("techResume", techResume);
+        @GetMapping("/writeResumeForm")
+        public String writeResumeForm(HttpServletRequest request) {
+                // TechResume techResume = techResumeRepository.mFindByIdJoinResume(3);
+                // request.setAttribute("techResume", techResume);
 
-        List<Tech> techs = techRepository.findAll();
-        request.setAttribute("techs", techs);
-        return "/resume/writeResumeForm";
-    }
+                List<Tech> techs = techRepository.findAll();
+                request.setAttribute("techs", techs);
+                return "/resume/writeResumeForm";
+        }
 
-    // 완료
-    @PostMapping("/resume/writeResume")
-    public String writeResume(ResumeRequestDTO.SaveDTO saveDTO,
-            @RequestParam(name = "tech-resume") List<Integer> techId) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        System.out.println(techId);
-        resumeService.이력서작성(saveDTO, techId);
-        return "/userBoard/manageResumeForm";
-    }
+        // 완료
+        @PostMapping("/resume/writeResume")
+        public String writeResume(ResumeRequestDTO.SaveDTO saveDTO,
+                        @RequestParam(name = "tech-resume") List<Integer> techId) {
+                User sessionUser = (User) session.getAttribute("sessionUser");
+                System.out.println(techId);
+                resumeService.이력서작성(saveDTO, techId);
+
+                return "/userBoard/manageResumeForm";
+        }
 
 }
 
