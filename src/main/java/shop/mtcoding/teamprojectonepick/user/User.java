@@ -47,23 +47,25 @@ public class User {
     @Column(nullable = false, length = 10000)
     String tel; // 전화번호
 
-    @Column(nullable = false, length = 10000)
+    @Column(length = 10000)
     String birth; // 생년월일
 
     // 기업 유저
-    @Column(nullable = true, length = 10000)
+    @Column(length = 10000)
     String bizname; // 기업명
 
     // 개인 기업 구분 코드 -> 개인이면 1, 기업이면 2
     @Column(nullable = false)
     Integer usercode;
 
+    private String picUrl;
+
     private Timestamp createdAt;
 
     @Builder
     public User(Integer id, String loginId, String password, String username, String email, String address,
             String address2, String tel,
-            String birth, String bizname, int usercode, Timestamp createdAt) {
+            String birth, String bizname, String picUrl, int usercode, Timestamp createdAt) {
         this.id = id;
         this.loginId = loginId;
         this.password = password;
@@ -74,8 +76,9 @@ public class User {
         this.tel = tel;
         this.birth = birth;
         this.bizname = bizname;
+        this.picUrl = picUrl;
+
         this.usercode = usercode;
-        this.createdAt = createdAt;
     }
 
 }

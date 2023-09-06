@@ -54,6 +54,35 @@ public class ResumeController {
 
         resumeService.이력서작성(saveDTO, trSaveDTO);
         // TechResumeService.이력서기술저장();
+
+        System.out.println("테스트Title : " + saveDTO.getTitle());
+        System.out.println("테스트SemiContent : " + saveDTO.getSemiContent());
+        System.out.println("테스트Content : " + saveDTO.getContent());
+        System.out.println("테스트Education : " + saveDTO.getEducation());
+        System.out.println("테스트School : " + saveDTO.getSchool());
+        System.out.println("테스트Major : " + saveDTO.getMajor());
+        System.out.println("테스트Career1 : " + saveDTO.getCareer1());
+        System.out.println("테스트CareerPeriod1 : " + saveDTO.getCareerPeriod1());
+        System.out.println("테스트CareerPeriod1_1 : " + saveDTO.getCareerPeriod1_1());
+        System.out.println("테스트Career2 : " + saveDTO.getCareer2());
+        System.out.println("테스트CareerPeriod2 : " + saveDTO.getCareerPeriod2());
+        System.out.println("테스트CareerPeriod2_1 : " + saveDTO.getCareerPeriod2_1());
+        System.out.println("테스트Career3 : " + saveDTO.getCareer3());
+        System.out.println("테스트CareerPeriod3 : " + saveDTO.getCareerPeriod3());
+        System.out.println("테스트CareerPeriod3_1 : " + saveDTO.getCareerPeriod3_1());
+        System.out.println("테스트Open : " + saveDTO.getOpen());
+        System.out.println("테스트Etc1 : " + saveDTO.getEtc1());
+        System.out.println("테스트Etc2 : " + saveDTO.getEtc2());
+        System.out.println("테스트Etc3 : " + saveDTO.getEtc3());
+        System.out.println("테스트EtcPeriod1 : " + saveDTO.getEtcPeriod1());
+        System.out.println("테스트EtcPeriod2 : " + saveDTO.getEtcPeriod2());
+        System.out.println("테스트EtcPeriod3 : " + saveDTO.getEtcPeriod3());
+        System.out.println("테스트Link1 : " + saveDTO.getLink1());
+        System.out.println("테스트Link2 : " + saveDTO.getLink2());
+        System.out.println("테스트Link3 : " + saveDTO.getLink3());
+        System.out.println("테스트WorkField : " + saveDTO.getWorkField());
+        System.out.println("테스트ResumeImg : " + saveDTO.getResumeImg());
+
         return "/userBoard/manageResumeForm";
     }
 }

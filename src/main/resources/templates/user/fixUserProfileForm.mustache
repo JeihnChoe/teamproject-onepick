@@ -7,7 +7,7 @@
             <input type="file" name="id" style="margin-left: 70px;" />
             <h2>진성훈님, 환영해요.</h2>
         </div>
-        <form action="#">
+        <form action="/userUpdate" method="post" name="updateDTO">
             <div class="body-container">
                 <div style="margin-left: 50px; margin-right: 100px;">
                     <br>
@@ -16,7 +16,17 @@
                     <br>
                     <div class="body-text">
                         <div class="body-head">
-                            ID
+                            비밀번호
+                        </div>
+                        <div class="body-main">
+                            <input name="password" class="input-box" contenteditable="true" placeholder="baronjae">
+                            </input>
+                        </div>
+                    </div>
+                    <hr class="line" style="margin-top: 0px;">
+                    <div class="body-text">
+                        <div class="body-head">
+                            비밀번호 확인
                         </div>
                         <div class="body-main">
                             <input class="input-box" contenteditable="true" placeholder="baronjae">
@@ -29,7 +39,7 @@
                             이름
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="seong hun Jin">
+                            <input name="username" class="input-box" contenteditable="true" placeholder="seong hun Jin">
                             </input>
                         </div>
                     </div>
@@ -39,7 +49,7 @@
                             휴대폰번호
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="01094719693">
+                            <input name="tel" class="input-box" contenteditable="true" placeholder="01094719693">
                             </input>
                         </div>
                     </div>
@@ -49,7 +59,8 @@
                             주소
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="부산 진구 중앙대로 688, 305호">
+                            <input name="address" class="input-box" contenteditable="true"
+                                placeholder="부산 진구 중앙대로 688, 305호">
                             </input>
                         </div>
                     </div>
@@ -59,7 +70,7 @@
                             생년월일
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="1993.04.22">
+                            <input name="birth" class="input-box" contenteditable="true" placeholder="1993.04.22">
                             </input>
                         </div>
                     </div>
