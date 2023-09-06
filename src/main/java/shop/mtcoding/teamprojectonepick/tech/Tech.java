@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,10 @@ public class Tech {
     Integer id;
 
     String techname;
+
+    @Builder
+    public Tech(Integer id, String techname) {
+        this.id = id;
+        this.techname = techname;
+    }
 }

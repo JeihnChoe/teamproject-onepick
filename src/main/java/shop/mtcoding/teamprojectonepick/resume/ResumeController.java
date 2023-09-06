@@ -25,66 +25,39 @@ import shop.mtcoding.teamprojectonepick.user.User;
 @Controller
 public class ResumeController {
 
-    @Autowired
-    private ResumeService resumeService;
+        @Autowired
+        private ResumeService resumeService;
 
-    @Autowired
-    private TechResumeRepository techResumeRepository;
+        @Autowired
+        private TechResumeRepository techResumeRepository;
 
-    @Autowired
-    private TechRepository techRepository;
+        @Autowired
+        private TechRepository techRepository;
 
-    @Autowired
-    private HttpSession session;
+        @Autowired
+        private HttpSession session;
 
-    @GetMapping("/writeResumeForm")
-    public String writeResumeForm(HttpServletRequest request) {
-        // TechResume techResume = techResumeRepository.mFindByIdJoinResume(3);
-        // request.setAttribute("techResume", techResume);
+        @GetMapping("/writeResumeForm")
+        public String writeResumeForm(HttpServletRequest request) {
+                // TechResume techResume = techResumeRepository.mFindByIdJoinResume(3);
+                // request.setAttribute("techResume", techResume);
 
-        List<Tech> techs = techRepository.findAll();
-        request.setAttribute("techs", techs);
-        return "/resume/writeResumeForm";
-    }
+                List<Tech> techs = techRepository.findAll();
+                request.setAttribute("techs", techs);
+                return "/resume/writeResumeForm";
+        }
 
-    // 완료
-    @PostMapping("/resume/writeResume")
-    public String writeResume(ResumeRequestDTO.SaveDTO saveDTO, TechResumeRequestDTO.TechResumeSaveDTO trSaveDTO) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
+        // 완료
+        @PostMapping("/resume/writeResume")
+        public String writeResume(ResumeRequestDTO.SaveDTO saveDTO,
+                        @RequestParam(name = "tech-resume") List<Integer> techId) {
+                User sessionUser = (User) session.getAttribute("sessionUser");
+                System.out.println(techId);
+                resumeService.이력서작성(saveDTO, techId);
 
-        resumeService.이력서작성(saveDTO, trSaveDTO);
-        // TechResumeService.이력서기술저장();
+                return "/userBoard/manageResumeForm";
+        }
 
-        System.out.println("테스트Title : " + saveDTO.getTitle());
-        System.out.println("테스트SemiContent : " + saveDTO.getSemiContent());
-        System.out.println("테스트Content : " + saveDTO.getContent());
-        System.out.println("테스트Education : " + saveDTO.getEducation());
-        System.out.println("테스트School : " + saveDTO.getSchool());
-        System.out.println("테스트Major : " + saveDTO.getMajor());
-        System.out.println("테스트Career1 : " + saveDTO.getCareer1());
-        System.out.println("테스트CareerPeriod1 : " + saveDTO.getCareerPeriodS1());
-        System.out.println("테스트CareerPeriod1_1 : " + saveDTO.getCareerPeriodE1());
-        System.out.println("테스트Career2 : " + saveDTO.getCareer2());
-        System.out.println("테스트CareerPeriod2 : " + saveDTO.getCareerPeriodS2());
-        System.out.println("테스트CareerPeriod2_1 : " + saveDTO.getCareerPeriodE2());
-        System.out.println("테스트Career3 : " + saveDTO.getCareer3());
-        System.out.println("테스트CareerPeriod3 : " + saveDTO.getCareerPeriodS3());
-        System.out.println("테스트CareerPeriod3_1 : " + saveDTO.getCareerPeriodE3());
-        System.out.println("테스트Open : " + saveDTO.getOpen());
-        System.out.println("테스트Etc1 : " + saveDTO.getEtc1());
-        System.out.println("테스트Etc2 : " + saveDTO.getEtc2());
-        System.out.println("테스트Etc3 : " + saveDTO.getEtc3());
-        System.out.println("테스트EtcPeriod1 : " + saveDTO.getEtcPeriod1());
-        System.out.println("테스트EtcPeriod2 : " + saveDTO.getEtcPeriod2());
-        System.out.println("테스트EtcPeriod3 : " + saveDTO.getEtcPeriod3());
-        System.out.println("테스트Link1 : " + saveDTO.getLink1());
-        System.out.println("테스트Link2 : " + saveDTO.getLink2());
-        System.out.println("테스트Link3 : " + saveDTO.getLink3());
-        System.out.println("테스트WorkField : " + saveDTO.getWorkField());
-        System.out.println("테스트ResumeImg : " + saveDTO.getResumeImg());
-
-        return "/userBoard/manageResumeForm";
-    }
 }
 
 // 이력서 작성 - 기술 테이블 ajax로 출력하는거 해야됨
