@@ -1,5 +1,5 @@
 {{>/layout/header}}
-<form action="/resume/writeResume" method="post" enctype="multipart/form-data" s>
+<form action="/resume/writeResume" method="post" enctype="multipart/form-data">
     <div class="main-container" style="display: flex; flex-direction: column;">
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
@@ -226,8 +226,8 @@
                 <br>
                 {{#techs}}
                 <div style=" display: flex; flex-direction: row;">
-                    <input type="checkbox" name="tech-resume">
-                    <div style="margin-right: 10px;" value="{{id}}">{{techname}}</div>
+                    <input type="checkbox" name="tech-resume" value="{{id}}">
+                    <div style="margin-right: 10px;">{{techname}}</div>
                 </div>
                 {{/techs}}
             </div>

@@ -49,13 +49,14 @@ public class ResumeController {
 
     // 완료
     @PostMapping("/resume/writeResume")
-    public String writeResume(ResumeRequestDTO.SaveDTO saveDTO, TechResumeRequestDTO.TechResumeSaveDTO trSaveDTO) {
+    public String writeResume(ResumeRequestDTO.SaveDTO saveDTO,
+            @RequestParam(name = "tech-resume") List<Integer> techId) {
         User sessionUser = (User) session.getAttribute("sessionUser");
-
-        resumeService.이력서작성(saveDTO, trSaveDTO);
-        // TechResumeService.이력서기술저장();
+        System.out.println(techId);
+        resumeService.이력서작성(saveDTO, techId);
         return "/userBoard/manageResumeForm";
     }
+
 }
 
 // 이력서 작성 - 기술 테이블 ajax로 출력하는거 해야됨
