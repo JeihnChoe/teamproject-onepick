@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRequestDTO.SaveDTO;
 import shop.mtcoding.teamprojectonepick.techResume.TechResume;
 import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
+import shop.mtcoding.teamprojectonepick.techResume.TechResumeRequestDTO.TechResumeSaveDTO;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
@@ -25,7 +26,7 @@ public class ResumeService {
     private TechResumeRepository techResumeRepository;
 
     @Transactional
-    public void 이력서작성(SaveDTO saveDTO, List<String> techResume) {
+    public void 이력서작성(SaveDTO saveDTO, TechResumeSaveDTO techResume) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);

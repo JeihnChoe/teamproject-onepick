@@ -19,6 +19,7 @@ import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techResume.TechResume;
 import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
+import shop.mtcoding.teamprojectonepick.techResume.TechResumeRequestDTO;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Controller
@@ -48,10 +49,10 @@ public class ResumeController {
 
     // 완료
     @PostMapping("/resume/writeResume")
-    public String writeResume(ResumeRequestDTO.SaveDTO saveDTO, TechResumeRepository.) {
+    public String writeResume(ResumeRequestDTO.SaveDTO saveDTO, TechResumeRequestDTO.TechResumeSaveDTO trSaveDTO) {
         User sessionUser = (User) session.getAttribute("sessionUser");
 
-        resumeService.이력서작성(saveDTO, techResume);
+        resumeService.이력서작성(saveDTO, trSaveDTO);
         // TechResumeService.이력서기술저장();
         return "/userBoard/manageResumeForm";
     }
