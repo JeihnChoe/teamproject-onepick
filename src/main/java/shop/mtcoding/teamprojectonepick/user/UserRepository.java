@@ -8,5 +8,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query(value = "select * from user_tb where login_id = :login_id", nativeQuery = true)
     User findByUsername(@Param("login_id") String loginId);
 
-    @Query
 }

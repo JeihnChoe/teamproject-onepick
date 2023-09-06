@@ -47,14 +47,14 @@ public class ResumeService {
                 .school(saveDTO.getSchool())
                 .major(saveDTO.getMajor())
                 .career1(saveDTO.getCareer1())
-                .careerPeriod1(saveDTO.getCareerPeriod1())
-                .careerPeriod1_1(saveDTO.getCareerPeriod1_1())
+                .careerPeriodS1(saveDTO.getCareerPeriodS1())
+                .careerPeriodE1(saveDTO.getCareerPeriodE1())
                 .career2(saveDTO.getCareer2())
-                .careerPeriod2(saveDTO.getCareerPeriod2())
-                .careerPeriod2_1(saveDTO.getCareerPeriod2_1())
+                .careerPeriodS2(saveDTO.getCareerPeriodS2())
+                .careerPeriodE2(saveDTO.getCareerPeriodE2())
                 .career3(saveDTO.getCareer3())
-                .careerPeriod3(saveDTO.getCareerPeriod3())
-                .careerPeriod3_1(saveDTO.getCareerPeriod3_1())
+                .careerPeriodS3(saveDTO.getCareerPeriodS3())
+                .careerPeriodE3(saveDTO.getCareerPeriodE3())
                 .open(saveDTO.getOpen())
                 .etc1(saveDTO.getEtc1())
                 .etcPeriod1(saveDTO.getEtcPeriod1())
@@ -70,11 +70,6 @@ public class ResumeService {
                 // 들어옴
                 .user(user)
                 .build();
-        TechResume techresume = TechResume.builder()
-                .resume(resume)
-                .tech(tech).build();
-        TechResume techResume = techResumeRepository.save();
-        resumeRepository.save(resume);
 
     }
 
