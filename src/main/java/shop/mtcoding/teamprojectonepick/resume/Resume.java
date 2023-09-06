@@ -83,21 +83,12 @@ public class Resume {
     @Column(length = 10000)
     String etc3;
 
-<<<<<<< HEAD
-    @Column(length = 10000)
-    String etc_period1;
-    @Column(length = 10000)
-    String etc_period2;
-    @Column(length = 10000)
-    String etc_period3;
-=======
     @Column(length = 10000)
     String etcPeriod1;
     @Column(length = 10000)
     String etcPeriod2;
     @Column(length = 10000)
     String etcPeriod3;
->>>>>>> 16072d7b589d5ae0decccc3634f0519f076e0cb5
 
     @Column(length = 10000)
     String link1; // 리스트중에 여러개 선택
@@ -119,42 +110,4 @@ public class Resume {
     @JsonIgnoreProperties({ "resume" }) // 무한 직렬화 막아줌. ajax쓸 때 사용. Reply내부의 board를 안주겠다.??
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private List<TechResume> techResume = new ArrayList<>();
-
-    @Builder
-    public Resume(Integer id, String title, String semiContent, String content, String education, String school,
-
-            String major,
-            String career1, String careerPeriod1, String careerPeriod1_1, String career2, String careerPeriod2,
-            String careerPeriod2_1, String career3, String careerPeriod3, String careerPeriod3_1, String open,
-            String etc1, String etc2, String etc3, String etcPeriod1, String etcPeriod2, String etcPeriod3,
-            String link1, String link2, String link3, String workField, User user, String resumeImg) {
-
-        this.id = id;
-        this.title = title;
-        this.semiContent = semiContent;
-        this.content = content;
-        this.education = education;
-        this.school = school;
-        this.major = major;
-        this.career1 = career1;
-        this.careerPeriod1 = careerPeriod1;
-        this.careerPeriod1_1 = careerPeriod1_1;
-        this.career2 = career2;
-        this.careerPeriod2 = careerPeriod2;
-        this.careerPeriod2_1 = careerPeriod2_1;
-        this.career3 = career3;
-        this.careerPeriod3 = careerPeriod3;
-        this.careerPeriod3_1 = careerPeriod3_1;
-        this.open = open;
-        this.etc1 = etc1;
-        this.etc2 = etc2;
-        this.etc3 = etc3;
-
-        this.link1 = link1;
-        this.link2 = link2;
-        this.link3 = link3;
-        this.workField = workField;
-        this.user = user;
-        this.resumeImg = resumeImg;
-    }
 }
