@@ -28,7 +28,7 @@ public class TechResume {
     @ManyToOne(fetch = FetchType.LAZY)
     Resume resume;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Tech tech;
 
     @Builder
