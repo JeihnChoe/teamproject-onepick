@@ -2,86 +2,89 @@
 <div class="main-container" style="display: flex; flex-direction: column;">
     <div class="box" style="width: 700px; margin-top: 80px;">
         <div style="text-align: center; margin-top: 50px;">
-            <img src="/images/베이직2.jpg" style="border-radius: 50%;">
-            <br>
-            <input type="file" name="id" style="margin-left: 70px;" />
-            <h2>진성훈님, 환영해요.</h2>
+            <form action="/userUpdate" method="post" name="updateDTO">
+                <img src="/images/베이직2.jpg" style="border-radius: 50%; width: 180px; height: 180px; " id="preview">
+                <br>
+
+                <input type="file" name="id" style="margin-left: 70px;" onchange="changePic(event)" name="picUrl" />
+                <h2>진성훈님, 환영해요.</h2>
+
         </div>
-        <form action="/userUpdate" method="post" name="updateDTO">
-            <div class="body-container">
-                <div style="margin-left: 50px; margin-right: 100px;">
-                    <br>
-                    <div>계정 관리</div>
-                    <div style="color: #7F7F7F;">서비스에서 사용하는 내 계정 정보를 관리할 수 있습니다.</div>
-                    <br>
-                    <div class="body-text">
-                        <div class="body-head">
-                            비밀번호
-                        </div>
-                        <div class="body-main">
-                            <input name="password" class="input-box" contenteditable="true" placeholder="baronjae">
-                            </input>
-                        </div>
-                    </div>
-                    <hr class="line" style="margin-top: 0px;">
-                    <div class="body-text">
-                        <div class="body-head">
-                            비밀번호 확인
-                        </div>
-                        <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="baronjae">
-                            </input>
-                        </div>
-                    </div>
-                    <hr class="line" style="margin-top: 0px;">
-                    <div class="body-text">
-                        <div class="body-head">
-                            이름
-                        </div>
-                        <div class="body-main">
-                            <input name="username" class="input-box" contenteditable="true" placeholder="seong hun Jin">
-                            </input>
-                        </div>
-                    </div>
-                    <hr class="line" style="margin-top: 0px;">
-                    <div class="body-text">
-                        <div class="body-head">
-                            휴대폰번호
-                        </div>
-                        <div class="body-main">
-                            <input name="tel" class="input-box" contenteditable="true" placeholder="01094719693">
-                            </input>
-                        </div>
-                    </div>
-                    <hr class="line" style="margin-top: 0px;">
-                    <div class="body-text">
-                        <div class="body-head">
-                            주소
-                        </div>
-                        <div class="body-main">
-                            <input name="address" class="input-box" contenteditable="true"
-                                placeholder="부산 진구 중앙대로 688, 305호">
-                            </input>
-                        </div>
-                    </div>
-                    <hr class="line" style="margin-top: 0px;">
-                    <div class="body-text">
-                        <div class="body-head">
-                            생년월일
-                        </div>
-                        <div class="body-main">
-                            <input name="birth" class="input-box" contenteditable="true" placeholder="1993.04.22">
-                            </input>
-                        </div>
-                    </div>
-                    <hr class="line" style="margin-top: 0px;">
-                </div>
+
+        <div class="body-container">
+            <div style="margin-left: 50px; margin-right: 100px;">
                 <br>
+                <div>계정 관리</div>
+                <div style="color: #7F7F7F;">서비스에서 사용하는 내 계정 정보를 관리할 수 있습니다.</div>
                 <br>
-                <div style="display: flex; justify-content: center;">
-                    <button type="submit" class="button">수정완료</button>
+                <div class="body-text">
+                    <div class="body-head">
+                        비밀번호
+                    </div>
+                    <div class="body-main">
+                        <input name="password" class="input-box" contenteditable="true" placeholder="baronjae">
+                        </input>
+                    </div>
                 </div>
+                <hr class="line" style="margin-top: 0px;">
+                <div class="body-text">
+                    <div class="body-head">
+                        비밀번호 확인
+                    </div>
+                    <div class="body-main">
+                        <input class="input-box" contenteditable="true" placeholder="baronjae">
+                        </input>
+                    </div>
+                </div>
+                <hr class="line" style="margin-top: 0px;">
+                <div class="body-text">
+                    <div class="body-head">
+                        이름
+                    </div>
+                    <div class="body-main">
+                        <input name="username" class="input-box" contenteditable="true" placeholder="seong hun Jin">
+                        </input>
+                    </div>
+                </div>
+                <hr class="line" style="margin-top: 0px;">
+                <div class="body-text">
+                    <div class="body-head">
+                        휴대폰번호
+                    </div>
+                    <div class="body-main">
+                        <input name="tel" class="input-box" contenteditable="true" placeholder="01094719693">
+                        </input>
+                    </div>
+                </div>
+                <hr class="line" style="margin-top: 0px;">
+                <div class="body-text">
+                    <div class="body-head">
+                        주소
+                    </div>
+                    <div class="body-main">
+                        <input name="address" class="input-box" contenteditable="true"
+                            placeholder="부산 진구 중앙대로 688, 305호">
+                        </input>
+                    </div>
+                </div>
+                <hr class="line" style="margin-top: 0px;">
+                <div class="body-text">
+                    <div class="body-head">
+                        생년월일
+                    </div>
+                    <div class="body-main">
+                        <input name="birth" class="input-box" contenteditable="true" placeholder="1993.04.22">
+                        </input>
+                    </div>
+                </div>
+                <hr class="line" style="margin-top: 0px;">
             </div>
+            <br>
+            <br>
+            <div style="display: flex; justify-content: center;">
+                <button type="submit" class="button">수정완료</button>
+            </div>
+        </div>
         </form>
         <br>
         <br>
@@ -115,7 +118,23 @@
 
 
 </div>
+<script>
+    function changePic(e1) {
+        let f = e1.srcElement.files[0];
+        console.log(f.type);
+        if (!f.type.match("image.*")) {
+            alert("이미지를 등록해주세요");
+            return;
+        }
 
+        let reader = new FileReader();
+        reader.onload = function (e2) { // 파일이 다 읽어지면 콜백됨
+            let previewEl = document.querySelector("#preview");
+            previewEl.setAttribute("src", e2.target.result);
+        }
+        reader.readAsDataURL(f); // 파일 읽기 onload()
+    }
+</script>
 </div>
 </body>
 {{>/layout/footer}}

@@ -3,9 +3,9 @@
 <div class="main-container" style="display: flex; flex-direction: column;">
     <div class="box" style="width: 700px; margin-top: 80px;">
         <div style="text-align: center; margin-top: 50px;">
-            <img src="/images/베이직2.jpg" style="border-radius: 50%;">
+            <img src="/images/베이직2.jpg" style="border-radius: 50%; width: 180px; height: 180px;" id="preview">
             <br>
-            <input type="file" name="id" style="margin-left: 70px;" />
+            <input type="file" name="id" style="margin-left: 70px;" onchange="changePic(event)" name="pic" />
             <h2>최제인담당자님, 안녕하세요.</h2>
         </div>
         <form action="/bizUserUpdate" method="post" name="BizUpdateDTO">
@@ -105,6 +105,23 @@
     </div>
     <br>
 </div>
+<script>
+    function changePic(e1) {
+        let f = e1.srcElement.files[0];
+        console.log(f.type);
+        if (!f.type.match("image.*")) {
+            alert("이미지를 등록해주세요");
+            return;
+        }
+
+        let reader = new FileReader();
+        reader.onload = function (e2) { // 파일이 다 읽어지면 콜백됨
+            let previewEl = document.querySelector("#preview");
+            previewEl.setAttribute("src", e2.target.result);
+        }
+        reader.readAsDataURL(f); // 파일 읽기 onload()
+    }
+</script>
 </body>
 
 {{>layout/footer}}
