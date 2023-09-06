@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.teamprojectonepick.resume.Resume;
@@ -29,4 +30,11 @@ public class TechResume {
 
     @ManyToOne
     Tech tech;
+
+    @Builder
+    public TechResume(Integer id, Resume resume, Tech tech) {
+        this.id = id;
+        this.resume = resume;
+        this.tech = tech;
+    }
 }
