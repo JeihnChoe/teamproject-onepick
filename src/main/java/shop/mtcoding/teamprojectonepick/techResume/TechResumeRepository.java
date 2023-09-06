@@ -1,4 +1,4 @@
-package shop.mtcoding.teamprojectonepick.tech;
+package shop.mtcoding.teamprojectonepick.techResume;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

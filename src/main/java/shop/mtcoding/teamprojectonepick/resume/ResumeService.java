@@ -3,6 +3,7 @@ package shop.mtcoding.teamprojectonepick.resume;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import shop.mtcoding.teamprojectonepick.resume.ResumeRequestDTO.SaveDTO;
+import shop.mtcoding.teamprojectonepick.techResume.TechResume;
+import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
@@ -18,9 +21,11 @@ public class ResumeService {
 
     @Autowired
     private ResumeRepository resumeRepository;
+    @Autowired
+    private TechResumeRepository techResumeRepository;
 
     @Transactional
-    public void 이력서작성(SaveDTO saveDTO) {
+    public void 이력서작성(SaveDTO saveDTO, List<String> techResume) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
@@ -64,6 +69,10 @@ public class ResumeService {
                 // 들어옴
                 .user(user)
                 .build();
+        TechResume techresume = TechResume.builder()
+                .resume(resume)
+                .tech(tech).build();
+        TechResume techResume = techResumeRepository.save();
         resumeRepository.save(resume);
 
     }
