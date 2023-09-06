@@ -37,5 +37,5 @@ public class ApplyResumeNotice {
         this.resumeId = resumeId;
         this.noticeId = noticeId;
     }
-11
+
 }
