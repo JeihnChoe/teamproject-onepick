@@ -76,7 +76,6 @@ public class ResumeService {
                 .user(user)
                 .build();
         resumeRepository.save(resume);
-        resumeRepository.findAll();
 
         for (Integer techIds : techId) {
             Tech tech = techRepository.findById(techIds).get();
