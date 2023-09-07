@@ -87,4 +87,9 @@ public class ResumeService {
         Resume resume = resumeRepository.mFindByIdJoinTechResumeInUser(id);
         return resume;
     }
+
+    @Transactional
+    public void 삭제하기(Integer id) {
+        resumeRepository.deleteById(id);
+    }
 }
