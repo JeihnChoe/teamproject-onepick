@@ -1,4 +1,4 @@
-package shop.mtcoding.teamprojectonepick.tech;
+package shop.mtcoding.teamprojectonepick.techNotice;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +15,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.teamprojectonepick.notice.Notice;
 import shop.mtcoding.teamprojectonepick.resume.Resume;
+import shop.mtcoding.teamprojectonepick.tech.Tech;
 
 @NoArgsConstructor
 @Data
