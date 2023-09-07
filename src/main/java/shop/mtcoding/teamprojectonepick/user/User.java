@@ -10,12 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Builder;
+<<<<<<< HEAD
+import lombok.Data;
+=======
 import lombok.Getter;
+>>>>>>> dev
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
 @Table(name = "user_tb")
@@ -63,9 +65,14 @@ public class User {
     private Timestamp createdAt;
 
     @Builder
+<<<<<<< HEAD
+    public User(Integer id, String loginId, String password, String email, String username, String address,
+            String school, String career, String tel, String birth, Timestamp createdAt) {
+=======
     public User(Integer id, String loginId, String password, String username, String email, String address,
             String address2, String tel,
             String birth, String bizname, String picUrl, int usercode, Timestamp createdAt) {
+>>>>>>> dev
         this.id = id;
         this.loginId = loginId;
         this.password = password;

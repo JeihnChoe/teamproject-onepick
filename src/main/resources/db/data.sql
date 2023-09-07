@@ -51,3 +51,6 @@ insert into tech_resume_tb(resume_id, tech_id) values(2, 3);
 insert into tech_resume_tb(resume_id, tech_id) values(2, 6);
 insert into tech_resume_tb(resume_id, tech_id) values(2, 7);
 insert into tech_resume_tb(resume_id, tech_id) values(3, 3);
+
+insert into biz_tb(login_id, password, bizname, manager_name, manager_tel, manager_email, address) 
+values('samsung', '1234',  '삼성', '최제인', '010-1234-5678','ss@naver.com', '수원 영통구');
