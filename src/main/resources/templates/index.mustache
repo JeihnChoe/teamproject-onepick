@@ -26,7 +26,13 @@
         <h6>총 2,111건</h6>
         <hr class="line">
 
-        <div class="grid-box" id="product-box">
+
+        <select id="open" class="form-control">
+            <option value="on">공고게시중</option>
+            <option value="off">공고게시완료</option>
+
+        </select>
+        <div class="grid-box" id="notice-box">
 
 
         </div>
@@ -36,51 +42,30 @@
 </div>
 
 <script>
+    render();
 
-
-
-
-
-    function render() {
-
-
-        let responseBody = download();
-        responseBody.forEach((product) => {
-            $("#product-box").append(productBox());
-
+    async function render() {
+        let responseBody = await download();
+        responseBody.forEach((notice) => {
+            $("#notice-box").append(noticeBox(notice));
         });
     }
 
-
-    function productBox() {
+    function noticeBox(notice) {
         return `<div class="card" style="width:250px">
-                <img class="card-img-top" src="/images/1.jpg" alt="Card image" width="300px">
+                <img class="card-img-top" src="/${notice.userImg}" alt="Card image" width="300px">
                 <div class="card-body">
-                    <h5 class="card-title">기업명</h4>
-                        <p class="card-text">채용내용</p>
-                        <p class="card-text">지역</p>
+                    <h5 class="card-title">${notice.bizName}</h4>
+                        <p class="card-text">${notice.workField}</p>
+                        <p class="card-text">${notice.address}</p>
                 </div>
             </div>`;
     }
+    async function download() {
+        let response = await fetch("api/searchNotice");
+        let responseBody = await response.json();
 
-    function download() {
-        let productList = [
-            {
-                id: 1,
-                bizName: 삼성,
-                workfield: 백엔드,
-                bizAddress: 부산
-
-            },
-            {
-                id: 2,
-                bizName: 엘지,
-                workfield: 프론트엔드,
-                bizAddress: 부산
-
-            }
-        ];
-        return productList;
+        return responseBody;
     }
 
 </script>

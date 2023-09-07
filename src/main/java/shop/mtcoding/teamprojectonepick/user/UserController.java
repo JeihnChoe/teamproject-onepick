@@ -5,13 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
+import shop.mtcoding.teamprojectonepick.notice.NoticeRepository;
 
 import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
@@ -19,7 +22,7 @@ import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 
 @Controller
 
-public class UserContoller {
+public class UserController {
     @Autowired
     private HttpSession session;
     @Autowired
@@ -76,6 +79,21 @@ public class UserContoller {
         return "redirect:/";
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "/index";
+    }
+
+    @GetMapping("/joinForm")
+    public String joinForm() {
+        return "/user/joinForm";
+    }
+
+    @GetMapping("/userJoinForm")
+    public String userJoinForm() {
+        return ("/user/userJoinForm");
+    }
+
     @PostMapping("/userJoin")
     public String userJoin(UserRequestDTO.JoinDTO joinDTO) {
         userService.유저회원가입(joinDTO);
@@ -90,14 +108,9 @@ public class UserContoller {
         return "/user/loginForm";
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "/index";
-    }
-
-    @GetMapping("/joinForm")
-    public String joinForm() {
-        return "/user/joinForm";
+    @GetMapping("/bizJoinForm")
+    public String bizJoinForm() {
+        return "/user/bizJoinForm";
     }
 
     @GetMapping("/loginForm")
@@ -107,12 +120,15 @@ public class UserContoller {
 
     // 개인 변동사항
 
+<<<<<<< HEAD:src/main/java/shop/mtcoding/teamprojectonepick/user/UserController.java
+=======
     @GetMapping("/userJoinForm")
     public String userJoinForm() {
         return ("/user/userJoinForm");
     }
 
     // 이력서 상세보기에 이력서id 필요
+>>>>>>> d98f98bb514b7369245f52bf6514cfa4ee69e25a:src/main/java/shop/mtcoding/teamprojectonepick/user/UserContoller.java
     @GetMapping("/userProfileForm")
 
   public String userProfile(Model model) {
@@ -153,11 +169,6 @@ public class UserContoller {
     }
 
     // 기업 변동사항
-
-    @GetMapping("/bizJoinForm")
-    public String bizJoinForm() {
-        return "/user/bizJoinForm";
-    }
 
     @GetMapping("/bizProfileForm")
     public String bizProfileForm(Model model) {

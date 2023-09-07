@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+<<<<<<< HEAD
+import org.springframework.web.bind.annotation.ResponseBody;
+=======
 import org.springframework.web.multipart.MultipartFile;
+>>>>>>> d98f98bb514b7369245f52bf6514cfa4ee69e25a
 
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.DetailDTO;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
@@ -32,13 +36,25 @@ public class NoticeController {
     private TechRepository techRepository;
 
     @Autowired
+<<<<<<< HEAD
+    private NoticeRepository noticeRepository;
+=======
     private NoticeRequestDTO noticeRequestDTO;
+>>>>>>> d98f98bb514b7369245f52bf6514cfa4ee69e25a
 
     @Autowired
     private HttpSession session;
 
+<<<<<<< HEAD
+    @GetMapping("/api/searchNotice")
+    public @ResponseBody List<Notice> open(@RequestParam(defaultValue = "open") String open) {
+
+        return noticeRepository.findByOpen("on");
+    }
+=======
     @Autowired
     private TechNoticeRepository techNoticeRepository;
+>>>>>>> d98f98bb514b7369245f52bf6514cfa4ee69e25a
 
     // 공고등록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @GetMapping("/writeNoticeForm")
@@ -52,7 +68,11 @@ public class NoticeController {
 
     @PostMapping("/notice/writeNotice")
     public String writeNotice(NoticeRequestDTO.SaveDTO saveDTO,
+<<<<<<< HEAD
+            @RequestParam(name = "tech-notice") List<Integer> techId) {
+=======
             @RequestParam(name = "tech-notice") List<Integer> techId, @RequestParam("userImg") MultipartFile file) {
+>>>>>>> d98f98bb514b7369245f52bf6514cfa4ee69e25a
         User sessionUser = (User) session.getAttribute("sessionUser");
         noticeService.공고등록(saveDTO, techId);
         return "redirect:/bizProfileForm";
