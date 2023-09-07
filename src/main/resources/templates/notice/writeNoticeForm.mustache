@@ -78,7 +78,7 @@
                     <div class="box-invisible"
                         style="width: fit-content; margin-left: 30px; margin-right: 10px; font-weight: bold; font-size: 20px;">
                         근무 지역</div>
-                    <select class="box" data-bs-toggle="dropdown" name="userAddress" values="근무지 선택"
+                    <select class="box" data-bs-toggle="dropdown" name="address" values="근무지 선택"
                         style="width: 100px; margin-left: 0px;">근무지역 선택</button>
                         <ul>
                             <li>
@@ -98,6 +98,26 @@
                             </li>
                         </ul>
                     </select>
+                    <select class="box" data-bs-toggle="dropdown" name="address2" values="근무지 선택"
+                    style="width: 100px; margin-left: 0px;">근무지역 선택</button>
+                    <ul>
+                        <li>
+                            <option value="뉴욕">뉴욕</option>
+                        </li>
+                        <li>
+                            <option value="용산">용산</option>
+                        </li>
+                        <li>
+                            <option value="용인">용인</option>
+                        </li>
+                        <li>
+                            <option value="서면">서면</option>
+                        </li>
+                        <li>
+                            <option value="성심당">성심당</option>
+                        </li>
+                    </ul>
+                </select>
                 </div>
             </div>
 
@@ -185,8 +205,8 @@
             <div class="box-invisible"
                 style="width: fit-content; margin-left:90px; margin-right: 10px; font-weight: bold; font-size: 20px;">
                 마감일</div>
-            <input class="box" type="date" name="deadLine" style="width: 30%; margin-left: 0px;"
-                placeholder="제목을 입력하세요. 40자 이내" maxlength="40">
+            <input class="box" type="date" name="deadLine" style="width: 40%; margin-left: 0px;"
+                >
         </div>
         <div class="box-invisible" style="display: flex; justify-content: center;">
             <button class="button" type="submit">작성완료</button>

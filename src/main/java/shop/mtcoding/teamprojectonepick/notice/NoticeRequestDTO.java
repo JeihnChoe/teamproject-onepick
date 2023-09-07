@@ -19,7 +19,8 @@ public class NoticeRequestDTO {
         private String semiContent;
         private String workField;
         private String bizName;
-        private String userAddress;
+        private String address;
+        private String address2;
         private String career;
         private String education;
         private String mainContent;

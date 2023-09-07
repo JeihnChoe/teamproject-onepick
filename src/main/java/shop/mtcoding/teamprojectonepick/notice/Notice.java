@@ -53,11 +53,11 @@ public class Notice {
         private String bizName; // 기업 이름(담당자 이름말고.)
 
         @Column(nullable = false, length = 10000)
-        private String userAddress; // 근무 지역(택1)
+        private String address; // 근무 지역(택1)
 
         
         @Column(nullable = false, length = 10000)
-        private String userAddress2; // 근무 지역(택1)
+        private String address2; // 근무 지역(택1)
 
         @Column(nullable = false, length = 10000)
         private String career; // 요구경력(택1)
@@ -83,7 +83,7 @@ public class Notice {
 
         @Builder
         public Notice(Integer id, String open, String userImg, String semiTitle, String semiContent, String workField,
-                        String bizName, String userAddress, String career, String education, String mainContent,
+                        String bizName, String address, String address2, String career, String education, String mainContent,
                         String deadLine, User user, List<TechNotice> techNotices) {
                 this.id = id;
                 this.open = open;
@@ -92,7 +92,8 @@ public class Notice {
                 this.semiContent = semiContent;
                 this.workField = workField;
                 this.bizName = bizName;
-                this.userAddress = userAddress;
+                this.address = address;
+                this.address2 = address2;
                 this.career = career;
                 this.education = education;
                 this.mainContent = mainContent;
