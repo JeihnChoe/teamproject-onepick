@@ -145,10 +145,11 @@ public class UserController {
     public String bizProfileForm(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원프로필조회(sessionUser.getId());
-        UserResponseDTO.UserProfileFormDTO userProfileFormDTO = new UserResponseDTO.UserProfileFormDTO(
+        UserResponseDTO.BizUserProfileFormDTO bizuserProfileFormDTO = new UserResponseDTO.BizUserProfileFormDTO(
                 "" + user.getPicUrl(),
+                user.getBizname(),
                 user.getUsername(), user.getEmail(), user.getTel());
-        model.addAttribute("userInfo", userProfileFormDTO);
+        model.addAttribute("userInfo", bizuserProfileFormDTO);
         return "/user/bizProfileForm";
     }
 
