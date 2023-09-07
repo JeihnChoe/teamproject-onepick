@@ -60,6 +60,7 @@ public class UserRequestDTO {
         private String username;
         private String tel;
         private String address;
+        private String address2;
         private MultipartFile pic;
     }
 

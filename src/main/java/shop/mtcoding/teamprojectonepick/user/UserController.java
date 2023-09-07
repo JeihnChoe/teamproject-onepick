@@ -4,10 +4,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
+
+import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
 
 @Controller
 
@@ -104,10 +105,15 @@ public class UserController {
     }
 
     @GetMapping("/fixUserProfileForm")
-    public String fixUserProfile() {
+    public String fixUserProfile(Model model) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.회원정보조회(sessionUser.getId());
+        UserResponseDTO.UserInfoResponseDTO userInfoResponseDTO = new UserResponseDTO.UserInfoResponseDTO(user.getId(),
+                user.getPassword(), user.getUsername(), user.getTel(),
+                user.getBirth(), user.getAddress(), "" + user.getPicUrl());
+        model.addAttribute("userInfo", userInfoResponseDTO);
         return ("/user/fixUserProfileForm");
     }
-
     // 기업 변동사항
 
     @GetMapping("/bizJoinForm")
@@ -121,7 +127,14 @@ public class UserController {
     }
 
     @GetMapping("/fixBizProfileForm")
-    public String fixBizProfileForm() {
+    public String fixBizProfileForm(Model model) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.기업회원정보조회(sessionUser.getId());
+        UserResponseDTO.BizUserInfoResponseDTO bizUserInfoResponseDTO = new UserResponseDTO.BizUserInfoResponseDTO(
+                user.getPassword(), user.getBizname(), user.getUsername(), user.getTel(), user.getAddress(),
+                user.getAddress2(),
+                "" + user.getPicUrl());
+        model.addAttribute("userInfo", bizUserInfoResponseDTO);
         return "/user/fixBizProfileForm";
     }
 
