@@ -50,7 +50,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    @Transactional
+    public User 회원정보보기(Integer id) {
+        return userRepository.findById(id).get();
+    }
+
     public User 유저로그인(LoginDTO loginDTO) {
         User user = userRepository.findByUsername(loginDTO.getLoginId());
 
@@ -121,8 +124,19 @@ public class UserService {
         user.setUsername(bizUpdateDTO.getUsername());
         user.setTel(bizUpdateDTO.getTel());
         user.setAddress(bizUpdateDTO.getAddress());
+        user.setAddress2(bizUpdateDTO.getAddress2());
         user.setPicUrl(fileName);
 
+        return user;
+    }
+
+    public User 회원정보조회(Integer id) {
+        User user = userRepository.findById(id).get();
+        return user;
+    }
+
+    public User 기업회원정보조회(Integer id) {
+        User user = userRepository.findById(id).get();
         return user;
     }
 }
