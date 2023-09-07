@@ -84,7 +84,8 @@ public class Notice {
 
         @Builder
         public Notice(Integer id, String open, String userImg, String semiTitle, String semiContent, String workField,
-                        String bizName, String userAddress, String career, String education, String mainContent,
+                        String bizName, String address, String address2, String career, String education,
+                        String mainContent,
                         String deadLine, User user, List<TechNotice> techNotices) {
                 this.id = id;
                 this.open = open;
