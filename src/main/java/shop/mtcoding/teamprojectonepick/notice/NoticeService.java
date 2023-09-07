@@ -36,7 +36,7 @@ public class NoticeService {
     private NoticeRepository noticeRepository;
 
     @Transactional
-    public void 공고등록(NoticeRequestDTO.SaveDTO saveDTO, int sessionUserId) {
+    public void 공고등록(NoticeRequestDTO.SaveDTO saveDTO, List<Integer> techId) {
 
         UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
         String fileName = uuid + "_" + saveDTO.getUserImg().getOriginalFilename();
@@ -67,7 +67,8 @@ public class NoticeService {
                 .semiContent(saveDTO.getSemiContent())
                 .workField(saveDTO.getWorkField())
                 .bizName(saveDTO.getBizName())
-                .userAddress(saveDTO.getUserAddress())
+                .address(saveDTO.getAddress())
+                .address2(saveDTO.getAddress2())
                 .career(saveDTO.getCareer())
                 .education(saveDTO.getEducation())
                 .mainContent(saveDTO.getMainContent())
@@ -78,10 +79,9 @@ public class NoticeService {
                 .build();
 
         // 기술스택 리스트넣기
-        String[] strTechIds = saveDTO.getTechNotice().split(",");
-        int[] techIds = Arrays.stream(strTechIds).mapToInt(Integer::parseInt).toArray();
-        for (Integer techId : techIds) {
-            Tech tech = techRepository.findById(techId).get();
+       
+        for (Integer techIds : techId) {
+            Tech tech = techRepository.findById(techIds).get();
             TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
             techNoticeRepository.save(techNotice);
             // techNotices.add(techNotice);
