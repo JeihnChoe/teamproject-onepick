@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -37,6 +38,7 @@ public class ResumeController {
         @Autowired
         private HttpSession session;
 
+        // 완료
         @GetMapping("/writeResumeForm")
         public String writeResumeForm(HttpServletRequest request) {
                 // TechResume techResume = techResumeRepository.mFindByIdJoinResume(3);
@@ -53,11 +55,22 @@ public class ResumeController {
                         @RequestParam(name = "tech-resume") List<Integer> techId) {
                 User sessionUser = (User) session.getAttribute("sessionUser");
                 System.out.println(techId);
-                resumeService.이력서작성(saveDTO, techId);
+                resumeService.이력서작성(saveDTO, techId, sessionUser.getId());
+                System.out.println("테스트 :" + saveDTO.careerPeriodS1);
 
-                return "/userBoard/manageResumeForm";
+                return "redirect:/userProfileForm";
+        }
+
+        @GetMapping("/viewResumeForm/{id}")
+        public String viewResumeForm(@PathVariable Integer id, HttpServletRequest request) {
+                User sessionUser = (User) session.getAttribute("sessionUser");
+                Resume resume = resumeService.이력서상세보기(id);
+                List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResumeJoinUser(id);
+                System.out.println("테스트그림" + resume.getResumeImg());
+                resume.setResumeImg("" + resume.getResumeImg());
+                request.setAttribute("resume", resume);
+                request.setAttribute("techResumes", techResumes);
+                return "/resume/viewResumeForm";
         }
 
 }
-
-// 이력서 작성 - 기술 테이블 ajax로 출력하는거 해야됨

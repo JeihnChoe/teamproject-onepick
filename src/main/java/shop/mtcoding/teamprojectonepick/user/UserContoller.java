@@ -1,5 +1,8 @@
 package shop.mtcoding.teamprojectonepick.user;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
 
+import shop.mtcoding.teamprojectonepick.resume.Resume;
+import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
+import shop.mtcoding.teamprojectonepick.tech.TechRepository;
+
 @Controller
 
 public class UserContoller {
@@ -17,6 +24,9 @@ public class UserContoller {
     private HttpSession session;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ResumeRepository resumeRepository;
 
     @PostMapping("/logout")
     public String logout() {
@@ -101,8 +111,12 @@ public class UserContoller {
         return ("/user/userJoinForm");
     }
 
+    // 이력서 상세보기에 이력서id 필요
     @GetMapping("/userProfileForm")
-    public String userProfile() {
+    public String userProfile(HttpServletRequest request) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Resume> resumeList = resumeRepository.findByUserId(sessionUser.getId());
+        request.setAttribute("resumeList", resumeList);
         return ("/user/userProfileForm");
     }
 

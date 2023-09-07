@@ -51,13 +51,21 @@
             <hr class="line">
 
             <div style="margin-top: 30px;margin-bottom: 30px;">
-                <a href="/writeResumeForm">이력서관리</a>
+                {{#resumeList}}
+                <a href="/viewResumeForm/{{id}}">이력서관리</a>
+                {{/resumeList}}
             </div>
 
             <hr class="line">
 
             <div style="margin-top: 30px; margin-bottom: 30px;">
                 <a href="/fixUserProfileForm">회원정보수정</a>
+            </div>
+
+            <hr class="line">
+
+            <div style="margin-top: 30px; margin-bottom: 30px;">
+                <a href="/writeResumeForm">이력서 작성</a>
             </div>
 
         </div>
