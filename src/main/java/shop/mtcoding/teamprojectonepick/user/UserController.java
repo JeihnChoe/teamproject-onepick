@@ -87,6 +87,7 @@ public class UserController {
 
     @PostMapping("/userJoin")
     public String userJoin(UserRequestDTO.JoinDTO joinDTO) {
+
         userService.유저회원가입(joinDTO);
 
         return "/user/loginForm";

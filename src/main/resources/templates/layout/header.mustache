@@ -16,10 +16,11 @@
     <title>당신의 픽, OnePick!</title>
 
     <link rel="stylesheet" href="/style.css">
+
 </head>
 
 <header>
-    <div class="main-container" style="display: flex;">
+    <div class="main-container" style="display: flex; background-color: #fff;">
         <div style="display: flex; justify-content: space-around;">
 
             <div style="display: flex; align-items: center;  margin-right: 300px;">
@@ -33,14 +34,14 @@
                 {{^sessionUser}}
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="btn btn-light" href="/">채용공고보기</a>
+                        <a class="btn btn-close-white" href="/">채용공고보기</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-light" href="/loginForm">로그인</a>
+                        <a class="btn btn-close-white" href="/loginForm">로그인</a>
                     </li>
                     <li class="nav-item">
 
-                        <a class="btn btn-light" href="/joinForm">회원가입</a>
+                        <a class="btn btn-close-white" href="/joinForm">회원가입</a>
 
                     </li>
                 </ul>
@@ -49,17 +50,17 @@
                 <!-- 개인세션 로그인시 출력 -->
                 {{#user}}
                 <div style="color: var(--font_03);">
-                    <a href="/">채용공고보기</a>
+                    <a class="btn btn-close-white" href="/">채용공고보기</a>
                 </div>
 
                 <div style="color: var(--font_03);">
-                    <a href="/고객센터null">고객센터</a>
+                    <a class="btn btn-close-white" href="/고객센터null">고객센터</a>
                 </div>
                 <div style="color: var(--font_03);">
-                    <a href="/userProfileForm">My 원픽</a>
+                    <a class="btn btn-close-white" href="/userProfileForm">My 원픽</a>
                 </div>
                 <div>
-                    <button onclick="(() => {
+                    <button class="btn btn-close-white" onclick="(() => {
                         document.logoutForm.submit() 
                     })()">로그아웃</button>
                     <form action="/logout" method="post" name="logoutForm" hidden></form>
@@ -69,16 +70,16 @@
                 <!-- 기업세션 로그인시 출력 -->
                 {{#sessionBiz}}
                 <div style="color: var(--font_03);">
-                    <a href="/">채용공고보기</a>
+                    <a class="btn btn-close-white" href="/">채용공고보기</a>
                 </div>
                 <div style="color: var(--font_03);">
-                    <a href="/고객센터null">고객센터</a>
+                    <a class="btn btn-close-white" href="/고객센터null">고객센터</a>
                 </div>
                 <div style="color: var(--font_03);">
-                    <a href="/bizProfileForm">Biz 원픽</a>
+                    <a class="btn btn-close-white" href="/bizProfileForm">Biz 원픽</a>
                 </div>
                 <div>
-                    <button onclick="(() => {
+                    <button class="btn btn-close-white" onclick="(() => {
                         document.logoutForm.submit() 
                     })()">로그아웃</button>
                     <form action="/logout" method="post" name="logoutForm" hidden></form>
@@ -87,7 +88,7 @@
             </div>
         </div>
     </div>
-    <hr class="line">
+    <hr class="line" style="margin-top: 0;">
 </header>
 
-<body style="padding-top: 800px;">
+<body style="margin-top: 60px;">

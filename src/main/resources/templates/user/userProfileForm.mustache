@@ -2,82 +2,78 @@
 <div class="main-container" style="display: flex;">
     <!--왼쪽 1번째박스-->
     <div class="left-container" style="margin-right: 50px;">
-        <form action="/userProfileForm" method="post" name="UserProfileFormDTO" enctype="multipart/form-data">
 
-            <div style=" color:var(--font_01); margin-top: 45px;">
-
-            </div>
-            <div class="box" style="width: 200px; margin-top: 20px; text-align: center; ">
-                <div class="box" style="align-content:  center;">
-
-                    <div>
-                        <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
-                        <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
-                    </div>
-                    <div style="margin-top: 20px;">
-                    </div>
-                    <input name="username" value="{{userInfo.username}}" readonly type="text"
-                        style="text-align: center; border: none; font-weight: bold; width: 150px; ">
-                    </input>
-                    <div style="margin-top: 20px; color: var(--font_02);"></div>
-                    <input name="email" value="{{userInfo.email}}" readonly style="border: none; width: 150px;"></input>
-                    <div style="margin-top: 10px; color: var(--font_02)"></div>
-                    <input name="tel" value="{{userInfo.tel}}" readonly style="border: none; width: 150px;">
-                    <br>
-                </div>
-
-                <hr class="line">
+        <div class="box" style="width: 200px; margin-top: 20px; text-align: center; ">
+            <div class="box" style="align-content:  center;">
 
                 <div>
-                    <div style="display: flex; justify-content: space-around; margin-top: 40px;">
-                        <div>지원현황</div>
-                        <div>
-                            <!-- apply_tb에서 카운트 -->
-                            10
-                        </div>
-                    </div>
-                    <div style="display: flex; justify-content: space-around;margin-top: 30px;">
-
-                        <div>관심있음</div>
-                        <div>
-                            <!-- like_tb에서 카운트 -->
-                            2
-                        </div>
-
-                    </div>
-                    <div style="display: flex; justify-content: space-around;margin-top: 30px; margin-bottom: 30px;">
-                        <div>받은제안</div>
-                        <div>
-                            <!-- ??????_tb에서 카운트 -->
-                            5
-                        </div>
-                    </div>
+                    <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
+                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
                 </div>
-
-                <hr class="line">
-
-
-                <div style="margin-top: 30px;margin-bottom: 30px;">
-                    {{#resumeList}}
-                    <a href="/viewResumeForm/{{id}}">이력서관리</a>
-                    {{/resumeList}}
+                <div style="margin-top: 20px;">
                 </div>
-
-
-                <hr class="line">
-
-                <div style="margin-top: 30px; margin-bottom: 30px;">
-                    <a href="/fixUserProfileForm">회원정보수정</a>
+                <div name="username" value="{{userInfo.username}}" readonly type="text"
+                    style="text-align: center; border: none; font-weight: bold; width: 150px; ">
                 </div>
-
-
+                <div style="margin-top: 20px; color: var(--font_02);"></div>
+                <input name="email" value="{{userInfo.email}}" readonly style="border: none; width: 150px;"></input>
+                <div style="margin-top: 10px; color: var(--font_02)"></div>
+                <input name="tel" value="{{userInfo.tel}}" readonly style="border: none; width: 150px;">
+                <br>
             </div>
 
             <hr class="line">
 
-            <div style="margin-top: 30px; margin-bottom: 30px;">
-                <a href="/writeResumeForm">이력서 작성</a>
+            <div>
+                <div style="display: flex; justify-content: space-around; margin-top: 40px;">
+                    <div>지원현황</div>
+                    <div>
+                        <!-- apply_tb에서 카운트 -->
+                        10
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: space-around;margin-top: 30px;">
+
+                    <div>관심있음</div>
+                    <div>
+                        <!-- like_tb에서 카운트 -->
+                        2
+                    </div>
+
+                </div>
+                <div style="display: flex; justify-content: space-around;margin-top: 30px; margin-bottom: 30px;">
+                    <div>받은제안</div>
+                    <div>
+                        <!-- ??????_tb에서 카운트 -->
+                        5
+                    </div>
+                </div>
             </div>
+
+            <hr class="line">
+
+
+            <div style="margin-top: 30px;margin-bottom: 30px;">
+                {{#resumeList}}
+                <a href="/viewResumeForm/{{id}}">이력서관리</a>
+                {{/resumeList}}
+            </div>
+
+
+            <hr class="line">
+
+            <div style="margin-top: 30px; margin-bottom: 30px;">
+                <a href="/fixUserProfileForm">회원정보수정</a>
+            </div>
+
+
+        </div>
+
+        <hr class="line">
+
+        <div style="margin-top: 30px; margin-bottom: 30px;">
+            <a href="/writeResumeForm">이력서 작성</a>
+        </div>
 
     </div>
 
@@ -184,7 +180,7 @@
 
             </div>
 
-            </form>
+
 
 
 
