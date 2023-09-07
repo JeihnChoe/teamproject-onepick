@@ -1,5 +1,7 @@
 package shop.mtcoding.teamprojectonepick.user;
 
+import javax.persistence.Lob;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +14,6 @@ public class UserResponseDTO {
         private Integer id;
         private String password;
         private String username;
-
         private String tel;
         private String birth;
         private String address;
@@ -35,6 +36,7 @@ public class UserResponseDTO {
     @Getter
     @AllArgsConstructor
     static class UserProfileFormDTO {
+        @Lob
         private String picUrl;
         private String username;
         private String email;

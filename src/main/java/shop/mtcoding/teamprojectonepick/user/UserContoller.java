@@ -21,18 +21,6 @@ public class UserContoller {
     @PostMapping("/logout")
     public String logout() {
         session.invalidate();
-        System.out.println("로그아웃테스트 : ");
-        return "redirect:/";
-    }
-
-    @PostMapping("/userUpdate")
-    public String update(UserRequestDTO.UpdateDTO updateDTO) {
-        System.out.println(updateDTO);
-        // 1. 회원수정 (서비스)
-        // 2. 세션동기화
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        User user = userService.회원수정(updateDTO, sessionUser.getId());
-        session.setAttribute("sessionUser", user);
         return "redirect:/";
     }
 
@@ -121,6 +109,18 @@ public class UserContoller {
         model.addAttribute("userInfo", userInfoResponseDTO);
         return ("/user/fixUserProfileForm");
     }
+
+    @PostMapping("/userUpdate")
+    public String update(UserRequestDTO.UpdateDTO updateDTO) {
+        System.out.println(updateDTO);
+        // 1. 회원수정 (서비스)
+        // 2. 세션동기화
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.회원수정(updateDTO, sessionUser.getId());
+        session.setAttribute("sessionUser", user);
+        return "redirect:/userProfileForm";
+    }
+
     // 기업 변동사항
 
     @GetMapping("/bizJoinForm")
@@ -129,7 +129,13 @@ public class UserContoller {
     }
 
     @GetMapping("/bizProfileForm")
-    public String bizProfileForm() {
+    public String bizProfileForm(Model model) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.기업회원프로필조회(sessionUser.getId());
+        UserResponseDTO.UserProfileFormDTO userProfileFormDTO = new UserResponseDTO.UserProfileFormDTO(
+                "" + user.getPicUrl(),
+                user.getUsername(), user.getEmail(), user.getTel());
+        model.addAttribute("userInfo", userProfileFormDTO);
         return "/user/bizProfileForm";
     }
 
