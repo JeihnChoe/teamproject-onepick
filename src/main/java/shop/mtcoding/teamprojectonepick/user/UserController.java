@@ -112,7 +112,6 @@ public class UserController {
     // 개인 변동사항
 
     @GetMapping("/userProfileForm")
-
     public String userProfile(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원프로필조회(sessionUser.getId());

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import shop.mtcoding.teamprojectonepick._core.util.Script;
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.DetailDTO;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
