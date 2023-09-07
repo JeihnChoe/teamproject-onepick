@@ -2,10 +2,9 @@
 <div class="main-container" style="display: flex;">
     <!--왼쪽 1번째박스-->
     <div class="left-container" style="margin-right: 50px;">
-
         <form action="/userProfileForm" method="post" name="UserProfileFormDTO" enctype="multipart/form-data">
-            <div style=" color:var(--font_01); margin-top: 45px;">
 
+            <div style=" color:var(--font_01); margin-top: 45px;">
 
             </div>
             <div class="box" style="width: 200px; margin-top: 20px; text-align: center; ">
@@ -58,11 +57,11 @@
                 <hr class="line">
 
 
-            <div style="margin-top: 30px;margin-bottom: 30px;">
-                {{#resumeList}}
-                <a href="/viewResumeForm/{{id}}">이력서관리</a>
-                {{/resumeList}}
-            </div>
+                <div style="margin-top: 30px;margin-bottom: 30px;">
+                    {{#resumeList}}
+                    <a href="/viewResumeForm/{{id}}">이력서관리</a>
+                    {{/resumeList}}
+                </div>
 
 
                 <hr class="line">
@@ -80,9 +79,9 @@
                 <a href="/writeResumeForm">이력서 작성</a>
             </div>
 
-        </div>
-
     </div>
+
+
 
     <div class="right-container">
 
