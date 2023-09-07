@@ -8,14 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @Entity
 @Table(name = "user_tb")
@@ -64,8 +61,8 @@ public class User {
 
     @Builder
     public User(Integer id, String loginId, String password, String username, String email, String address,
-            String address2, String tel,
-            String birth, String bizname, String picUrl, int usercode, Timestamp createdAt) {
+            String address2, String tel, String birth, String bizname, Integer usercode, String picUrl,
+            Timestamp createdAt) {
         this.id = id;
         this.loginId = loginId;
         this.password = password;
@@ -76,9 +73,9 @@ public class User {
         this.tel = tel;
         this.birth = birth;
         this.bizname = bizname;
-        this.picUrl = picUrl;
-
         this.usercode = usercode;
+        this.picUrl = picUrl;
+        this.createdAt = createdAt;
     }
 
 }

@@ -54,14 +54,6 @@ footer {
 
 }
 
-.header-button-style {
-    width: 100px;
-    height: 40px;
-    border-radius: 15px;
-    border-color: rgba(0, 0, 0, 0.10);
-
-}
-
 .button {
     width: 100px;
     height: 40px;
@@ -133,4 +125,10 @@ footer {
     margin-bottom: 5px;
     color: black;
 
+}
+
+.grid-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 25px;
 }

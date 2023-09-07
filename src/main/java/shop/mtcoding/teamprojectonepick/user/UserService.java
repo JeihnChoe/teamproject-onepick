@@ -50,7 +50,10 @@ public class UserService {
         userRepository.save(user);
     }
 
-    @Transactional
+    public User 회원정보보기(Integer id) {
+        return userRepository.findById(id).get();
+    }
+
     public User 유저로그인(LoginDTO loginDTO) {
         User user = userRepository.findByUsername(loginDTO.getLoginId());
 
@@ -80,7 +83,8 @@ public class UserService {
         try {
             Files.write(filePath, updateDTO.getPic().getBytes());
         } catch (Exception e) {
-            throw new MyException(e.getMessage());
+
+            throw new MyException(e);
         }
 
         // 1. 조회 (영속화)
@@ -93,7 +97,7 @@ public class UserService {
         user.setTel(updateDTO.getTel());
         user.setBirth(updateDTO.getBirth());
         user.setAddress(updateDTO.getAddress());
-        // user.setPicUrl(fileName);
+        user.setPicUrl(fileName);
 
         return user;
     }
@@ -101,18 +105,17 @@ public class UserService {
     @Transactional
     public User 기업회원수정(BizUpdateDTO bizUpdateDTO, Integer id) {
         UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
-        // String fileName = uuid + "_" + bizUpdateDTO.getPic().getOriginalFilename();
-        // System.out.println("fileName : " + fileName);
+        String fileName = uuid + "_" + bizUpdateDTO.getPic().getOriginalFilename();
+        System.out.println("fileName : " + fileName);
 
-        // // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
-        // // 해당 실행파일 경로에 images 폴더가 필요함
-        // Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
-        // try {
-        // Files.write(filePath, bizUpdateDTO.getPic().getBytes());
-        // } catch (Exception e) {
-        // throw new MyException(e.getMessage());
-        // }
-
+        // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
+        // 해당 실행파일 경로에 images 폴더가 필요함
+        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
+        try {
+            Files.write(filePath, bizUpdateDTO.getPic().getBytes());
+        } catch (Exception e) {
+            throw new MyException(e);
+        }
         // 1. 조회 (영속화)
         User user = userRepository.findById(id).get();
 
@@ -121,7 +124,19 @@ public class UserService {
         user.setUsername(bizUpdateDTO.getUsername());
         user.setTel(bizUpdateDTO.getTel());
         user.setAddress(bizUpdateDTO.getAddress());
+        user.setAddress2(bizUpdateDTO.getAddress2());
+        user.setPicUrl(fileName);
 
+        return user;
+    }
+
+    public User 회원정보조회(Integer id) {
+        User user = userRepository.findById(id).get();
+        return user;
+    }
+
+    public User 기업회원정보조회(Integer id) {
+        User user = userRepository.findById(id).get();
         return user;
     }
 }
