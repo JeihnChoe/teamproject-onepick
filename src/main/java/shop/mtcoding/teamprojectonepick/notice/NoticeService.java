@@ -41,14 +41,13 @@ public class NoticeService {
         UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
         String fileName = uuid + "_" + saveDTO.getUserImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
+
         Path filePath = Paths.get("./images/" + fileName);
-        List<TechNotice> techNotices = new ArrayList<>();
         try {
             Files.write(filePath, saveDTO.getUserImg().getBytes());
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         // List<String> techStringList = new ArrayList<String>();
         // for (String techNotice : techNotices) {
         // techStringList.add(techNotice);
@@ -60,6 +59,8 @@ public class NoticeService {
         // .build();
         // techLists.add(techEntity);
         // }
+        List<TechNotice> techNotices = new ArrayList<>();
+
         Notice notice = Notice.builder()
                 .open(saveDTO.getOpen())
                 .userImg(fileName)
