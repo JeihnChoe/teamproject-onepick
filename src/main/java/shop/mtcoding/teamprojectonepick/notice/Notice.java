@@ -77,7 +77,7 @@ public class Notice {
         private User user; // 1+N
 
         @JsonIgnore // 아래는 양방향 매핑이다.
-        @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY) // (한개공고 다수 기술)
+        @OneToMany(mappedBy = "notice", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // (한개공고 다수 기술)
         // 조회하기 위해서 포링키로 엮어와서 글쓰는게 아니라
         private List<TechNotice> techNotices = new ArrayList<>();
 

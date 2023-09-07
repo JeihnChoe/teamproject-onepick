@@ -25,6 +25,8 @@ public class UserContoller {
         return "redirect:/";
     }
 
+
+
     @PostMapping("/userUpdate")
     public String update(UserRequestDTO.UpdateDTO updateDTO) {
         System.out.println(updateDTO);
