@@ -2,13 +2,15 @@
 
 <div class="main-container" style="display: flex; flex-direction: column;">
     <div class="box" style="width: 700px; margin-top: 80px;">
-
         <form action="/bizUserUpdate" method="post" name="BizUpdateDTO" enctype="multipart/form-data">
             <div style="text-align: center; margin-top: 50px;">
-                <img src="/images/베이직2.jpg" style="border-radius: 50%; width: 180px; height: 180px;" id="preview">
+                {{! <img src="/images/베이직2.jpg" style="border-radius: 50%; width: 180px; height: 180px;" id="preview">
+                }}
+                <img src="/images/{{userInfo.picUrl}}" style="border-radius: 50%; width: 180px; height: 180px; "
+                    id="preview">
                 <br>
                 <input type="file" name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
-                <h2>최제인담당자님, 안녕하세요.</h2>
+                <h2>{{userInfo.username}}담당자님, 안녕하세요.</h2>
             </div>
 
             <div class="body-container">
@@ -76,6 +78,17 @@
                         <div class="body-main">
                             <input class="input-box" contenteditable="true" placeholder="부산 진구 중앙대로 688, 305호"
                                 name="address">
+                            </input>
+                        </div>
+                    </div>
+                    <hr class="line" style="margin-top: 0px;">
+                    <div class="body-text">
+                        <div class="body-head">
+                            회사상세주소
+                        </div>
+                        <div class="body-main">
+                            <input class="input-box" contenteditable="true" placeholder="부산 진구 중앙대로 688, 305호"
+                                name="address2">
                             </input>
                         </div>
                     </div>
