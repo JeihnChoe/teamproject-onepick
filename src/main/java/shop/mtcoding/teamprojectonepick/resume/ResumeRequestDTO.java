@@ -36,4 +36,5 @@ public interface ResumeRequestDTO {
         String workField;
         MultipartFile resumeImg;
     }
+    
 }

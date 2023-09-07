@@ -51,3 +51,8 @@ insert into tech_resume_tb(resume_id, tech_id) values(2, 3);
 insert into tech_resume_tb(resume_id, tech_id) values(2, 6);
 insert into tech_resume_tb(resume_id, tech_id) values(2, 7);
 insert into tech_resume_tb(resume_id, tech_id) values(3, 3);
+
+-- tech_notice_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line) 
+values('on', null, '백엔드모집합니다.','백엔드하실 노예들 모집합니다. 돈 버실분 급전필요하신분 야근 가능하신분 야식지원 없습니다. 주말출근 필수 포괄임금제입니다.', '백엔드', '그린', '부산', '서면', '신입', '대졸이상', '평생노예하실 구직자를 찾습니다. 지원없음','2023-09-15');
