@@ -44,7 +44,6 @@ public class UserRequestDTO {
     public static class UpdateDTO {
         private String password;
         private String username;
-
         private String tel;
         private String birth;
         private String address;

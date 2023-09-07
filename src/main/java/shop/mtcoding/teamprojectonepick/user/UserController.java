@@ -2,23 +2,16 @@ package shop.mtcoding.teamprojectonepick.user;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
-import shop.mtcoding.teamprojectonepick.notice.NoticeRepository;
 
 import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
-import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 
 @Controller
 
@@ -37,8 +30,6 @@ public class UserController {
         System.out.println("로그아웃테스트 : ");
         return "redirect:/";
     }
-
-
 
     @PostMapping("/userUpdate")
     public String update(UserRequestDTO.UpdateDTO updateDTO) {
@@ -120,18 +111,9 @@ public class UserController {
 
     // 개인 변동사항
 
-<<<<<<< HEAD:src/main/java/shop/mtcoding/teamprojectonepick/user/UserController.java
-=======
-    @GetMapping("/userJoinForm")
-    public String userJoinForm() {
-        return ("/user/userJoinForm");
-    }
-
-    // 이력서 상세보기에 이력서id 필요
->>>>>>> d98f98bb514b7369245f52bf6514cfa4ee69e25a:src/main/java/shop/mtcoding/teamprojectonepick/user/UserContoller.java
     @GetMapping("/userProfileForm")
 
-  public String userProfile(Model model) {
+    public String userProfile(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원프로필조회(sessionUser.getId());
         UserResponseDTO.UserProfileFormDTO userProfileFormDTO = new UserResponseDTO.UserProfileFormDTO(
@@ -139,7 +121,7 @@ public class UserController {
                 user.getUsername(),
                 user.getEmail(), user.getTel());
         model.addAttribute("userInfo", userProfileFormDTO);
-        
+
         List<Resume> resumeList = resumeRepository.findByUserId(sessionUser.getId());
         model.addAttribute("resumeList", resumeList);
 
@@ -155,17 +137,6 @@ public class UserController {
                 user.getBirth(), user.getAddress(), "" + user.getPicUrl());
         model.addAttribute("userInfo", userInfoResponseDTO);
         return ("/user/fixUserProfileForm");
-    }
-
-    @PostMapping("/userUpdate")
-    public String update(UserRequestDTO.UpdateDTO updateDTO) {
-        System.out.println(updateDTO);
-        // 1. 회원수정 (서비스)
-        // 2. 세션동기화
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        User user = userService.회원수정(updateDTO, sessionUser.getId());
-        session.setAttribute("sessionUser", user);
-        return "redirect:/userProfileForm";
     }
 
     // 기업 변동사항
