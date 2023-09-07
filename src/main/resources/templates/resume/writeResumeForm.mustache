@@ -10,208 +10,6 @@
                 <input type="checkbox" id="private" name="open" value="private" style="margin-left: 50px;">
                 <label for="private">비공개</label>
             </div>
-<<<<<<< HEAD
-            <div>
-                <div>
-                    <div class="box" style="margin-left: 80px;">
-                        <div style="display: flex; flex-direction: row; ">
-                            <textarea class="input-box" id="myTextarea" rows="1" maxlength="200"
-                                placeholder="이력서의 제목을 입력해주세요" style="height: 30px; width: 600px; resize: none;"
-                                onkeydown="preventEnterKey(event)"></textarea>
-                        </div>
-                        <hr class="line" style="margin: 0;">
-                        <br>
-                        <div style="display: flex; flex-direction: row; align-items: center;">
-                            <textarea class="input-box" id="myTextarea" rows="4" maxlength="200"
-                                placeholder="간단한 자기소개글을 입력해주세요."
-                                style="margin:0; width: 600px; height: 120px; resize: none;"
-                                onkeydown="preventEnterKey(event)"></textarea>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div style="font-weight: bold; font-size: 30px; margin-left: 80px; margin-top: 50px;">Profile</div>
-    <hr class="line" style="margin-top: 0px; margin-left: 80px; margin-right: 80px;">
-    <br>
-
-
-    <!-- 프로필 안 첫번째 박스 -->
-    <div style="display: flex; margin-left: 100px;">
-
-        <!-- 프로필 안 경력박스 -->
-        <div style="display: flex; flex-direction: column; margin-left: 0;">
-            <div style="display: flex; justify-content:space-between ;  align-items: center;">
-                <div style="font-weight: bold; font-size: 20px;">
-                    경력
-                </div>
-
-                <select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
-                    <ul>
-                        <li>
-                            <option value="선택">선택</option>
-                        </li>
-                        <li>
-                            <option value="신입">신입</option>
-                        </li>
-                        <li>
-                            <option value="1~2년">1~2년</option>
-                        </li>
-                        <li>
-                            <option value="3~5년">3~5년</option>
-                        </li>
-                        <li>
-                            <option value="6년이상">6년 이상</option>
-                        </li>
-                    </ul>
-                </select>
-            </div>
-
-            <hr class="line" style="border: 10px;">
-
-            <!--원티드박스-->
-            <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input class="input-box" type="text" placeholder="네이버" style="width: 100px; margin-left: 0;">
-                        <input type="month" style="border: transparent;">
-                        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                        <input type="month" style="border: transparent;">
-                    </div>
-                </div>
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input class="input-box" type="text" placeholder="카카오톡" style="width: 100px; margin-left: 0;">
-                        <input type="month" style="border: transparent;">
-                        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                        <input type="month" style="border: transparent;">
-                    </div>
-                </div>
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input class="input-smallbox" type="text" placeholder="라쿠배몰두센">
-                        <input type="month" style="border: transparent;">
-                        <div style="margin-left: 10px; margin-right: 10px; "> ~ </div>
-                        <input type="month" style="border: transparent;">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!--수상이력박스-->
-        <div class="box-invisible" style="display: flex; flex-direction: column;">
-            <div style=" display: flex; justify-content:space-between ;  align-items: center;">
-                <div style="font-weight: bold; font-size: 20px;">
-                    수상이력
-                </div>
-            </div>
-
-            <div class="box-invisible"
-                style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input class="input-smallbox" type="text" placeholder="해커대회 금상" style="width: 200px;">
-                        <input type="month" style="border: transparent;">
-                    </div>
-                </div>
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input class="input-smallbox" type="text" placeholder="창업대회 대상" style="width: 200px;">
-                        <input type="month" style="border: transparent;">
-                    </div>
-                </div>
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input class="input-smallbox" type="text" placeholder="창업망함" style="width: 200px;">
-                        <input type="month" style="border: transparent;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div style="display: flex; margin-left: 100px;">
-
-        <!-- 프로필 안 학력박스 -->
-        <div style="display: flex; flex-direction: column; margin-left: 0;">
-            <div style=" display: flex; justify-content:space-between ;  align-items: center;">
-                <div style="font-weight: bold; font-size: 20px;">
-                    학력
-                </div>
-                <br><br><br>
-
-            </div>
-
-            <!--학력세부내용작성박스 -->
-
-            <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-                <div style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input class="input-box" style="width: 100px;" type="text" placeholder="ㅇㅇ대학교">
-                        <input class="input-box" style="width: 100px;" type="text" placeholder="xx학과">
-
-                        <input type="month" style="border: transparent;">
-                        <select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
-                            <ul>
-                                <li>
-                                    <option value="선택">선택</option>
-                                </li>
-                                <li>
-                                    <option value="재학">재학</option>
-                                </li>
-                                <li>
-                                    <option value="졸업">졸업</option>
-                                </li>
-
-                            </ul>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- 생년월일-->
-        <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 80px;">
-
-            <div style="font-weight: bold; font-size: 20px;">
-                나이
-            </div>
-
-
-            <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-                <div style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <input type="number" style="border: transparent; margin-left: 20px; " contenteditable="true"
-                        placeholder="나이를 입력하세요">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div style="display: flex; margin-left: 100px; margin-top: 30px" ;>
-        <div style=" font-weight: bold; font-size: 20px; ">기술스택</div>
-
-        <div style=" display: flex; flex-direction: column; margin-top: 30px;">
-=======
->>>>>>> dev
             <br>
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column;">
@@ -290,9 +88,9 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-box" type="text" placeholder="네이버" name="career1"
                                 style="width: 100px; margin-left: 0;">
-                            <input type="month" style="border: transparent;" name="careerPeriod1">
+                            <input type="month" style="border: transparent;" name="careerPeriodS1">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                            <input type="month" style="border: transparent;" name="careerPeriod1_1">
+                            <input type="month" style="border: transparent;" name="careerPeriodE1">
                         </div>
                     </div>
                     <div class="box-invisible"
@@ -300,18 +98,18 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-box" type="text" placeholder="카카오톡" name="career2"
                                 style="width: 100px; margin-left: 0;">
-                            <input type="month" style="border: transparent;" name="careerPeriod2">
+                            <input type="month" style="border: transparent;" name="careerPeriodS2">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                            <input type="month" style="border: transparent;" name="careerPeriod2_1">
+                            <input type="month" style="border: transparent;" name="careerPeriodE2">
                         </div>
                     </div>
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-smallbox" type="text" placeholder="라쿠배몰두센" name="career3">
-                            <input type="month" style="border: transparent;" name="careerPeriod3">
+                            <input type="month" style="border: transparent;" name="careerPeriodS3">
                             <div style="margin-left: 10px; margin-right: 10px; "> ~ </div>
-                            <input type="month" style="border: transparent;" name="careerPeriod3_1">
+                            <input type="month" style="border: transparent;" name="careerPeriodE3">
                         </div>
                     </div>
                 </div>

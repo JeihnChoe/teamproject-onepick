@@ -21,7 +21,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import shop.mtcoding.teamprojectonepick.tech.TechNotice;
+import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Getter
@@ -54,6 +54,10 @@ public class Notice {
 
         @Column(nullable = false, length = 10000)
         private String userAddress; // 근무 지역(택1)
+
+        
+        @Column(nullable = false, length = 10000)
+        private String userAddress2; // 근무 지역(택1)
 
         @Column(nullable = false, length = 10000)
         private String career; // 요구경력(택1)
