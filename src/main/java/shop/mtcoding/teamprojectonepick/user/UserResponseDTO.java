@@ -36,8 +36,20 @@ public class UserResponseDTO {
     @Getter
     @AllArgsConstructor
     static class UserProfileFormDTO {
-        @Lob
+
         private String picUrl;
+
+        private String username;
+        private String email;
+        private String tel;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    static class BizUserProfileFormDTO {
+
+        private String picUrl;
+        private String bizname;
         private String username;
         private String email;
         private String tel;
