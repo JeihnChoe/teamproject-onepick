@@ -20,6 +20,29 @@ values('저는 학점이 4.5인 만점자입니다!', 'Qㅃ간단한닥나단ㄴ
 insert into resume_tb(title, semi_content, content, education, school, major, career1, career_periodS1, career_periodE1, career2, career_periodS2, career_periodE2, career3, career_periodS3, career_periodE3, open, etc1, etc2, etc3, etc_period1, etc_period2, etc_period3, link1, link2, link3, work_field, user_id) 
 values('저는 서울대학교 재학중인 학생입니다.', '-서울대생-','안녕하십니까, 저는 제목으로만 말하겠습니다. 이상입니다.', '대학교 졸업', '서울대학교', '컴퓨터공학과', '신입', null, null, null, null, null, null, null, null, false, '없음', '없음', '없음', null, null, null,'http://www.naver.com', null, null, '백엔드 개발자', 3);
 
+-- notice_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line)  
+values('on', '/images/user.png', 'zi존회사', '세미컨텐츠','백엔드', '노예양성소', '서울', '광진구', '경력', '교육', '메인컨텐츠','종료일');
+insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line)  
+values('on', '/images/banner2.png', '최상급노예만', '세미컨텐츠','프론트', '롯데', '부산', '부산진구', '경력', '교육', '메인컨텐츠','종료일');
+insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line)  
+values('on', '/images/biz.png', '노예양성소', '세미컨텐츠','앱개발', '엘쥐', '부산', '동래구', '경력', '교육', '메인컨텐츠','종료일');
+insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line)  
+values('on', '/images/ex1biz.png', '디스이스리얼', '세미컨텐츠','앱개발', '엘쥐', '부산', '동래구', '경력', '교육', '메인컨텐츠','종료일');
+
+
+
+insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line)  
+values('off', 'img', 'zi존회사', '세미컨텐츠','백엔드', '네이버', '서울', '광진구', '경력', '교육', '메인컨텐츠','종료일'  );
+
+insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line)  
+values('off', 'img', '최상급노예만', '세미컨텐츠','프론트', '롯데', '부산', '부산진구', '경력', '교육', '메인컨텐츠','종료일'  );
+
+
+
+
+
 
 -- tech_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

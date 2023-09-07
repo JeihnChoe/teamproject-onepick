@@ -2,13 +2,16 @@ package shop.mtcoding.teamprojectonepick.user;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
+import shop.mtcoding.teamprojectonepick.notice.NoticeRepository;
 
 @Controller
 
@@ -63,6 +66,21 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "/index";
+    }
+
+    @GetMapping("/joinForm")
+    public String joinForm() {
+        return "/user/joinForm";
+    }
+
+    @GetMapping("/userJoinForm")
+    public String userJoinForm() {
+        return ("/user/userJoinForm");
+    }
+
     @PostMapping("/userJoin")
     public String userJoin(UserRequestDTO.JoinDTO joinDTO) {
         userService.유저회원가입(joinDTO);
@@ -77,14 +95,9 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "/index";
-    }
-
-    @GetMapping("/joinForm")
-    public String joinForm() {
-        return "/user/joinForm";
+    @GetMapping("/bizJoinForm")
+    public String bizJoinForm() {
+        return "/user/bizJoinForm";
     }
 
     @GetMapping("/loginForm")
@@ -93,11 +106,6 @@ public class UserController {
     }
 
     // 개인 변동사항
-
-    @GetMapping("/userJoinForm")
-    public String userJoinForm() {
-        return ("/user/userJoinForm");
-    }
 
     @GetMapping("/userProfileForm")
     public String userProfile() {
@@ -115,11 +123,6 @@ public class UserController {
         return ("/user/fixUserProfileForm");
     }
     // 기업 변동사항
-
-    @GetMapping("/bizJoinForm")
-    public String bizJoinForm() {
-        return "/user/bizJoinForm";
-    }
 
     @GetMapping("/bizProfileForm")
     public String bizProfileForm() {

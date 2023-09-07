@@ -4,20 +4,20 @@
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
                 <div style="margin-right: 20px;">공고 공개여부</div>
-                <input type="radio" id="public" name="open" value="public">
-                <label for="public">공개</label>
+                <input type="radio" id="on" name="open" value="on">
+                <label for="on">공개</label>
 
-                <input type="radio" id="private" name="open" value="private" style="margin-left: 50px;">
-                <label for="private">비공개</label>
+                <input type="radio" id="off" name="open" value="off" style="margin-left: 50px;">
+                <label for="off">비공개</label>
             </div>
             <br>
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column;">
                     <img class="box" id="preview"
-                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;">
+                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;">
 
-                </img>
-                <input type="file" name="userImg" style="margin-left: 70px;" onchange="changePic(event)">
+                    </img>
+                    <input type="file" name="userImg" style="margin-left: 70px;" onchange="changePic(event)">
                 </div>
                 <div>
                     <div>
@@ -99,25 +99,25 @@
                         </ul>
                     </select>
                     <select class="box" data-bs-toggle="dropdown" name="address2" values="근무지 선택"
-                    style="width: 100px; margin-left: 0px;">근무지역 선택</button>
-                    <ul>
-                        <li>
-                            <option value="뉴욕">뉴욕</option>
-                        </li>
-                        <li>
-                            <option value="용산">용산</option>
-                        </li>
-                        <li>
-                            <option value="용인">용인</option>
-                        </li>
-                        <li>
-                            <option value="서면">서면</option>
-                        </li>
-                        <li>
-                            <option value="성심당">성심당</option>
-                        </li>
-                    </ul>
-                </select>
+                        style="width: 100px; margin-left: 0px;">근무지역 선택</button>
+                        <ul>
+                            <li>
+                                <option value="뉴욕">뉴욕</option>
+                            </li>
+                            <li>
+                                <option value="용산">용산</option>
+                            </li>
+                            <li>
+                                <option value="용인">용인</option>
+                            </li>
+                            <li>
+                                <option value="서면">서면</option>
+                            </li>
+                            <li>
+                                <option value="성심당">성심당</option>
+                            </li>
+                        </ul>
+                    </select>
                 </div>
             </div>
 
@@ -205,8 +205,7 @@
             <div class="box-invisible"
                 style="width: fit-content; margin-left:90px; margin-right: 10px; font-weight: bold; font-size: 20px;">
                 마감일</div>
-            <input class="box" type="date" name="deadLine" style="width: 40%; margin-left: 0px;"
-                >
+            <input class="box" type="date" name="deadLine" style="width: 40%; margin-left: 0px;">
         </div>
         <div class="box-invisible" style="display: flex; justify-content: center;">
             <button class="button" type="submit">작성완료</button>
@@ -217,7 +216,7 @@
 
 </form>
 <script>
-   function changePic(e1) { // 이력서 사진 저장 함수
+    function changePic(e1) { // 이력서 사진 저장 함수
         // console.log(e1);
 
         let f = e1.srcElement.files[0];

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
@@ -34,6 +35,8 @@ public class NoticeService {
 
     @Autowired
     private NoticeRepository noticeRepository;
+
+    public Object 오픈공고조회;
 
     @Transactional
     public void 공고등록(NoticeRequestDTO.SaveDTO saveDTO, List<Integer> techId) {
@@ -80,7 +83,7 @@ public class NoticeService {
                 .build();
 
         // 기술스택 리스트넣기
-       
+
         for (Integer techIds : techId) {
             Tech tech = techRepository.findById(techIds).get();
             TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();

@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,7 +36,7 @@ public class Notice {
         private Integer id;
 
         @Column(nullable = false, length = 10000)
-        private String open;// 0 = off, 1 = on 로 구분
+        private String open;// on , off 로 구분
 
         private String userImg; // 기업 대표이미지
 
