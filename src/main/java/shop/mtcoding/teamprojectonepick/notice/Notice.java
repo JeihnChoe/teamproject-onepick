@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,7 +38,7 @@ public class Notice {
         private Integer id;
 
         @Column(nullable = false, length = 10000)
-        private String open;// 공개 비공개 여부
+        private String open;// 0 = off, 1 = on 로 구분
 
         private String userImg; // 기업 대표이미지
 
@@ -78,7 +80,8 @@ public class Notice {
         private List<TechNotice> techNotices = new ArrayList<>();
 
         @Builder
-        public Notice(Integer id, String open, String userImg, String semiTitle, String semiContent, String workField,
+        public Notice(Integer id, String open, String userImg, String semiTitle, String semiContent,
+                        String workField,
                         String bizName, String userAddress, String career, String education, String mainContent,
                         String deadLine, User user, List<TechNotice> techNotices) {
                 this.id = id;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 
-public class UserContoller {
+public class UserController {
     @Autowired
     private HttpSession session;
     @Autowired

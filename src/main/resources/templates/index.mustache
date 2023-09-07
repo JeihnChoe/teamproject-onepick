@@ -26,7 +26,13 @@
         <h6>총 2,111건</h6>
         <hr class="line">
 
-        <div class="grid-box" id="product-box">
+
+        <select name="open" class="form-control">
+            <option value="on">공고게시중</option>
+            <option value="off">공고게시완료</option>
+
+        </select>
+        <div class="grid-box" id="notice-box">
 
 
         </div>
@@ -36,22 +42,12 @@
 </div>
 
 <script>
-
-
-
-
-
     function render() {
-
-
         let responseBody = download();
         responseBody.forEach((product) => {
-            $("#product-box").append(productBox());
-
+            $("notice-box").append(productBox());
         });
     }
-
-
     function productBox() {
         return `<div class="card" style="width:250px">
                 <img class="card-img-top" src="/images/1.jpg" alt="Card image" width="300px">
@@ -62,22 +58,19 @@
                 </div>
             </div>`;
     }
-
     function download() {
-        let productList = [
+        let noticeList = [
             {
                 id: 1,
-                bizName: 삼성,
-                workfield: 백엔드,
-                bizAddress: 부산
-
+                bizName: '삼성',
+                workfield: '백엔드',
+                bizAddress: '부산'
             },
             {
                 id: 2,
-                bizName: 엘지,
-                workfield: 프론트엔드,
-                bizAddress: 부산
-
+                bizName: '엘지',
+                workfield: '프론트엔드',
+                bizAddress: '부산'
             }
         ];
         return productList;
