@@ -313,7 +313,12 @@
 
     <!-- 작성완료 버튼 -->
     <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
-        <a class="btn btn-light" href="/userProfileForm">이력서 목록보기</a>
+        <form action="updateResume/{{id}}" method="post">
+            <button type="submit" class="btn btn-light" style="margin-right: 100px;">수정</button>
+        </form>
+        <form action="/deleteResume/{{id}}" method="post">
+            <button type="submit" class="btn btn-light">삭제</button>
+        </form>
 
     </div>
     <div class="input-box" name="workField" value="백엔드" hidden>{{resume.workField}}</div>
