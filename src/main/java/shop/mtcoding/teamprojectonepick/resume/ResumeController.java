@@ -76,18 +76,21 @@ public class ResumeController {
                 return "/resume/viewResumeForm";
         }
 
+        // 완료
         @PostMapping("/deleteResume/{id}")
         public @ResponseBody String delete(@PathVariable Integer id) {
                 resumeService.삭제하기(id);
                 return Script.href("/userProfileForm", "삭제되었습니다.");
         }
 
-        @GetMapping("/updateResume/{id}")
-        public String updateForm(@PathVariable Integer id, Model model) {
+        @GetMapping("/updateResumeForm/{id}")
+        public String updateResumeForm(@PathVariable Integer id, Model model) {
                 Resume resume = resumeService.이력서상세보기(id);
                 List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResumeJoinUser(id);
                 model.addAttribute("resume", resume);
-                return "board/updateForm";
+                System.out.println("테스트 : " + resume.getCareerPeriodS1());
+                model.addAttribute("techREsumes", techResumes);
+                return "resume/updateResumeForm";
         }
 
         @PostMapping("/updateResume/{id}")

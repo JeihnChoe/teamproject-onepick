@@ -1,13 +1,13 @@
 {{>/layout/header}}
-<form action="/resume/writeResume" method="post" enctype="multipart/form-data">
+<form action="#" method="post" enctype="multipart/form-data">
     <div class="main-container" style="display: flex; flex-direction: column;">
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
                 <div style="margin-right: 20px;">이력서 공개여부</div>
-                <input type="radio" id="on" name="open" value="on">
+                <input type="radio" id="on" name="open" value="{{resume.open}}">
                 <label for="on">공개</label>
 
-                <input type="radio" id="off" name="open" value="off" style="margin-left: 50px;">
+                <input type="radio" id="off" name="open" value="{{resume.open}}" style="margin-left: 50px;">
                 <label for="off">비공개</label>
             </div>
             <br>
@@ -26,14 +26,14 @@
                                 <textarea class="input-box" id="myTextarea" rows="1" maxlength="200" name="title"
                                     placeholder="이력서의 제목을 입력해주세요"
                                     style="height: 30px; width: 600px; resize: none; letter-spacing: 0.5px;"
-                                    onkeydown="preventEnterKey(event)"></textarea>
+                                    onkeydown="preventEnterKey(event)">{{resume.title}}</textarea>
                             </div>
                             <hr class="line" style="margin: 0;">
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <textarea class="input-box" id="myTextarea" rows="4" maxlength="200" name="semiContent"
                                     placeholder="간단한 자기소개글을 입력해주세요."
                                     style="margin:0; width: 600px; height: 120px; resize: none; letter-spacing: 0.5px; line-height: 1.5;"
-                                    onkeydown="preventEnterKey(event)"></textarea>
+                                    onkeydown="preventEnterKey(event)">{{resume.semiContent}}</textarea>
 
                             </div>
                         </div>
@@ -86,11 +86,31 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
+                            {{#resume.career1}}
+                            <input class="input-box" type="text" placeholder="네이버" name="career1"
+                                style="width: 100px; margin-left: 0;" value="{{resume.career1}}">
+                            {{/resume.career1}}
+                            {{^resume.career1}}
                             <input class="input-box" type="text" placeholder="네이버" name="career1"
                                 style="width: 100px; margin-left: 0;">
+                            {{/resume.career1}}
+
+                            {{#resume.careerPeriodS1}}
+                            <input type="month" style="border: transparent;" name="careerPeriodS1"
+                                value="{{resume.careerPeriodS1}}">
+                            {{/resume.careerPeriodS1}}
+                            {{^resume.careerPeriodS1}}
                             <input type="month" style="border: transparent;" name="careerPeriodS1">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
+                            {{/resume.careerPeriodS1}}
+
+                            {{#resume.careerPeriodE1}}
+                            <input type="month" style="border: transparent;" name="careerPeriodE1"
+                                value="{{resume.careerPeriodE1}}">
+                            {{/resume.careerPeriodE1}}
+                            {{^resume.careerPeriodE1}}
                             <input type="month" style="border: transparent;" name="careerPeriodE1">
+                            {{/resume.careerPeriodE1}}
                         </div>
                     </div>
                     <div class="box-invisible"
@@ -182,13 +202,10 @@
                                         <option value="선택">선택</option>
                                     </li>
                                     <li>
-                                        <option value="고졸">고졸</option>
+                                        <option value="재학">재학</option>
                                     </li>
                                     <li>
-                                        <option value="대졸">대졸</option>
-                                    </li>
-                                    <li>
-                                        <option value="대학원졸 이상">대학원졸 이상</option>
+                                        <option value="졸업">졸업</option>
                                     </li>
 
                                 </ul>
