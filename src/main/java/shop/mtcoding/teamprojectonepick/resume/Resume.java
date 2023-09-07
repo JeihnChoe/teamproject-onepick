@@ -115,10 +115,8 @@ public class Resume {
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TechResume> techResume = new ArrayList<>();
 
-
     @Builder
     public Resume(Integer id, String title, String semiContent, String content, String education, String school,
-
             String major,
             String career1, String careerPeriodS1, String careerPeriodE1, String career2, String careerPeriodS2,
             String careerPeriodE2, String career3, String careerPeriodS3, String careerPeriodE3, String open,

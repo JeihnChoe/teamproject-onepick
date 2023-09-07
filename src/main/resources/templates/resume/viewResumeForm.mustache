@@ -23,15 +23,15 @@
                     <div class="box" style="margin-left: 80px;">
                         <div style="display: flex; flex-direction: row; ">
                             <div class="input-box" id="myTextarea" rows="1" maxlength="200" name="title"
-                                placeholder="이력서의 제목을 입력해주세요" style="height: 30px; width: 600px; resize: none;"
+                                placeholder="이력서의 제목을 입력해주세요"
+                                style="height: 30px; width: 600px; resize: none; letter-spacing: 0.5px;"
                                 onkeydown="preventEnterKey(event)">{{resume.title}}</div>
                         </div>
                         <hr class="line" style="margin: 0;">
-                        <br>
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <div class="input-box" id="myTextarea" rows="4" maxlength="200" name="semiContent"
                                 placeholder="간단한 자기소개글을 입력해주세요."
-                                style="margin:0; width: 600px; height: 120px; resize: none;"
+                                style="padding-top: 13px; margin:0; width: 600px; height: 120px; resize: none; letter-spacing: 0.5px; line-height: 1.6;"
                                 onkeydown="preventEnterKey(event)">{{resume.semiContent}}</div>
 
                         </div>
@@ -44,14 +44,14 @@
 
     <div style="font-weight: bold; font-size: 30px; margin-left: 80px; margin-top: 50px;">Profile</div>
     <hr class="line" style="margin-top: 0px; margin-left: 80px; margin-right: 80px;">
-    <br>
+    <br><br>
 
 
     <!-- 프로필 안 첫번째 박스 -->
     <div style="display: flex; margin-left: 100px;">
 
         <!-- 프로필 안 경력박스 -->
-        <div style="display: flex; flex-direction: column; margin-left: 0;">
+        <div style="display: flex; flex-direction: column; margin-left: 0; width: 420px;">
             <div style="display: flex; justify-content:space-between ;  align-items: center;">
                 <div style="font-weight: bold; font-size: 20px;">
                     경력
@@ -81,192 +81,245 @@
             <hr class="line" style="border: 10px;">
 
             <!--원티드박스-->
+            <div style="display: flex; flex-direction: column; margin-top: 15px; margin-left: 0;">
+                <div class="box-invisible"
+                    style=" display: flex; flex-direction: column; justify-content: space-between; margin-left: 0;">
+                    <div style=" display: flex; flex-direction: row;">
+                        {{#resume.career1}}
+                        <div type="text" name="career1"
+                            style="width: 100px; margin-left: 0; display: flex; align-items: center;">
+                            {{resume.career1}}</div>
+                        {{/resume.career1}}
+                        {{#resume.careerPeriodS1}}
+                        <div style="border: transparent; display: flex; align-items: center;" name="careerPeriodS1">
+                            {{resume.careerPeriodS1}}
+                        </div>
+                        <div style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;">
+                            ~ </div>
+                        {{/resume.careerPeriodS1}}
+                        {{#resume.careerPeriodE1}}
+                        <div style="border: transparent; display: flex; align-items: center;" name="careerPeriodE1">
+                            {{resume.careerPeriodE1}}
+                        </div>
+                        {{/resume.careerPeriodE1}}
+                    </div>
+                </div>
+                <div class="box-invisible"
+                    style="display: flex; flex-direction: column; justify-content: space-between;  margin-left: 0;">
+                    <div style=" display: flex; flex-direction: row;">
+                        {{#resume.career2}}
+                        <div type="text" name="career2"
+                            style="width: 100px; margin-left: 0; display: flex; align-items: center;">
+                            {{resume.career2}}</div>
+                        {{/resume.career2}}
+                        {{#resume.careerPeriodS2}}
+                        <div style="border: transparent; display: flex; align-items: center;" name="careerPeriodS2">
+                            {{resume.careerPeriodS2}}
+                        </div>
+                        <div style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;"> ~
+                        </div>
+                        {{/resume.careerPeriodS2}}
+                        {{#resume.careerPeriodE2}}
+                        <div style="border: transparent; display: flex; align-items: center;" name="careerPeriodE2">
+                            {{resume.careerPeriodE2}}
+                        </div>
+                        {{/resume.careerPeriodE2}}
+                    </div>
+                </div>
+                <div class="box-invisible"
+                    style=" display: flex; flex-direction: column; justify-content: space-between;  margin-left: 0;">
+                    <div style=" display: flex; flex-direction: row;">
+                        {{#resume.career3}}
+                        <div type="text" name="career3"
+                            style="width: 100px; margin-left: 0; display: flex; align-items: center;">
+                            {{resume.career3}}</div>
+                        {{/resume.career3}}
+                        {{#resume.careerPeriodS3}}
+                        <div style="border: transparent; display: flex; align-items: center;" name="careerPeriodS3">
+                            {{resume.careerPeriodS3}}
+                        </div>
+                        <div style="margin-left: 10px; margin-right: 10px; display: flex; align-items: center;"> ~
+                        </div>
+                        {{/resume.careerPeriodS3}}
+                        {{#resume.careerPeriodE3}}
+                        <div style="border: transparent; display: flex; align-items: center;" name="careerPeriodE3">
+                            {{resume.careerPeriodE3}}
+                        </div>
+                        {{/resume.careerPeriodE3}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!--수상이력박스-->
+        <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 133px;">
+            <div style=" display: flex; justify-content:space-between ;  align-items: center;">
+                <div style="font-weight: bold; font-size: 20px;">
+                    수상이력
+                </div>
+            </div>
+            <hr class="line" style="border: 10px;">
+
+            <div class="box-invisible"
+                style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
+                <div class="box-invisible"
+                    style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style=" display: flex; flex-direction: row;">
+                        {{#resume.etc1}}
+                        <div name="etc1" type="text" placeholder="해커대회 금상" style="width: 200px;">
+                            {{resume.etc1}}</div>
+                        {{/resume.etc1}}
+                        {{#resume.etcPeriod1}}
+                        <div name="etcPeriod1" style="border: transparent; display: flex; align-items: center;">
+                            {{resume.etcPeriod1}}</div>
+                        {{/resume.etcPeriod1}}
+                    </div>
+                </div>
+                <div class="box-invisible"
+                    style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style=" display: flex; flex-direction: row;">
+                        {{#resume.etc2}}
+                        <div name="etc2" type="text" placeholder="창업대회 대상" style="width: 200px;">
+                            {{resume.etc2}}
+                        </div>
+                        {{/resume.etc2}}
+                        {{#resume.etcPeriod2}}
+                        <div name="etcPeriod2" style="border: transparent; align-items: center;">{{resume.etcPeriod2}}
+                        </div>
+                        {{/resume.etcPeriod2}}
+                    </div>
+                </div>
+                <div class=" box-invisible"
+                    style=" display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style=" display: flex; flex-direction: row;">
+                        {{#resume.etc3}}
+                        <div name="etc3" type="text" placeholder="창업망함" style="width: 200px;">
+                            {{resume.etc3}}
+                        </div>
+                        {{/resume.etc3}}
+                        {{#resume.etcPeriod3}}
+                        <div name="etcPeriod3" style="border: transparent; ">{{resume.etcPeriod3}}</div>
+                        {{/resume.etcPeriod3}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <div style="display: flex; margin-left: 100px;">
+
+        <!-- 프로필 안 학력박스 -->
+        <div class="box-invi" style="display: flex; flex-direction: column; margin-left: 0; width: 484px;">
+            <div style=" display: flex; justify-content:space-between ;  align-items: center;">
+                <div style="font-weight: bold; font-size: 20px;">
+                    학력
+                </div>
+            </div>
+            <hr class="line" style="border: 10px;">
+
+            <!--학력세부내용작성박스 -->
+
             <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <div class="input-box" type="text" placeholder="네이버" name="career1"
-                            style="width: 100px; margin-left: 0;">{{resume.career1}}</div>
-                        <div type="month" style="border: transparent;" name="careerPeriodS1">
+                <div style=" display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style=" display: flex; flex-direction: row; align-items: center;">
+                        <div class="input-box" name="school" style="width: 100px;" type="text">
+                            {{resume.school}}</div>
+                        <div class="input-box" name="major" style="width: 100px;" type="text">
+                            {{resume.major}}</div>
+                        <div type="month" style="border: transparent;" name="education">({{resume.education}})
                         </div>
-                        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                        <div type="month" style="border: transparent;" name="careerPeriodE1">{{resume.careerPeriodE1}}
-                        </div>
+
                     </div>
                 </div>
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <div class="input-box" type="text" placeholder="카카오톡" name="career2"
-                            style="width: 100px; margin-left: 0;">{{resume.career2}}</div>
-                        <div type="month" style="border: transparent;" name="careerPeriodS2">
-                        </div>
-                        <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                        <div type="month" style="border: transparent;" name="careerPeriodE2">
-                        </div>
+            </div>
+        </div>
+
+
+
+        <!-- 생년월일-->
+        <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 80px;">
+            <div style=" display: flex; justify-content:space-between ;">
+                <div style="font-weight: bold; font-size: 20px;">
+                    나이
+                </div>
+            </div>
+            <hr class="line" style="border: 10px;">
+
+            <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
+                <div style=" display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="box-invisible" style=" display: flex; flex-direction: row;">
+                        만 작성년도 - user.birth 세
                     </div>
                 </div>
-                <div class="box-invisible"
-                    style=" display: flex; flex-direction: column; justify-content: space-between;">
-                    <div style=" display: flex; flex-direction: row;">
-                        <div class="input-smallbox" type="text" placeholder="라쿠배몰두센" name="career3"
-                            style="width: 100px; margin-left: 0;">{{resume.career3}}</div>
-                        <input type="month" style="border: transparent;" name="careerPeriodS3">
-                    </div>
-                    <div style="margin-left: 10px; margin-right: 10px; "> ~ </div>
-                    <input type="month" style="border: transparent;" name="careerPeriodE3">
-                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <br><br>
 
 
+    <!-- 기술 스택-->
+    <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 100px; margin-top: 30px">
+        <div style="margin-left: 0; font-weight: bold; font-size: 20px; ">기술스택</div>
+        <hr class="line" style="border: 10px;">
 
-<!--수상이력박스-->
-<div class="box-invisible" style="display: flex; flex-direction: column;">
-    <div style=" display: flex; justify-content:space-between ;  align-items: center;">
-        <div style="font-weight: bold; font-size: 20px;">
-            수상이력
-        </div>
-    </div>
-
-    <div class="box-invisible"
-        style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-        <div class="box-invisible" style=" display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="box-invisible" style=" display: flex;flex-wrap: wrap; flex-direction: row; width: 1000px;">
+            <br>
+            {{#techResumes}}
             <div style=" display: flex; flex-direction: row;">
-                <div class="input-smallbox" name="etc1" type="text" placeholder="해커대회 금상" style="width: 200px;">
-                    {{resume.etc1}}</div>
-                <div type="month" name="etcPeriod1" style="border: transparent;">{{resume.etcPeriod1}}</div>
+                <div name="tech-resume" value="{{id}}" style="margin-right: 20px;">{{tech.techname}}</div>
             </div>
-        </div>
-        <div class="box-invisible" style=" display: flex; flex-direction: column; justify-content: space-between;">
-            <div style=" display: flex; flex-direction: row;">
-                <div class="input-smallbox" name="etc2" type="text" placeholder="창업대회 대상" style="width: 200px;">
-                    {{resume.etc2}}
-                </div>
-                <div type="month" name="etcPeriod2" style="border: transparent;">{{resume.etcPeriod2}}
-                </div>
-            </div>
-        </div>
-        <div class="box-invisible" style=" display: flex; flex-direction: column; justify-content: space-between;">
-            <div style=" display: flex; flex-direction: row;">
-                <div class="input-smallbox" name="etc3" type="text" placeholder="창업망함" style="width: 200px;">
-                    {{resume.etc3}}
-                </div>
-                <div type="month" name="etcPeriod3" style="border: transparent;">{{resume.etcPeriod3}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-<div style="display: flex; margin-left: 100px;">
-
-    <!-- 프로필 안 학력박스 -->
-    <div style="display: flex; flex-direction: column; margin-left: 0;">
-        <div style=" display: flex; justify-content:space-between ;  align-items: center;">
-            <div style="font-weight: bold; font-size: 20px;">
-                학력
-            </div>
-            <br><br><br>
-
-        </div>
-
-        <!--학력세부내용작성박스 -->
-
-        <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-            <div style=" display: flex; flex-direction: column; justify-content: space-between;">
-                <div style=" display: flex; flex-direction: row;">
-                    <div class="input-box" name="school" style="width: 100px;" type="text" placeholder="ㅇㅇ대학교">
-                        {{resume.school}}</div>
-                    <div class="input-box" name="major" style="width: 100px;" type="text" placeholder="xx학과">
-                        {{resume.major}}</div>
-
-
-                    <div type="month" style="border: transparent;" name="education">{{resume.education}}</div>
-                    <select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
-                        <ul>
-                            <li>
-                                <option value="선택">선택</option>
-                            </li>
-                            <li>
-                                <option value="재학">재학</option>
-                            </li>
-                            <li>
-                                <option value="졸업">졸업</option>
-                            </li>
-
-                        </ul>
-                    </select>
-                </div>
-            </div>
+            {{/techResumes}}
         </div>
     </div>
 
+    <br><br>
 
 
-    <!-- 생년월일-->
-    <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 80px;">
+    <!-- 자기소개서 -->
+    <div style="display: flex; flex-direction: column; margin-top: 30px;">
+        <div style="font-weight: bold; font-size: 20px;  margin-left: 100px;">자기소개서</div>
 
-        <div style="font-weight: bold; font-size: 20px;">
-            나이
-        </div>
+        <div id="myTextarea" name="content" class="box" rows="10"
+            placeholder="자기를 소개할 수 있는 글을 작성해주세요. ex) 성장과정, 지원동기 등 "
+            style="padding: 20px; width: 1000px; margin-top: 20px; margin-bottom: 20px; letter-spacing: 0.3px; line-height: 1.5;">
+            {{resume.content}}</div>
+    </div>
+    <br>
 
 
-        <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
-            <div style=" display: flex; flex-direction: column; justify-content: space-between;">
-                <div style=" display: flex; flex-direction: row;">
-                    만 작성년도 - user.birth 세
-                </div>
-            </div>
+    <!-- 링크 -->
+    <div style="display: flex; flex-direction: column; margin-top: 30px; margin-left: 100px;">
+        <div style="font-weight: bold; font-size: 20px;"> Github, 포트폴리오 링크</div>
+        <hr class="line" style="border: 10px;">
+        <div style="display: flex; flex-direction: row; align-items: center; margin-top: 15px;">
+            {{#resume.link1}}
+            <div type="text" name="link1" style="border: transparent; font-size: 15px;width: 700px;"
+                contenteditable="true" placeholder="link를 입력하세요">{{resume.link1}}</div>
+            {{/resume.link1}}
+            {{#resume.link2}}
+            <div type="text" name="link2" style="border: transparent; font-size: 15px;width: 700px;"
+                contenteditable="true" placeholder="link를 입력하세요">{{resume.link2}}</div>
+            {{/resume.link2}}
+            {{#resume.link3}}
+            <div type="text" name="link3" style="border: transparent; font-size: 15px;width: 700px;"
+                contenteditable="true" placeholder="link를 입력하세요">{{resume.link3}}</div>
+            {{/resume.link3}}
         </div>
     </div>
-</div>
+    <br>
 
+    <!-- 작성완료 버튼 -->
+    <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
+        <button class="button" onclick="saveTechResume()">작성완료</button>
 
-
-
-<div style="display: flex; flex-direction: column; margin-left: 100px; margin-top: 30px" ;>
-    <div style="margin-left: 0; font-weight: bold; font-size: 20px; ">기술스택</div>
-
-    <div style=" display: flex;flex-wrap: wrap; flex-direction: row; margin-top: 30px; width: 1000px;">
-        <br>
-        {{#techs}}
-        <div style=" display: flex; flex-direction: row;">
-            <input type="checkbox" name="tech-resume" value="{{id}}">
-            <div style="margin-right: 10px;">{{techname}}</div>
-        </div>
-        {{/techs}}
     </div>
-</div>
-
-<div style="display: flex; flex-direction: column; margin-top: 30px;">
-    <div style="font-weight: bold; font-size: 20px;  margin-left: 100px;">자기소개서</div>
-
-    <div id="myTextarea" name="content" class="box" rows="10" placeholder="자기를 소개할 수 있는 글을 작성해주세요. ex) 성장과정, 지원동기 등 "
-        style="width: 1000px; margin-top: 20px; margin-bottom: 20px;">{{resume.content}}</div>
-</div>
-
-<div style="display: flex; flex-direction: column; margin-top: 30px; margin-left: 100px;">
-    <div style="font-weight: bold; font-size: 20px;"> Github, 포트폴리오 링크</div>
-    <div style="display: flex; flex-direction: row; align-items: center; margin-top: 15px;">
-        <div type="text" name="link1" style="border: transparent; font-size: 15px;width: 700px;" contenteditable="true"
-            placeholder="link를 입력하세요">{{resume.link1}}</div>
-        <div type="text" name="link2" style="border: transparent; font-size: 15px;width: 700px;" contenteditable="true"
-            placeholder="link를 입력하세요">{{resume.link2}}</div>
-        <div type="text" name="link3" style="border: transparent; font-size: 15px;width: 700px;" contenteditable="true"
-            placeholder="link를 입력하세요">{{resume.link3}}</div>
-    </div>
-</div>
-
-<div style="display: flex; justify-content: center; margin-top: 50px;">
-    <button class="button" type="submit" onclick="saveTechResume()">작성완료</button>
-
-</div>
-<div class="input-box" name="workField" value="백엔드" hidden>{{resume.workField}}</div>
-</div>
+    <div class="input-box" name="workField" value="백엔드" hidden>{{resume.workField}}</div>
 </div>
 <script>
     function changePic(e1) { // 이력서 사진 저장 함수

@@ -56,14 +56,15 @@ public class ResumeController {
                 User sessionUser = (User) session.getAttribute("sessionUser");
                 System.out.println(techId);
                 resumeService.이력서작성(saveDTO, techId);
+                System.out.println("테스트 :" + saveDTO.careerPeriodS1);
 
                 return "/userBoard/manageResumeForm";
         }
 
         @GetMapping("/viewResumeForm/{id}")
         public String viewResumeForm(@PathVariable Integer id, HttpServletRequest request) {
-                Resume resume = resumeService.이력서상세보기(4);
-                List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResume(4);
+                Resume resume = resumeService.이력서상세보기(id);
+                List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResume(id);
                 request.setAttribute("resume", resume);
                 request.setAttribute("techResumes", techResumes);
                 return "/resume/viewResumeForm";

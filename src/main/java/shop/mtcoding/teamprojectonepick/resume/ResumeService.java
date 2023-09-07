@@ -3,7 +3,6 @@ package shop.mtcoding.teamprojectonepick.resume;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +16,6 @@ import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techResume.TechResume;
 import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
-import shop.mtcoding.teamprojectonepick.techResume.TechResumeRequestDTO.TechResumeSaveDTO;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service

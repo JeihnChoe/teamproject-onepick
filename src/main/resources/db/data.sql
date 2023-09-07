@@ -11,7 +11,7 @@ insert into user_tb(login_id, password, username, email, address, address2, tel,
 
 -- resume_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-insert into resume_tb(title, semi_content, content, education, school, major, career1, career_periodS1, career_periodE1, career2, career_periodS2, career_periodE2, career3, career_periodS3, career_periodE3, open, etc1, etc2, etc3, etc_period1, etc_period2, etc_period3, link1, link2, link3, work_field, user_id) 
+insert into resume_tb(title, semi_content, content, education, school, major, career1, career_periods1, career_periode1, career2, career_periods2, career_periode2, career3, career_periods3, career_periode3, open, etc1, etc2, etc3, etc_period1, etc_period2, etc_period3, link1, link2, link3, work_field, user_id) 
 values('내일부터 당장 일할 수 있습니다!', '간단 소개글입니다.', '안녕하십니까, 저는 동의대학교를 졸업하였고, 경력은 없으며 나이는 28세 입니다. 비록 비전공자이지만 동영상 강의로 이론을 배우고, 인터넷으로 스터디를 모집하여서 프로젝트를 통해 직접 코딩을 해볼 수 있었습니다. 저는 정말 착하고 순하며, 하라는 일은 모두 다 할수있습니다. 저를 뽑아주세요ㅎㅎ', '대학교 졸업', '동의대학교', '컴퓨터공학과', '신입', null, null, null, null, null, null, null, null, false, '없음', '없음', '없음', null, null, null,'http://www.naver.com', null, null, '백엔드 개발자', 1);
 
 insert into resume_tb(title, semi_content, content, education, school, major, career1, career_periodS1, career_periodE1, career2, career_periodS2, career_periodE2, career3, career_periodS3, career_periodE3, open, etc1, etc_period1, etc2, etc_period2, etc3, etc_period3, link1, link2, link3, work_field, user_id) 

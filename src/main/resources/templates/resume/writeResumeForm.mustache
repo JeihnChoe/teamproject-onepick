@@ -24,15 +24,15 @@
                         <div class="box" style="margin-left: 80px;">
                             <div style="display: flex; flex-direction: row; ">
                                 <textarea class="input-box" id="myTextarea" rows="1" maxlength="200" name="title"
-                                    placeholder="이력서의 제목을 입력해주세요" style="height: 30px; width: 600px; resize: none;"
+                                    placeholder="이력서의 제목을 입력해주세요"
+                                    style="height: 30px; width: 600px; resize: none; letter-spacing: 0.5px;"
                                     onkeydown="preventEnterKey(event)"></textarea>
                             </div>
                             <hr class="line" style="margin: 0;">
-                            <br>
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <textarea class="input-box" id="myTextarea" rows="4" maxlength="200" name="semiContent"
                                     placeholder="간단한 자기소개글을 입력해주세요."
-                                    style="margin:0; width: 600px; height: 120px; resize: none;"
+                                    style="margin:0; width: 600px; height: 120px; resize: none; letter-spacing: 0.5px; line-height: 1.5;"
                                     onkeydown="preventEnterKey(event)"></textarea>
 
                             </div>
@@ -45,7 +45,7 @@
 
         <div style="font-weight: bold; font-size: 30px; margin-left: 80px; margin-top: 50px;">Profile</div>
         <hr class="line" style="margin-top: 0px; margin-left: 80px; margin-right: 80px;">
-        <br>
+        <br><br>
 
 
         <!-- 프로필 안 첫번째 박스 -->
@@ -82,15 +82,15 @@
                 <hr class="line" style="border: 10px;">
 
                 <!--원티드박스-->
-                <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
+                <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px;">
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-box" type="text" placeholder="네이버" name="career1"
                                 style="width: 100px; margin-left: 0;">
-                            <input type="month" style="border: transparent;" name="careerPeriod1">
+                            <input type="month" style="border: transparent;" name="careerPeriodS1">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                            <input type="month" style="border: transparent;" name="careerPeriod1_1">
+                            <input type="month" style="border: transparent;" name="careerPeriodE1">
                         </div>
                     </div>
                     <div class="box-invisible"
@@ -98,18 +98,18 @@
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-box" type="text" placeholder="카카오톡" name="career2"
                                 style="width: 100px; margin-left: 0;">
-                            <input type="month" style="border: transparent;" name="careerPeriod2">
+                            <input type="month" style="border: transparent;" name="careerPeriodS2">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
-                            <input type="month" style="border: transparent;" name="careerPeriod2_1">
+                            <input type="month" style="border: transparent;" name="careerPeriodE2">
                         </div>
                     </div>
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
                             <input class="input-smallbox" type="text" placeholder="라쿠배몰두센" name="career3">
-                            <input type="month" style="border: transparent;" name="careerPeriod3">
+                            <input type="month" style="border: transparent;" name="careerPeriodS3">
                             <div style="margin-left: 10px; margin-right: 10px; "> ~ </div>
-                            <input type="month" style="border: transparent;" name="careerPeriod3_1">
+                            <input type="month" style="border: transparent;" name="careerPeriodE3">
                         </div>
                     </div>
                 </div>
@@ -124,6 +124,7 @@
                         수상이력
                     </div>
                 </div>
+                <hr class="line" style="border: 10px;">
 
                 <div class="box-invisible"
                     style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
@@ -154,19 +155,17 @@
                 </div>
             </div>
         </div>
-
+        <br><br>
         <div style="display: flex; margin-left: 100px;">
 
             <!-- 프로필 안 학력박스 -->
-            <div style="display: flex; flex-direction: column; margin-left: 0;">
-                <div style=" display: flex; justify-content:space-between ;  align-items: center;">
+            <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 0; margin-right: 0;">
+                <div style="display: flex; justify-content:space-between ;  align-items: center;">
                     <div style="font-weight: bold; font-size: 20px;">
                         학력
                     </div>
-                    <br><br><br>
-
                 </div>
-
+                <hr class="line" style="border: 10px;">
                 <!--학력세부내용작성박스 -->
 
                 <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
@@ -200,15 +199,16 @@
 
             <!-- 생년월일-->
             <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 80px;">
-
-                <div style="font-weight: bold; font-size: 20px;">
-                    나이
+                <div style=" display: flex; justify-content:space-between ;">
+                    <div style="font-weight: bold; font-size: 20px;">
+                        나이
+                    </div>
                 </div>
-
+                <hr class="line" style="border: 10px;">
 
                 <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
                     <div style=" display: flex; flex-direction: column; justify-content: space-between;">
-                        <div style=" display: flex; flex-direction: row;">
+                        <div class="box-invisible" style=" display: flex; flex-direction: row;">
                             만 작성년도 - user.birth 세
                         </div>
                     </div>
@@ -216,34 +216,44 @@
             </div>
         </div>
 
+        <br><br>
 
 
-
-        <div style="display: flex; flex-direction: column; margin-left: 100px; margin-top: 30px" ;>
+        <!-- 기술 스택-->
+        <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 100px; margin-top: 30px">
             <div style="margin-left: 0; font-weight: bold; font-size: 20px; ">기술스택</div>
+            <hr class="line" style="border: 10px;">
 
-            <div style=" display: flex;flex-wrap: wrap; flex-direction: row; margin-top: 30px; width: 1000px;">
+            <div class="box-invisible" style=" display: flex;flex-wrap: wrap; flex-direction: row;  width: 1000px;">
                 <br>
                 {{#techs}}
                 <div style=" display: flex; flex-direction: row;">
-                    <input type="checkbox" name="tech-resume" value="{{id}}">
-                    <div style="margin-right: 10px;">{{techname}}</div>
+                    <input type="checkbox" name="tech-resume" value="{{id}}" style="margin-right: 5px;">
+                    <div style="margin-right: 15px;">{{techname}}</div>
                 </div>
                 {{/techs}}
             </div>
         </div>
 
+        <br><br>
+
+
+        <!-- 자기소개서 -->
         <div style="display: flex; flex-direction: column; margin-top: 30px;">
             <div style="font-weight: bold; font-size: 20px;  margin-left: 100px;">자기소개서</div>
 
             <textarea id="myTextarea" name="content" class="box" rows="10"
                 placeholder="자기를 소개할 수 있는 글을 작성해주세요. ex) 성장과정, 지원동기 등 "
-                style="width: 1000px; margin-top: 20px; margin-bottom: 20px;"></textarea>
+                style="padding: 20px; width: 1000px; margin-top: 20px; margin-bottom: 20px;"></textarea>
         </div>
+        <br>
 
+
+        <!-- 링크 -->
         <div style="display: flex; flex-direction: column; margin-top: 30px; margin-left: 100px;">
             <div style="font-weight: bold; font-size: 20px;"> Github, 포트폴리오 링크</div>
-            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 15px;">
+            <hr class="line" style="border: 10px;">
+            <div style="display: flex; flex-direction: row; align-items: center;">
                 <input type="text" name="link1" style="border: transparent; font-size: 15px;width: 700px;"
                     contenteditable="true" placeholder="link를 입력하세요">
                 <input type="text" name="link2" style="border: transparent; font-size: 15px;width: 700px;"
@@ -252,8 +262,11 @@
                     contenteditable="true" placeholder="link를 입력하세요">
             </div>
         </div>
+        <br>
 
-        <div style="display: flex; justify-content: center; margin-top: 50px;">
+
+        <!-- 작성완료 버튼 -->
+        <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
             <button class="button" type="submit" onclick="saveTechResume()">작성완료</button>
 
         </div>
