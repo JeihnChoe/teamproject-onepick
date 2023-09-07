@@ -34,7 +34,7 @@ public class NoticeController {
     private TechRepository techRepository;
 
     @Autowired
-    private NoticeRepository noticeRepository;
+private NoticeRepository noticeRepository;
 
     private NoticeRequestDTO noticeRequestDTO;
 
@@ -76,14 +76,14 @@ public class NoticeController {
     // model.addAttribute("notice", notice);
     // return "notice/detailNoticeForm";
     // }
-    @GetMapping("/detailNoticeForm/{id}")
-    public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
+        @GetMapping("/detailNoticeForm/{id}")
+        public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
         List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
         notice.setUserImg("" + notice.getUserImg());
         request.setAttribute("notice", notice);
         request.setAttribute("techNotice", techNotices);
-        // NoticeRequestDTO.DetailDTO detailDTO = new NoticeRequestDTO.DetailDTO(
+// NoticeRequestDTO.DetailDTO detailDTO = new NoticeRequestDTO.DetailDTO(
         // "" + notice.getUserImg(),
         // notice.getSemiTitle(),
         // notice.getSemiContent(),
@@ -103,6 +103,13 @@ public class NoticeController {
     // 공고수정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     // 공고삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
+   
+    @PostMapping("/deleteNotice/{id}")
+    public @ResponseBody String delete(@PathVariable Integer id){
+        System.out.println("삭제테스트1");
+        noticeService.삭제하기(id);
+        System.out.println("삭제테스트2");
+        return Script.href("/userProfileForm");
+    }
     // 공고목록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 }

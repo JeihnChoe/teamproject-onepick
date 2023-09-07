@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
@@ -115,6 +116,11 @@ public class NoticeService {
         // return notice;
         Optional<Notice> noticeOP = noticeRepository.findById(id);
         return noticeOP.get();
+    }
+
+    @Transactional
+    public void 삭제하기(Integer id) {
+            noticeRepository.deleteById(id);
     }
 
 }
