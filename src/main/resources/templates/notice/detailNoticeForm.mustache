@@ -135,7 +135,12 @@
         </div>
     </div>
     <div class="box-invisible" style="display: flex; justify-content: center;">
-        <a class="box" href="/" style="text-decoration: none; color: black;">확인</a>
+        <form action="/deleteNotice/{{id}}" method="post">
+            <button type="submit" class="button">수정</button>
+        </form>
+        <form action="/deleteNotice/{{id}}" method="post">
+            <button type="submit" class="button">삭제</button>
+        </form>
     </div>
 
 </div>
