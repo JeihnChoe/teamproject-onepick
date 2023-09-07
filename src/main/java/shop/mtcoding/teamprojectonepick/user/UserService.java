@@ -50,7 +50,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User 회원정보보기(Integer id) { //2번 
+    public User 회원정보보기(Integer id) { // 2번
         return userRepository.findById(id).get();
     }
 
@@ -144,5 +144,9 @@ public class UserService {
         User user = userRepository.findById(id).get();
         return user;
     }
-        
+
+    public User 기업회원프로필조회(Integer id) {
+        User user = userRepository.findById(id).get();
+        return user;
+    }
 }
