@@ -29,19 +29,19 @@ public class ResumeService {
     private TechRepository techRepository;
 
     @Transactional
-    public void 이력서작성(SaveDTO saveDTO, List<Integer> techId) {
+    public void 이력서작성(SaveDTO saveDTO, List<Integer> techId, Integer sessionUserId) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
 
-        Path filePath = Paths.get("./images/" + fileName);
+        Path filePath = Paths.get("./upload/" + fileName);
         try {
             Files.write(filePath, saveDTO.getResumeImg().getBytes()); // 버퍼에 쓴다.
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        User user = User.builder().id(1).build();
+        User user = User.builder().id(sessionUserId).build();
         Resume resume = Resume.builder()
                 .title(saveDTO.getTitle())
                 .semiContent(saveDTO.getSemiContent())
@@ -87,8 +87,4 @@ public class ResumeService {
         Resume resume = resumeRepository.mFindByIdJoinTechResumeInUser(id);
         return resume;
     }
-
-    // public Resume 이력서목록보기(Integer id) {
-    // return resumeRepository.findById(id).get();
-    // }
 }

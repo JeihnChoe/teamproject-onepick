@@ -3,16 +3,13 @@
     <div style="margin-left: 50px; margin-right: 50px;">
         <div style="display: flex; flex-direction: row;  margin: 20px; ">
             <div style="margin-right: 20px;">이력서 공개여부</div>
-            <input type="checkbox" id="public" name="open" value="public">
-            <label for="public">공개</label>
-
-            <input type="checkbox" id="private" name="open" value="private" style="margin-left: 50px;">
-            <label for="private">비공개</label>
+            <div name="open">{{resume.open}}</div>
         </div>
+
         <br>
         <div style="display: flex; flex-direction: row;">
             <div style="display: flex; flex-direction: column;">
-                <img class="box" id="preview"
+                <img class="box" id="preview" src="/upload/{{resume.resumeImg}}"
                     style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;">
 
                 </img>
@@ -27,7 +24,7 @@
                                 style="height: 30px; width: 600px; resize: none; letter-spacing: 0.5px;"
                                 onkeydown="preventEnterKey(event)">{{resume.title}}</div>
                         </div>
-                        <hr class="line" style="margin: 0;">
+                        <hr class="line" style="marginviewResumeForm: 0;">
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <div class="input-box" id="myTextarea" rows="4" maxlength="200" name="semiContent"
                                 placeholder="간단한 자기소개글을 입력해주세요."
@@ -316,7 +313,7 @@
 
     <!-- 작성완료 버튼 -->
     <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
-        <button class="button" onclick="saveTechResume()">작성완료</button>
+        <a class="btn btn-light" href="/userProfileForm">이력서 목록보기</a>
 
     </div>
     <div class="input-box" name="workField" value="백엔드" hidden>{{resume.workField}}</div>

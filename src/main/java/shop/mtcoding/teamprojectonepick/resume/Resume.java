@@ -114,7 +114,8 @@ public class Resume {
     @ManyToOne(fetch = FetchType.LAZY)
     User user;
 
-    @JsonIgnoreProperties({ "resume" }) // 무한 직렬화 막아줌. ajax쓸 때 사용. Reply내부의 board를 안주겠다.??
+    // @JsonIgnoreProperties({ "resume" }) // 무한 직렬화 막아줌. ajax쓸 때 사용. Reply내부의
+    // board를 안주겠다.??
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TechResume> techResume = new ArrayList<>();
 
@@ -146,7 +147,6 @@ public class Resume {
         this.etc1 = etc1;
         this.etc2 = etc2;
         this.etc3 = etc3;
-
         this.link1 = link1;
         this.link2 = link2;
         this.link3 = link3;

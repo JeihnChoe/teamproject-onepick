@@ -10,4 +10,7 @@ public interface TechResumeRepository extends JpaRepository<TechResume, Integer>
 
     @Query("select tr from TechResume tr left join fetch tr.resume r where r.id = :id")
     List<TechResume> mFindByIdJoinResume(@Param("id") Integer id);
+
+    @Query("select tr from TechResume tr left join fetch tr.resume r left join fetch r.user where r.id = :id")
+    List<TechResume> mFindByIdJoinResumeJoinUser(@Param("id") Integer id);
 }

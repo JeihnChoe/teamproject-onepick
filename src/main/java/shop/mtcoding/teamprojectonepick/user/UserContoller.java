@@ -112,10 +112,8 @@ public class UserContoller {
     // 이력서 상세보기에 이력서id 필요
     @GetMapping("/userProfileForm")
     public String userProfile(HttpServletRequest request) {
-
-        List<Resume> resumeList = null;
-        resumeList = resumeRepository.findAll();
-
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Resume> resumeList = resumeRepository.findByUserId(sessionUser.getId());
         request.setAttribute("resumeList", resumeList);
         return ("/user/userProfileForm");
     }

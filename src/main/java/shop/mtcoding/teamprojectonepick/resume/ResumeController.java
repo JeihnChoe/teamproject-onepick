@@ -55,31 +55,22 @@ public class ResumeController {
                         @RequestParam(name = "tech-resume") List<Integer> techId) {
                 User sessionUser = (User) session.getAttribute("sessionUser");
                 System.out.println(techId);
-                resumeService.이력서작성(saveDTO, techId);
+                resumeService.이력서작성(saveDTO, techId, sessionUser.getId());
                 System.out.println("테스트 :" + saveDTO.careerPeriodS1);
 
-                return "/userBoard/manageResumeForm";
+                return "redirect:/userProfileForm";
         }
 
         @GetMapping("/viewResumeForm/{id}")
         public String viewResumeForm(@PathVariable Integer id, HttpServletRequest request) {
+                User sessionUser = (User) session.getAttribute("sessionUser");
                 Resume resume = resumeService.이력서상세보기(id);
-                List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResume(id);
+                List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResumeJoinUser(id);
+                System.out.println("테스트그림" + resume.getResumeImg());
+                resume.setResumeImg("" + resume.getResumeImg());
                 request.setAttribute("resume", resume);
                 request.setAttribute("techResumes", techResumes);
                 return "/resume/viewResumeForm";
         }
 
-        // @PostMapping("/resume/viewResume")
-        // public String viewResume(ResumeRequestDTO.SaveDTO saveDTO,
-        // @RequestParam(name = "tech-resume") List<Integer> techId) {
-        // User sessionUser = (User) session.getAttribute("sessionUser");
-        // System.out.println(techId);
-        // resumeService.이력서작성(saveDTO, techId);
-
-        // return "/userBoard/manageResumeForm";
-        // }
-
 }
-
-// 이력서 작성 - 기술 테이블 ajax로 출력하는거 해야됨
