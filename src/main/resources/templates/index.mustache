@@ -1,5 +1,89 @@
 {{>/layout/header}}
+<div class="main-container">
+    <div>
+        <div class="container mt-3" style="align-self: center;">
+            <img src="/images/m_main_banner.png" class="rounded" alt="Cinque Terre" width="50%">
+        </div>
 
+        <div class="container mt-3">
+            <div class="box" style="margin-top: 50px; display: flex; margin-right: 500px;">
+                <h2>직무</h2>
+                <div class="box">/ 체크박스로 해서 직무분야 5가지정도 넣어줘야함</div>
+            </div>
+            <hr class="line">
+
+            <div class="box" style="display: flex; margin-right: 600px;">
+                <div class="box"><button>지역</button></div>
+                <div class="box"><button>경력</button></div>
+                <div class="box"><button>학력</button></div>
+            </div>
+        </div>
+
+        <hr class="line">
+
+        <br>
+
+        <h6>총 2,111건</h6>
+        <hr class="line">
+
+        <div class="grid-box" id="product-box">
+
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+
+
+
+
+    function render() {
+
+
+        let responseBody = download();
+        responseBody.forEach((product) => {
+            $("#product-box").append(productBox());
+
+        });
+    }
+
+
+    function productBox() {
+        return `<div class="card" style="width:250px">
+                <img class="card-img-top" src="/images/1.jpg" alt="Card image" width="300px">
+                <div class="card-body">
+                    <h5 class="card-title">기업명</h4>
+                        <p class="card-text">채용내용</p>
+                        <p class="card-text">지역</p>
+                </div>
+            </div>`;
+    }
+
+    function download() {
+        let productList = [
+            {
+                id: 1,
+                bizName: 삼성,
+                workfield: 백엔드,
+                bizAddress: 부산
+
+            },
+            {
+                id: 2,
+                bizName: 엘지,
+                workfield: 프론트엔드,
+                bizAddress: 부산
+
+            }
+        ];
+        return productList;
+    }
+
+</script>
 
 
 {{>/layout/footer}}

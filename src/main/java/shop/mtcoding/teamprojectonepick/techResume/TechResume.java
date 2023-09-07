@@ -37,5 +37,4 @@ public class TechResume {
         this.resume = resume;
         this.tech = tech;
     }
-
 }
