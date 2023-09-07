@@ -50,7 +50,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public User 회원정보보기(Integer id) {
+    public User 회원정보보기(Integer id) { //2번 
         return userRepository.findById(id).get();
     }
 
@@ -73,8 +73,9 @@ public class UserService {
 
     @Transactional
     public User 회원수정(UpdateDTO updateDTO, Integer id) {
-        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
-        String fileName = uuid + "_" + updateDTO.getPic().getOriginalFilename();
+
+        // UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+        String fileName = "_" + updateDTO.getPic().getOriginalFilename();
         System.out.println("fileName : " + fileName);
 
         // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
@@ -89,17 +90,16 @@ public class UserService {
 
         // 1. 조회 (영속화)
         User user = userRepository.findById(id).get();
-
         // 2. 변경
-
         user.setPassword(updateDTO.getPassword());
         user.setUsername(updateDTO.getUsername());
         user.setTel(updateDTO.getTel());
         user.setBirth(updateDTO.getBirth());
         user.setAddress(updateDTO.getAddress());
         user.setPicUrl(fileName);
-
+        System.out.println("테스트" + fileName);
         return user;
+
     }
 
     @Transactional
@@ -139,4 +139,10 @@ public class UserService {
         User user = userRepository.findById(id).get();
         return user;
     }
+
+    public User 회원프로필조회(Integer id) {
+        User user = userRepository.findById(id).get();
+        return user;
+    }
+        
 }

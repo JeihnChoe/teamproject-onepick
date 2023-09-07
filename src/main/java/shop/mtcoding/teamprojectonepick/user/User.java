@@ -55,6 +55,7 @@ public class User {
     @Column(nullable = false)
     Integer usercode;
 
+    @Column(length = 10000)
     private String picUrl;
 
     private Timestamp createdAt;

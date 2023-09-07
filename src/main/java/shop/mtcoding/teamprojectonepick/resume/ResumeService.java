@@ -3,7 +3,6 @@ package shop.mtcoding.teamprojectonepick.resume;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +16,6 @@ import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techResume.TechResume;
 import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
-import shop.mtcoding.teamprojectonepick.techResume.TechResumeRequestDTO.TechResumeSaveDTO;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
@@ -31,19 +29,19 @@ public class ResumeService {
     private TechRepository techRepository;
 
     @Transactional
-    public void 이력서작성(SaveDTO saveDTO, List<Integer> techId) {
+    public void 이력서작성(SaveDTO saveDTO, List<Integer> techId, Integer sessionUserId) {
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
 
-        Path filePath = Paths.get("./images/" + fileName);
+        Path filePath = Paths.get("./upload/" + fileName);
         try {
             Files.write(filePath, saveDTO.getResumeImg().getBytes()); // 버퍼에 쓴다.
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        User user = User.builder().id(1).build();
+        User user = User.builder().id(sessionUserId).build();
         Resume resume = Resume.builder()
                 .title(saveDTO.getTitle())
                 .semiContent(saveDTO.getSemiContent())
@@ -85,7 +83,8 @@ public class ResumeService {
 
     }
 
-    // public Resume 이력서목록보기(Integer id) {
-    // return resumeRepository.findById(id).get();
-    // }
+    public Resume 이력서상세보기(Integer id) {
+        Resume resume = resumeRepository.mFindByIdJoinTechResumeInUser(id);
+        return resume;
+    }
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
@@ -45,7 +46,7 @@ public class NoticeService {
         String fileName = uuid + "_" + saveDTO.getUserImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
 
-        Path filePath = Paths.get("./images/" + fileName);
+        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
         try {
             Files.write(filePath, saveDTO.getUserImg().getBytes());
         } catch (Exception e) {
@@ -108,11 +109,12 @@ public class NoticeService {
 
     }
 
-    public Notice 상세보기(Integer id) {
-        // Notice를 가져오려고 시도합니다.
+    public Notice 공고조회(Integer id) {
+
+        // Notice notice = noticeRepository.mFindByIdJoinTechNoticeInUser(id);
+        // return notice;
         Optional<Notice> noticeOP = noticeRepository.findById(id);
         return noticeOP.get();
-
     }
 
 }

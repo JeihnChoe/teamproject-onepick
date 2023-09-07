@@ -8,5 +8,13 @@ import org.springframework.data.repository.query.Param;
 public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
     @Query("select n from Notice n where n.open = :open")
+<<<<<<< HEAD
     List<Notice> findByOpen(@Param("open") String open);
+=======
+    List<Notice> findByOpen(Integer open);
+
+    // @Query("select r from Notice r left join fetch r.techNotice rt left join fetch r.user ru where r.id = :id")
+    // Notice mFindByIdJoinTechNoticeInUser(@Param("id") Integer id);
+>>>>>>> d98f98bb514b7369245f52bf6514cfa4ee69e25a
 }
+
