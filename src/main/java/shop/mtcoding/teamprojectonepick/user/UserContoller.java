@@ -1,5 +1,8 @@
 package shop.mtcoding.teamprojectonepick.user;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
 
+import shop.mtcoding.teamprojectonepick.resume.Resume;
+import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
+import shop.mtcoding.teamprojectonepick.tech.TechRepository;
+
 @Controller
 
 public class UserContoller {
@@ -18,9 +25,27 @@ public class UserContoller {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ResumeRepository resumeRepository;
+
     @PostMapping("/logout")
     public String logout() {
         session.invalidate();
+        System.out.println("로그아웃테스트 : ");
+        return "redirect:/";
+    }
+
+
+
+    @PostMapping("/userUpdate")
+    public String update(UserRequestDTO.UpdateDTO updateDTO) {
+        System.out.println(updateDTO);
+        // 1. 회원수정 (서비스)
+        // 2. 세션동기화
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.회원수정(updateDTO, sessionUser.getId());
+        session.setAttribute("sessionUser", user);
+
         return "redirect:/";
     }
 
@@ -87,8 +112,10 @@ public class UserContoller {
         return ("/user/userJoinForm");
     }
 
+    // 이력서 상세보기에 이력서id 필요
     @GetMapping("/userProfileForm")
-    public String userProfile(Model model) {
+
+  public String userProfile(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원프로필조회(sessionUser.getId());
         UserResponseDTO.UserProfileFormDTO userProfileFormDTO = new UserResponseDTO.UserProfileFormDTO(
@@ -96,6 +123,10 @@ public class UserContoller {
                 user.getUsername(),
                 user.getEmail(), user.getTel());
         model.addAttribute("userInfo", userProfileFormDTO);
+        
+        List<Resume> resumeList = resumeRepository.findByUserId(sessionUser.getId());
+        model.addAttribute("resumeList", resumeList);
+
         return ("/user/userProfileForm");
     }
 
