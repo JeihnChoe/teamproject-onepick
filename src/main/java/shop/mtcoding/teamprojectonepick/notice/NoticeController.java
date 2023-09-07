@@ -15,7 +15,8 @@ public class NoticeController {
 
     // 공고등록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @GetMapping("/writeNoticeForm")
-    public String writeNotice() {
+
+    public String writeNoticeForm() {
         return "/notice/writeNoticeForm";
     }
 

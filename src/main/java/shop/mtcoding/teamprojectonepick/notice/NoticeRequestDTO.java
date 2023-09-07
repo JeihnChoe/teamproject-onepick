@@ -27,4 +27,7 @@ public class NoticeRequestDTO {
         private String techNotice;
     }
 
+    public class NoticeRequestDTO {
+
+    }
 }

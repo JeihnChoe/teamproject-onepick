@@ -14,16 +14,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+<<<<<<< HEAD
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Builder;
+=======
+>>>>>>> dev
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechNotice;
 import shop.mtcoding.teamprojectonepick.user.User;
 
+import javax.persistence.Column;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
 @Data
 @NoArgsConstructor
 @Table(name = "notice_tb")
@@ -31,6 +43,7 @@ import shop.mtcoding.teamprojectonepick.user.User;
 public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
     private Integer id;
 
     @Column(nullable = false, length = 10000)
@@ -82,17 +95,70 @@ public class Notice {
         this.id = id;
         this.open = open;
         this.userImg = userImg;
+=======
+    Integer id;
+
+    @Column(nullable = false, length = 10000)
+    boolean open;// 공개 비공개 여부
+
+    @Column(nullable = false, length = 10000)
+    String bizImg; // 기업 대표이미지
+
+    @Column(nullable = false, length = 10000)
+    String semiTitle;// 공고 제목
+
+    @Column(nullable = false, length = 10000)
+    String semiContent;// 간단 기업소개
+
+    @Column(nullable = false, length = 10000)
+    String workField;// 직무 분야(백/프/앱)
+
+    @Column(nullable = false, length = 10000)
+    String bizName; // 기업 이름
+
+    @Column(nullable = false, length = 10000)
+    String bizAddress; // 근무 지역(택1)
+
+    @Column(nullable = false, length = 10000)
+    String career; // 요구경력(택1)
+
+    @Column(nullable = false, length = 10000)
+    String education; // 요구학력(택1)
+
+    @Column(nullable = false, length = 10000)
+    String mainContent; // 공고상세내용
+
+    @Column(length = 10000)
+    String deadLine; // 마감일
+
+    @Builder
+    public Notice(Integer id, boolean open, String bizImg, String semiTitle, String semiContent, String workField,
+            String bizName, String bizAddress, String career, String education, String mainContent, String deadLine) {
+        this.id = id;
+        this.open = open;
+        this.bizImg = bizImg;
+>>>>>>> dev
         this.semiTitle = semiTitle;
         this.semiContent = semiContent;
         this.workField = workField;
         this.bizName = bizName;
+<<<<<<< HEAD
         this.userAddress = userAddress;
+=======
+        this.bizAddress = bizAddress;
+>>>>>>> dev
         this.career = career;
         this.education = education;
         this.mainContent = mainContent;
         this.deadLine = deadLine;
+<<<<<<< HEAD
         this.techNotices = techNotices;
         // this.user = user;
     }
 
 }
+=======
+    }
+
+}
+>>>>>>> dev

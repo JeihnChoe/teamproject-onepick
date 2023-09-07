@@ -2,13 +2,15 @@
 
 <div class="main-container" style="display: flex; flex-direction: column;">
     <div class="box" style="width: 700px; margin-top: 80px;">
-        <div style="text-align: center; margin-top: 50px;">
-            <img src="/images/베이직2.jpg" style="border-radius: 50%;">
-            <br>
-            <input type="file" name="id" style="margin-left: 70px;" />
-            <h2>최제인담당자님, 안녕하세요.</h2>
-        </div>
-        <form action="#">
+
+        <form action="/bizUserUpdate" method="post" name="BizUpdateDTO" enctype="multipart/form-data">
+            <div style="text-align: center; margin-top: 50px;">
+                <img src="/images/베이직2.jpg" style="border-radius: 50%; width: 180px; height: 180px;" id="preview">
+                <br>
+                <input type="file" name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
+                <h2>최제인담당자님, 안녕하세요.</h2>
+            </div>
+
             <div class="body-container">
                 <div style="margin-left: 50px; margin-right: 100px;">
                     <br>
@@ -17,10 +19,22 @@
                     <br>
                     <div class="body-text">
                         <div class="body-head">
-                            이메일
+                            비밀번호
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="baronjae@gmail.com">
+                            <input class="input-box" contenteditable="true" placeholder="baronjae@gmail.com"
+                                name="password">
+                            </input>
+                        </div>
+                    </div>
+                    <hr class="line" style="margin-top: 0px;">
+                    <div class="body-text">
+                        <div class="body-head">
+                            비밀번호 확인
+                        </div>
+                        <div class="body-main">
+                            <input class="input-box" contenteditable="true"
+                                placeholder="위에두칸 일치여부만 확인해서 일치 불일치 출력, 일치시 text 색상 그린, 불일치시 레드">
                             </input>
                         </div>
                     </div>
@@ -30,7 +44,7 @@
                             회사명
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="그린">
+                            <input class="input-box" contenteditable="true" placeholder="그린" name="bizname">
                             </input>
                         </div>
                     </div>
@@ -40,7 +54,7 @@
                             담당자명
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="진성훈">
+                            <input class="input-box" contenteditable="true" placeholder="진성훈" name="username">
                             </input>
                         </div>
                     </div>
@@ -50,7 +64,7 @@
                             담당자 연락처
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="010-9471-9693">
+                            <input class="input-box" contenteditable="true" placeholder="010-9471-9693" name="tel">
                             </input>
                         </div>
                     </div>
@@ -60,7 +74,8 @@
                             회사주소
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="부산 진구 중앙대로 688, 305호">
+                            <input class="input-box" contenteditable="true" placeholder="부산 진구 중앙대로 688, 305호"
+                                name="address">
                             </input>
                         </div>
                     </div>
@@ -92,6 +107,23 @@
     </div>
     <br>
 </div>
+<script>
+    function changePic(e1) {
+        let f = e1.srcElement.files[0];
+        console.log(f.type);
+        if (!f.type.match("image.*")) {
+            alert("이미지를 등록해주세요");
+            return;
+        }
+
+        let reader = new FileReader();
+        reader.onload = function (e2) { // 파일이 다 읽어지면 콜백됨
+            let previewEl = document.querySelector("#preview");
+            previewEl.setAttribute("src", e2.target.result);
+        }
+        reader.readAsDataURL(f); // 파일 읽기 onload()
+    }
+</script>
 </body>
 
 {{>layout/footer}}

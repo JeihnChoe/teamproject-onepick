@@ -10,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Builder;
+<<<<<<< HEAD
 import lombok.Data;
+=======
+import lombok.Getter;
+>>>>>>> dev
 import lombok.NoArgsConstructor;
 
 @Data
@@ -20,44 +24,68 @@ import lombok.NoArgsConstructor;
 public class User {
 
     @Id
+    // 유저
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Column(nullable = false, length = 10000)
-    String loginId;
+    String loginId; // 로그인아이디
 
     @Column(nullable = false, length = 10000)
-    String password;
+    String password; // 패스워드
 
     @Column(nullable = false, length = 10000)
-    String email;
+    String username; // 사람이름
 
     @Column(nullable = false, length = 10000)
-    String username;
+    String email; // 이메일
+
+    @Column(nullable = true, length = 10000)
+    String address; // 주소
+
+    @Column(nullable = true, length = 10000)
+    String address2; // 주소
 
     @Column(nullable = false, length = 10000)
-    String address;
+    String tel; // 전화번호
 
-    @Column(nullable = false, length = 10000)
-    String tel;
+    @Column(length = 10000)
+    String birth; // 생년월일
 
-    @Column(nullable = false, length = 10000)
-    String birth;
+    // 기업 유저
+    @Column(length = 10000)
+    String bizname; // 기업명
+
+    // 개인 기업 구분 코드 -> 개인이면 1, 기업이면 2
+    @Column(nullable = false)
+    Integer usercode;
+
+    private String picUrl;
 
     private Timestamp createdAt;
 
     @Builder
+<<<<<<< HEAD
     public User(Integer id, String loginId, String password, String email, String username, String address,
             String school, String career, String tel, String birth, Timestamp createdAt) {
+=======
+    public User(Integer id, String loginId, String password, String username, String email, String address,
+            String address2, String tel,
+            String birth, String bizname, String picUrl, int usercode, Timestamp createdAt) {
+>>>>>>> dev
         this.id = id;
         this.loginId = loginId;
         this.password = password;
-        this.email = email;
         this.username = username;
+        this.email = email;
         this.address = address;
+        this.address2 = address2;
         this.tel = tel;
         this.birth = birth;
-        this.createdAt = createdAt;
+        this.bizname = bizname;
+        this.picUrl = picUrl;
+
+        this.usercode = usercode;
     }
 
 }

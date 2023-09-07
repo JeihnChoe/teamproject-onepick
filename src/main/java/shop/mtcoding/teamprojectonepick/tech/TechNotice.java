@@ -1,5 +1,6 @@
 package shop.mtcoding.teamprojectonepick.tech;
 
+<<<<<<< HEAD
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -39,4 +40,8 @@ public class TechNotice {
         this.notice = notice;
         this.tech = tech;
     }
+=======
+public class TechNotice {
+
+>>>>>>> dev
 }
