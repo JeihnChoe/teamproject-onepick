@@ -100,7 +100,14 @@ public class UserContoller {
     }
 
     @GetMapping("/userProfileForm")
-    public String userProfile() {
+    public String userProfile(Model model) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        User user = userService.회원프로필조회(sessionUser.getId());
+        UserResponseDTO.UserProfileFormDTO userProfileFormDTO = new UserResponseDTO.UserProfileFormDTO(
+                "" + user.getPicUrl(),
+                user.getUsername(),
+                user.getEmail(), user.getTel());
+        model.addAttribute("userInfo", userProfileFormDTO);
         return ("/user/userProfileForm");
     }
 

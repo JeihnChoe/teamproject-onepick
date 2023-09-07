@@ -31,4 +31,13 @@ public class UserResponseDTO {
         private String picUrl;
 
     }
+
+    @Getter
+    @AllArgsConstructor
+    static class UserProfileFormDTO {
+        private String picUrl;
+        private String username;
+        private String email;
+        private String tel;
+    }
 }

@@ -139,4 +139,9 @@ public class UserService {
         User user = userRepository.findById(id).get();
         return user;
     }
+
+    public User 회원프로필조회(Integer id) {
+        User user = userRepository.findById(id).get();
+        return user;
+    }
 }
