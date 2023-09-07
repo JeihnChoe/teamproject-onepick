@@ -1,6 +1,5 @@
 package shop.mtcoding.teamprojectonepick.tech;
 
-<<<<<<< HEAD
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +17,7 @@ import shop.mtcoding.teamprojectonepick.notice.Notice;
 import shop.mtcoding.teamprojectonepick.resume.Resume;
 
 @NoArgsConstructor
+@Data
 @Table(name = "tech_notice_tb")
 @Entity
 public class TechNotice {
@@ -40,8 +40,5 @@ public class TechNotice {
         this.notice = notice;
         this.tech = tech;
     }
-=======
-public class TechNotice {
 
->>>>>>> dev
 }
