@@ -1,5 +1,5 @@
 {{>/layout/header}}
-<form action="/resume/writeResume" method="post" enctype="multipart/form-data">
+<form action="/writeResume" method="post" enctype="multipart/form-data">
     <div class="main-container" style="display: flex; flex-direction: column;">
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
@@ -58,7 +58,7 @@
                         경력
                     </div>
 
-                    <select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
+                    <!--<select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
                         <ul>
                             <li>
                                 <option value="선택">선택</option>
@@ -76,7 +76,7 @@
                                 <option value="6년이상">6년 이상</option>
                             </li>
                         </ul>
-                    </select>
+                    </select> -->
                 </div>
 
                 <hr class="line" style="border: 10px;">
@@ -170,13 +170,13 @@
 
                 <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
                     <div style=" display: flex; flex-direction: column; justify-content: space-between;">
-                        <div style=" display: flex; flex-direction: row;">
+                        <div style=" display: flex; flex-direction: row; align-items: center;">
                             <input class="input-box" name="school" style="width: 100px;" type="text"
                                 placeholder="ㅇㅇ대학교">
                             <input class="input-box" name="major" style="width: 100px;" type="text" placeholder="xx학과">
 
                             <input type="month" style="border: transparent;" name="education">
-                            <select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
+                            <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;">
                                 <ul>
                                     <li>
                                         <option value="선택">선택</option>
@@ -201,7 +201,7 @@
 
 
             <!-- 생년월일-->
-            <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 80px;">
+            <div class="box-invisible" style="display: flex; flex-direction: column; margin-left: 20px;">
                 <div style=" display: flex; justify-content:space-between ;">
                     <div style="font-weight: bold; font-size: 20px;">
                         나이
@@ -270,7 +270,7 @@
 
         <!-- 작성완료 버튼 -->
         <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
-            <button class="button" type="submit" onclick="saveTechResume()">작성완료</button>
+            <button class="button" type="submit">작성완료</button>
 
         </div>
         <input class="input-box" name="workField" value="백엔드"></input>

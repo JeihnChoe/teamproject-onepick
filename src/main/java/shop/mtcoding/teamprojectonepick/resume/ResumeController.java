@@ -24,6 +24,7 @@ import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techResume.TechResume;
 import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
 import shop.mtcoding.teamprojectonepick.techResume.TechResumeRequestDTO;
+import shop.mtcoding.teamprojectonepick.techResume.TechResumeService;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Controller
@@ -37,6 +38,9 @@ public class ResumeController {
 
         @Autowired
         private TechRepository techRepository;
+
+        @Autowired
+        private TechResumeService techResumeService;
 
         @Autowired
         private HttpSession session;
@@ -53,7 +57,7 @@ public class ResumeController {
         }
 
         // 완료
-        @PostMapping("/resume/writeResume")
+        @PostMapping("/writeResume")
         public String writeResume(ResumeRequestDTO.SaveDTO saveDTO,
                         @RequestParam(name = "tech-resume") List<Integer> techId) {
                 User sessionUser = (User) session.getAttribute("sessionUser");
@@ -87,16 +91,23 @@ public class ResumeController {
         public String updateResumeForm(@PathVariable Integer id, Model model) {
                 Resume resume = resumeService.이력서상세보기(id);
                 List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResumeJoinUser(id);
+                List<Integer> checkedTechs = techResumeService.체크된기술아이디가져오기(id, techResumes);
+                List<Tech> techs = techRepository.findAll();
+                model.addAttribute("techs", techs);
                 model.addAttribute("resume", resume);
-                System.out.println("테스트 : " + resume.getCareerPeriodS1());
-                model.addAttribute("techREsumes", techResumes);
+                // System.out.println("테스트 : " + checkedTechs);
+                model.addAttribute("techResumes", techResumes);
+                model.addAttribute("checkedTechs", checkedTechs);
                 return "resume/updateResumeForm";
         }
 
         @PostMapping("/updateResume/{id}")
-        public String update(@PathVariable Integer id, ResumeRequestDTO.UpdateDTO updateDTO) {
-                resumeService.삭제하기(id);
-                return Script.href("/userProfileForm", "삭제되었습니다.");
+        public String updateResume(@PathVariable Integer id, ResumeRequestDTO.UpdateDTO updateDTO) {
+                User sessionUser = (User) session.getAttribute("sessionUser");
+                // System.out.println("테스트 : " + techId);
+                System.out.println("테스트 : " + id);
+                // resumeService.이력서수정하기(updateDTO, techId, sessionUser.getId(), id);
+                return "/";
         }
 
 }
