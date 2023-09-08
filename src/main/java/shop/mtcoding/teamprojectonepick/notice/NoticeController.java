@@ -1,6 +1,5 @@
 package shop.mtcoding.teamprojectonepick.notice;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,20 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import org.springframework.web.multipart.MultipartFile;
 
-import shop.mtcoding.teamprojectonepick._core.error.ex.MyApiException;
 import shop.mtcoding.teamprojectonepick._core.util.Script;
-import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.DetailDTO;
-import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
-import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
-import shop.mtcoding.teamprojectonepick.techNotice.TechNoticeRepository;
-import shop.mtcoding.teamprojectonepick.techResume.TechResume;
-import shop.mtcoding.teamprojectonepick.user.User;
-import shop.mtcoding.teamprojectonepick.user.UserResponseDTO;
+import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
+import shop.mtcoding.teamprojectonepick.tech.notice.TechNoticeRepository;
 
 @Controller
 public class NoticeController {
@@ -41,82 +33,59 @@ public class NoticeController {
     @Autowired
     private NoticeRepository noticeRepository;
 
-    private NoticeRequestDTO noticeRequestDTO;
-
     @Autowired
     private HttpSession session;
 
     @Autowired
     private TechNoticeRepository techNoticeRepository;
 
-    @GetMapping("/api/searchNotice")
-    public @ResponseBody List<Notice> findByNoticeOpen(@RequestParam(defaultValue = "open") String open) {
+    @GetMapping("/api/notice")
+    public @ResponseBody List<Notice> findByNotice(@RequestParam(defaultValue = "open") String open) {
         // User sessionUser = (User) session.getAttribute("sessionUser");
         // if (sessionUser.getUsercode() != 1) {
         // throw new MyApiException("기업 회원이 아닙니다");
         // }
-        return noticeRepository.findByOpen(4, "on");
-    }
 
-    @GetMapping("/api/noticeAll")
-    public @ResponseBody List<Notice> findAllNotice() {
-        return noticeRepository.findAll();
+        if (open.equals("on")) {
+            return noticeRepository.findByUserId(4, "on");
+        } else if (open.equals("off")) {
+            return noticeRepository.findByUserId(4, "off");
+        } else {
+            return noticeRepository.findAll();
+        }
+
     }
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    // 공고등록 1번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    @GetMapping("/writeNoticeForm")
+    // 공고 페이지 가져오기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @GetMapping("/notice/writeNoticeForm")
     public String writeNoticeForm(HttpServletRequest request) {
+        // TODO: 인증필요
         List<Tech> techs = techRepository.findAll();
         request.setAttribute("techs", techs);
         return "/notice/writeNoticeForm";
     }
 
-    // 공고등록 2번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // 공고등록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @PostMapping("/notice/writeNotice")
-    public String writeNotice(NoticeRequestDTO.SaveDTO saveDTO,
+    public String writeNotice(NoticeRequest.SaveDTO saveDTO,
             @RequestParam(name = "tech-notice") List<Integer> techId, @RequestParam("userImg") MultipartFile file) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
+        // TODO: 인증필요        
         noticeService.공고등록(saveDTO, techId);
         return "redirect:/bizProfileForm";
     }
 
 
-    // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-    // @GetMapping("/detailNoticeForm/{id}")
-    // public String detailNoticeForm(@PathVariable Integer id, Model model) {
-    // Notice notice = noticeService.상세보기(id);
-    // model.addAttribute("notice", notice);
-    // return "notice/detailNoticeForm";
-    // }
-
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-    @GetMapping("/detailNoticeForm/{id}")
+    // 공고상세 페이지 가져오기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @GetMapping("/notice/{id}")
     public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
         List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
         notice.setUserImg("" + notice.getUserImg());
         request.setAttribute("notice", notice);
         request.setAttribute("techNotice", techNotices);
-
-        // NoticeRequestDTO.DetailDTO detailDTO = new NoticeRequestDTO.DetailDTO(
-        // "" + notice.getUserImg(),
-        // notice.getSemiTitle(),
-        // notice.getSemiContent(),
-        // notice.getWorkField(),
-        // notice.getBizName(),
-        // notice.getAddress(),
-        // notice.getAddress2(),
-        // notice.getCareer(),
-        // notice.getEducation(),
-        // notice.getMainContent(),
-        // notice.getDeadLine()
-        // );
-        // model.addAttribute("noticeInfo", detailDTO);
-        return ("/notice/detailNoticeForm");
+        return "/notice/detailNoticeForm";
     }
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -124,7 +93,7 @@ public class NoticeController {
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // 공고수정 1번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    @GetMapping("/updateNoticeForm/{id}")
+    @GetMapping("/notice/updateNoticeForm/{id}")
     public String updateNoticeForm(@PathVariable Integer id, Model model) {
         Notice notice = noticeService.공고조회(id);
         List<Tech> techs = techRepository.findAll();
@@ -135,9 +104,12 @@ public class NoticeController {
 
     // 공고수정 2번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    @PostMapping("/notice/updateNotice")
-    public String updateNotice(@RequestParam(name = "tech-notice") List<Integer> techId, NoticeRequestDTO.UpdateDTO updateDTO, @RequestParam("userImg") MultipartFile file) {
-        
+    @PostMapping("/notice/{id}/update")
+    public String updateNotice(
+            @PathVariable Integer id,
+            @RequestParam(name = "tech-notice") List<Integer> techId,
+            NoticeRequest.UpdateDTO updateDTO, @RequestParam("userImg") MultipartFile file) {
+
         // where 데이터, body, session값
         // noticeService.공고수정하기(updateDTO, techId);
         return "redirect:/bizProfileForm";
@@ -150,13 +122,15 @@ public class NoticeController {
 
     // 공고삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    @PostMapping("/deleteNotice/{id}")
+    /**
+    * 공고 삭제
+    * 진성훈
+    **/
+    @PostMapping("/notice/{id}/delete")
     public @ResponseBody String delete(@PathVariable Integer id) {
-        System.out.println("삭제테스트1");
         noticeService.삭제하기(id);
-        System.out.println("삭제테스트2");
-        return Script.href("/userProfileForm","삭제되었습니다.");
+        return Script.href("/userProfileForm", "삭제되었습니다.");
     }
-    // 공고목록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
 
 }

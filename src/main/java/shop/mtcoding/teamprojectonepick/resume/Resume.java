@@ -11,20 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import shop.mtcoding.teamprojectonepick.tech.Tech;
-import shop.mtcoding.teamprojectonepick.techResume.TechResume;
+import shop.mtcoding.teamprojectonepick.tech.resume.TechResume;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Data
@@ -35,84 +29,84 @@ public class Resume {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @Column(nullable = false, length = 10000)
-    String title;
+    private String title;
 
     @Column(nullable = false, length = 10000)
-    String semiContent;
+    private String semiContent;
 
     @Column(nullable = false, length = 10000)
-    String content;
+    private String content;
 
     @Column(length = 10000)
-    String education; // 학력(택1)
+    private String education; // 학력(택1)
 
     @Column(length = 10000)
-    String school; // 학교
+    private String school; // 학교
 
     @Column(length = 10000)
-    String major; // 전공
+    private String major; // 전공
 
     @Column(length = 10000)
-    String career1;
+    private String career1;
 
     @Column(length = 10000)
-    String careerPeriodS1;
+    private String careerPeriodS1;
 
     @Column(length = 10000)
-    String careerPeriodE1;
+    private String careerPeriodE1;
 
     @Column(length = 10000)
-    String career2;
+    private String career2;
 
     @Column(length = 10000)
-    String careerPeriodS2;
+    private String careerPeriodS2;
     @Column(length = 10000)
-    String careerPeriodE2;
+    private String careerPeriodE2;
 
     @Column(length = 10000)
-    String career3;
+    private String career3;
 
     @Column(length = 10000)
-    String careerPeriodS3;
+    private String careerPeriodS3;
 
     @Column(length = 10000)
-    String careerPeriodE3;
+    private String careerPeriodE3;
 
-    String open;
-
-    @Column(length = 10000)
-    String etc1;
-    @Column(length = 10000)
-    String etc2;
-    @Column(length = 10000)
-    String etc3;
+    private String open;
 
     @Column(length = 10000)
-    String etcPeriod1;
+    private String etc1;
     @Column(length = 10000)
-    String etcPeriod2;
+    private String etc2;
     @Column(length = 10000)
-    String etcPeriod3;
+    private String etc3;
 
     @Column(length = 10000)
-    String link1; // 리스트중에 여러개 선택
+    private String etcPeriod1;
+    @Column(length = 10000)
+    private String etcPeriod2;
+    @Column(length = 10000)
+    private String etcPeriod3;
 
     @Column(length = 10000)
-    String link2; // 리스트중에 여러개 선택
+    private String link1; // 리스트중에 여러개 선택
 
     @Column(length = 10000)
-    String link3; // 리스트중에 여러개 선택
+    private String link2; // 리스트중에 여러개 선택
 
-    String workField; // 직군
+    @Column(length = 10000)
+    private String link3; // 리스트중에 여러개 선택
 
-    String resumeImg;
+    private String workField; // 직군
+
+    private String resumeImg;
 
     // @JsonIgnoreProperties({"password", "email", "createdAt"}) 나중에 필요하면 쓰기
     @ManyToOne(fetch = FetchType.LAZY)
-    User user;
+    private User user;
 
     // @JsonIgnoreProperties({ "resume" }) // 무한 직렬화 막아줌. ajax쓸 때 사용. Reply내부의
     // board를 안주겠다.??

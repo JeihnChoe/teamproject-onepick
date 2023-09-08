@@ -14,20 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
+import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
 import shop.mtcoding.teamprojectonepick.user.User;
 
-@Getter
-@Setter
 @Data
 @NoArgsConstructor
 @Table(name = "notice_tb")
@@ -40,7 +34,7 @@ public class Notice {
         @Column(nullable = false, length = 10000)
         private String open;// on , off 로 구분
 
-        private String userImg; // 기업 대표이미지
+        private String userImg; // 기업 대표이미지 (bizImg or User user FK 걸고, 사진은 user에!!)
 
         @Column(nullable = false, length = 10000)
         private String semiTitle;// 공고 제목

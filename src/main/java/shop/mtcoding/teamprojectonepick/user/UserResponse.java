@@ -1,13 +1,9 @@
 package shop.mtcoding.teamprojectonepick.user;
 
-import javax.persistence.Lob;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-public class UserResponseDTO {
+public class UserResponse {
     @Getter
     @AllArgsConstructor
     public static class UserInfoResponseDTO {

@@ -19,13 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
-import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.UpdateDTO;
+import shop.mtcoding.teamprojectonepick.notice.NoticeRequest.UpdateDTO;
 
 import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
-import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
-import shop.mtcoding.teamprojectonepick.techNotice.TechNoticeRepository;
+import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
+import shop.mtcoding.teamprojectonepick.tech.notice.TechNoticeRepository;
 
 @Service
 public class NoticeService {
@@ -44,7 +44,7 @@ public class NoticeService {
     // 공고등록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @Transactional
-    public void 공고등록(NoticeRequestDTO.SaveDTO saveDTO, List<Integer> techId) {
+    public void 공고등록(NoticeRequest.SaveDTO saveDTO, List<Integer> techId) {
 
         UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
         String fileName = uuid + "_" + saveDTO.getUserImg().getOriginalFilename();

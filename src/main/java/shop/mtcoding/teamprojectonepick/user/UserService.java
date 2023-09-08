@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
 import shop.mtcoding.teamprojectonepick._core.error.ex.PasswordNotMatchedException;
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
-import shop.mtcoding.teamprojectonepick.user.UserRequestDTO.BizUpdateDTO;
-import shop.mtcoding.teamprojectonepick.user.UserRequestDTO.LoginDTO;
-import shop.mtcoding.teamprojectonepick.user.UserRequestDTO.UpdateDTO;
+import shop.mtcoding.teamprojectonepick.user.UserRequest.BizUpdateDTO;
+import shop.mtcoding.teamprojectonepick.user.UserRequest.LoginDTO;
+import shop.mtcoding.teamprojectonepick.user.UserRequest.UpdateDTO;
 
 @Service
 public class UserService {
@@ -22,7 +22,7 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional
-    public void 유저회원가입(UserRequestDTO.JoinDTO joinDTO) {
+    public void 유저회원가입(UserRequest.JoinDTO joinDTO) {
         User user = User.builder()
                 .loginId(joinDTO.getLoginId())
                 .password(joinDTO.getPassword())
@@ -37,7 +37,7 @@ public class UserService {
     }
 
     @Transactional
-    public void 기업유저회원가입(UserRequestDTO.BizJoinDTO bizjoinDTO) {
+    public void 기업유저회원가입(UserRequest.BizJoinDTO bizjoinDTO) {
 
         User user = User.builder()
                 .loginId(bizjoinDTO.getLoginId())
