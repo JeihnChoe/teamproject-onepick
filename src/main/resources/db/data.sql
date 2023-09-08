@@ -25,25 +25,25 @@ values('저는 서울대학교 재학중인 학생입니다.', '-서울대생-',
 
 -- notice_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line,user_id)  
-values('on', '/images/user.png', 'zi존회사', '세미컨텐츠','백엔드', '노예양성소', '서울', '광진구', '경력', '교육', '메인컨텐츠','종료일',1);
-insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line,user_id)  
-values('on', '/images/banner2.png', '최상급노예만', '세미컨텐츠','프론트', '롯데', '부산', '부산진구', '경력', '교육', '메인컨텐츠','종료일',2);
-insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line,user_id)  
-values('on', '/images/biz.png', '노예양성소', '세미컨텐츠','앱개발', '엘쥐', '부산', '동래구', '경력', '교육', '메인컨텐츠','종료일',3);
-insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line,user_id)  
-values('on', '/images/ex1biz.png', '디스이스리얼', '세미컨텐츠','앱개발', '엘쥐', '부산', '동래구', '경력', '교육', '메인컨텐츠','종료일',3);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('롯데', 'on', '/images/user.png', 'zi존회사', '세미컨텐츠','백엔드', '서울', '광진구', '경력', '교육', '메인컨텐츠','종료일',1);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('롯데', 'on', '/images/banner2.png', '최상급노예만', '세미컨텐츠','프론트', '부산', '부산진구', '경력', '교육', '메인컨텐츠','종료일',1);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('엘쥐', 'on', '/images/biz.png', '노예양성소', '세미컨텐츠','앱개발', '부산', '동래구', '경력', '교육', '메인컨텐츠','종료일',3);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('엘쥐', 'on', '/images/ex1biz.png', '디스이스리얼', '세미컨텐츠','앱개발', '부산', '동래구', '경력', '교육', '메인컨텐츠','종료일',3);
+
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line, user_id) 
+values('그린', 'on', null, '백엔드모집합니다.','백엔드하실 노예들 모집합니다. 돈 버실분 급전필요하신분 야근 가능하신분 야식지원 없습니다. 주말출근 필수 포괄임금제입니다.', '백엔드', '부산', '서면', '신입', '대졸이상', '평생노예하실 구직자를 찾습니다. 지원없음','2023-09-15',5);
+
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('네이버','off', 'img', 'zi존회사', '세미컨텐츠','백엔드',  '서울', '광진구', '경력', '교육', '메인컨텐츠','종료일',4  );
+
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('롯데', 'off', 'img', '최상급노예만', '세미컨텐츠','프론트', '부산', '부산진구', '경력', '교육', '메인컨텐츠','종료일',1  );
 
 
-
-insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line,user_id)  
-values('off', 'img', 'zi존회사', '세미컨텐츠','백엔드', '네이버', '서울', '광진구', '경력', '교육', '메인컨텐츠','종료일',4  );
-
-insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line,user_id)  
-values('off', 'img', '최상급노예만', '세미컨텐츠','프론트', '롯데', '부산', '부산진구', '경력', '교육', '메인컨텐츠','종료일',2  );
-
-insert into notice_tb(open, user_img, semi_title, semi_content, work_field, biz_name, address, address2, career, education, main_content, dead_line, user_id) 
-values('on', null, '백엔드모집합니다.','백엔드하실 노예들 모집합니다. 돈 버실분 급전필요하신분 야근 가능하신분 야식지원 없습니다. 주말출근 필수 포괄임금제입니다.', '백엔드', '그린', '부산', '서면', '신입', '대졸이상', '평생노예하실 구직자를 찾습니다. 지원없음','2023-09-15',5);
 
 
 
