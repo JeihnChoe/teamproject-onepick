@@ -4,34 +4,34 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
+
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.NoticeSummaryDTO;
+
+import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.UpdateDTO;
+
 import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
 import shop.mtcoding.teamprojectonepick.techNotice.TechNoticeRepository;
-import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
 public class NoticeService {
-
-    @Autowired
-    private NoticeRequestDTO noticeRequestDTO;
 
     @Autowired
     private TechNoticeRepository techNoticeRepository;
@@ -44,6 +44,8 @@ public class NoticeService {
 
     public Object 오픈공고조회;
 
+    // 공고등록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @Transactional
     public void 공고등록(NoticeRequestDTO.SaveDTO saveDTO, List<Integer> techId) {
 
@@ -57,17 +59,7 @@ public class NoticeService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // List<String> techStringList = new ArrayList<String>();
-        // for (String techNotice : techNotices) {
-        // techStringList.add(techNotice);
-        // }
 
-        // for (String techList : techNotices) {
-        // Tech techEntity = Tech.builder()
-        // .techname(techList)
-        // .build();
-        // techLists.add(techEntity);
-        // }
         List<TechNotice> techNotices = new ArrayList<>();
 
         Notice notice = Notice.builder()
@@ -83,9 +75,7 @@ public class NoticeService {
                 .education(saveDTO.getEducation())
                 .mainContent(saveDTO.getMainContent())
                 .deadLine(saveDTO.getDeadLine())
-                .techNotices(techNotices) // 이작업을 제대로하면 자동으로 tech—notice—tb 에 들어가지 않을까¿ 하는 생각
-
-                // .user(User.builder().id(sessionUserId).build())
+                .techNotices(techNotices)
                 .build();
 
         // 기술스택 리스트넣기
@@ -94,37 +84,73 @@ public class NoticeService {
             Tech tech = techRepository.findById(techIds).get();
             TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
             techNoticeRepository.save(techNotice);
-            // techNotices.add(techNotice);
+
         }
-
-        // TechNotice techNotice = TechNotice.builder()
-        // .noticeId(techSaveDTO.getNoticeId())
-        // .techId(techSaveDTO.getTechId())
-        // .build();
-
-        // TechNotice techNotice = TechNotice.builder()
-        // .notice(notice)
-        // .build();
-
-        // techNotices.add(techNotice);
-
-        // notice.setTechNotices(techNotices);
 
         noticeRepository.save(notice);
 
     }
 
+    // 공고조회 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     public Notice 공고조회(Integer id) {
-
-        // Notice notice = noticeRepository.mFindByIdJoinTechNoticeInUser(id);
-        // return notice;
         Optional<Notice> noticeOP = noticeRepository.findById(id);
         return noticeOP.get();
     }
 
+    // 공고삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @Transactional
     public void 삭제하기(Integer id) {
         noticeRepository.deleteById(id);
     }
 
+    // 공고수정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @Transactional
+    public void 공고수정하기(Integer id, UpdateDTO updateDTO, List<Integer> techId) {
+
+        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+        String fileName = uuid + "_" + updateDTO.getUserImg().getOriginalFilename();
+
+        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
+        try {
+            Files.write(filePath, updateDTO.getUserImg().getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<TechNotice> techNotices = new ArrayList<>();
+
+        //    User user = User.builder().id(sessionUserId).build();
+        // Resume resume = resumeRepository.findById(resumeId).get();
+        // resume.setTitle(updateDTO.getTitle());
+
+        Optional<Notice> noticeOP = noticeRepository.findById(id);
+        if (noticeOP.isPresent()) {
+            Notice notice = noticeOP.get();
+            notice.setOpen(updateDTO.getOpen());
+            notice.setSemiTitle(updateDTO.getSemiTitle());
+            notice.setSemiContent(updateDTO.getSemiContent());
+            notice.setWorkField(updateDTO.getWorkField());
+            notice.setBizName(updateDTO.getBizName());
+            notice.setAddress(updateDTO.getAddress());
+            notice.setAddress2(updateDTO.getAddress2());
+            notice.setCareer(updateDTO.getCareer());
+            notice.setEducation(updateDTO.getEducation());
+            notice.setMainContent(updateDTO.getMainContent());
+            notice.setDeadLine(updateDTO.getDeadLine());
+       
+
+        for (Integer techIds : techId) {
+            Tech tech = techRepository.findById(techIds).get();
+            TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
+            techNoticeRepository.save(techNotice);
+
+        }
+
+        noticeRepository.save(notice);
+    } // flush (더티체킹)
+
+}
 }

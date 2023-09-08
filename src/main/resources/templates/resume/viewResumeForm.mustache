@@ -53,26 +53,6 @@
                 <div style="font-weight: bold; font-size: 20px;">
                     경력
                 </div>
-
-                <select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
-                    <ul>
-                        <li>
-                            <option value="선택">선택</option>
-                        </li>
-                        <li>
-                            <option value="신입">신입</option>
-                        </li>
-                        <li>
-                            <option value="1~2년">1~2년</option>
-                        </li>
-                        <li>
-                            <option value="3~5년">3~5년</option>
-                        </li>
-                        <li>
-                            <option value="6년이상">6년 이상</option>
-                        </li>
-                    </ul>
-                </select>
             </div>
 
             <hr class="line" style="border: 10px;">
@@ -313,9 +293,9 @@
 
     <!-- 작성완료 버튼 -->
     <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
-        <form action="updateResume/{{id}}" method="post">
-            <button type="submit" class="btn btn-light" style="margin-right: 100px;">수정</button>
-        </form>
+
+        <a href="/updateResumeForm/{{id}}" type="submit" class="btn btn-light" style="margin-right: 100px;">수정</a>
+
         <form action="/deleteResume/{{id}}" method="post">
             <button type="submit" class="btn btn-light">삭제</button>
         </form>
