@@ -1,13 +1,13 @@
 {{>/layout/header}}
-<form action="/writeResume" method="post" enctype="multipart/form-data">
+<form action="/updateResume/{{id}}" method="post" enctype="multipart/form-data">
     <div class="main-container" style="display: flex; flex-direction: column;">
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
                 <div style="margin-right: 20px;">이력서 공개여부</div>
-                <input type="radio" id="on" name="open" value="on">
+                <input type="radio" id="on" name="open" value="{{resume.open}}">
                 <label for="on">공개</label>
 
-                <input type="radio" id="off" name="open" value="off" style="margin-left: 50px;">
+                <input type="radio" id="off" name="open" value="{{resume.open}}" style="margin-left: 50px;">
                 <label for="off">비공개</label>
             </div>
             <br>
@@ -26,14 +26,14 @@
                                 <textarea class="input-box" id="myTextarea" rows="1" maxlength="200" name="title"
                                     placeholder="이력서의 제목을 입력해주세요"
                                     style="height: 30px; width: 600px; resize: none; letter-spacing: 0.5px;"
-                                    onkeydown="preventEnterKey(event)"></textarea>
+                                    onkeydown="preventEnterKey(event)">{{resume.title}}</textarea>
                             </div>
                             <hr class="line" style="margin: 0;">
                             <div style="display: flex; flex-direction: row; align-items: center;">
                                 <textarea class="input-box" id="myTextarea" rows="4" maxlength="200" name="semiContent"
                                     placeholder="간단한 자기소개글을 입력해주세요."
                                     style="margin:0; width: 600px; height: 120px; resize: none; letter-spacing: 0.5px; line-height: 1.5;"
-                                    onkeydown="preventEnterKey(event)"></textarea>
+                                    onkeydown="preventEnterKey(event)">{{resume.semiContent}}</textarea>
 
                             </div>
                         </div>
@@ -58,25 +58,6 @@
                         경력
                     </div>
 
-                    <!--<select class="box" data-bs-toggle="dropdown" style="width: 100px; margin-left: 30px;">
-                        <ul>
-                            <li>
-                                <option value="선택">선택</option>
-                            </li>
-                            <li>
-                                <option value="신입">신입</option>
-                            </li>
-                            <li>
-                                <option value="1~2년">1~2년</option>
-                            </li>
-                            <li>
-                                <option value="3~5년">3~5년</option>
-                            </li>
-                            <li>
-                                <option value="6년이상">6년 이상</option>
-                            </li>
-                        </ul>
-                    </select> -->
                 </div>
 
                 <hr class="line" style="border: 10px;">
@@ -86,34 +67,95 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
+                            {{#resume.career1}}
+                            <input class="input-box" type="text" placeholder="네이버" name="career1"
+                                style="width: 100px; margin-left: 0;" value="{{resume.career1}}">
+                            {{/resume.career1}}
+                            {{^resume.career1}}
                             <input class="input-box" type="text" placeholder="네이버" name="career1"
                                 style="width: 100px; margin-left: 0;">
+                            {{/resume.career1}}
+
+                            {{#resume.careerPeriodS1}}
+                            <input type="month" style="border: transparent;" name="careerPeriodS1"
+                                value="{{resume.careerPeriodS1}}">
+                            {{/resume.careerPeriodS1}}
+                            {{^resume.careerPeriodS1}}
                             <input type="month" style="border: transparent;" name="careerPeriodS1">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
+                            {{/resume.careerPeriodS1}}
+
+                            {{#resume.careerPeriodE1}}
+                            <input type="month" style="border: transparent;" name="careerPeriodE1"
+                                value="{{resume.careerPeriodE1}}">
+                            {{/resume.careerPeriodE1}}
+                            {{^resume.careerPeriodE1}}
                             <input type="month" style="border: transparent;" name="careerPeriodE1">
+                            {{/resume.careerPeriodE1}}
                         </div>
                     </div>
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
+                            {{#resume.career2}}
+                            <input class="input-box" type="text" placeholder="카카오톡" name="career2"
+                                style="width: 100px; margin-left: 0;" value="{{resume.career2}}">
+                            {{/resume.career2}}
+                            {{^resume.career2}}
                             <input class="input-box" type="text" placeholder="카카오톡" name="career2"
                                 style="width: 100px; margin-left: 0;">
+                            {{/resume.career2}}
+
+                            {{#resume.careerPeriodS2}}
+                            <input type="month" style="border: transparent;" name="careerPeriodS2"
+                                value="{{resume.careerPeriodS2}}">
+                            {{/resume.careerPeriodS2}}
+                            {{^resume.careerPeriodS2}}
                             <input type="month" style="border: transparent;" name="careerPeriodS2">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
+                            {{/resume.careerPeriodS2}}
+
+                            {{#resume.careerPeriodE2}}
+                            <input type="month" style="border: transparent;" name="careerPeriodE2"
+                                value="{{resume.careerPeriodE2}}">
+                            {{/resume.careerPeriodE2}}
+                            {{^resume.careerPeriodE2}}
                             <input type="month" style="border: transparent;" name="careerPeriodE2">
+                            {{/resume.careerPeriodE2}}
                         </div>
                     </div>
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
+                            {{#resume.career3}}
+                            <input class="input-box" type="text" placeholder="라쿠배몰두센" name="career3"
+                                style="width: 100px; margin-left: 0;" value="{{resume.career3}}">
+                            {{/resume.career3}}
+                            {{^resume.career3}}
                             <input class="input-smallbox" type="text" placeholder="라쿠배몰두센" name="career3">
+                            {{/resume.career3}}
+
+                            {{#resume.careerPeriodS3}}
+                            <input type="month" style="border: transparent;" name="careerPeriodS3"
+                                value="{{resume.careerPeriodS3}}">
+                            {{/resume.careerPeriodS3}}
+                            {{^resume.careerPeriodS3}}
                             <input type="month" style="border: transparent;" name="careerPeriodS3">
                             <div style="margin-left: 10px; margin-right: 10px; "> ~ </div>
+                            {{/resume.careerPeriodS3}}
+
+                            {{#resume.careerPeriodE3}}
+                            <input type="month" style="border: transparent;" name="careerPeriodE3"
+                                value="{{resume.careerPeriodE3}}">
+                            {{/resume.careerPeriodE3}}
+                            {{^resume.careerPeriodE3}}
                             <input type="month" style="border: transparent;" name="careerPeriodE3">
+                            {{/resume.careerPeriodE3}}
                         </div>
                     </div>
                 </div>
             </div>
+
 
 
 
@@ -131,25 +173,61 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
+                            {{#resume.etc1}}
+                            <input class="input-smallbox" name="etc1" type="text" placeholder="해커대회 금상"
+                                style="width: 200px;" value="{{resume.etc1}}">
+                            {{/resume.etc1}}
+                            {{^resume.etc1}}
                             <input class="input-smallbox" name="etc1" type="text" placeholder="해커대회 금상"
                                 style="width: 200px;">
+                            {{/resume.etc1}}
+                            {{#resume.etcPeriod1}}
+                            <input type="month" name="etcPeriod1" style="border: transparent;"
+                                value="{{resume.etcPeriod1}}">
+                            {{/resume.etcPeriod1}}
+                            {{^resume.etcPeriod1}}
                             <input type="month" name="etcPeriod1" style="border: transparent;">
+                            {{/resume.etcPeriod1}}
                         </div>
                     </div>
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
+                            {{#resume.etc2}}
+                            <input class="input-smallbox" name="etc2" type="text" placeholder="창업대회 대상"
+                                style="width: 200px;" value="{{resume.etc2}}">
+                            {{/resume.etc2}}
+                            {{^resume.etc2}}
                             <input class="input-smallbox" name="etc2" type="text" placeholder="창업대회 대상"
                                 style="width: 200px;">
+                            {{/resume.etc2}}
+                            {{#resume.etcPeriod2}}
+                            <input type="month" name="etcPeriod2" style="border: transparent;"
+                                value="{{resume.etcPeriod2}}">
+                            {{/resume.etcPeriod2}}
+                            {{^resume.etcPeriod2}}
                             <input type="month" name="etcPeriod2" style="border: transparent;">
+                            {{/resume.etcPeriod2}}
                         </div>
                     </div>
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
+                            {{#resume.etc3}}
+                            <input class="input-smallbox" name="etc3" type="text" placeholder="창업망함"
+                                style="width: 200px;" value="{{resume.etc3}}">
+                            {{/resume.etc3}}
+                            {{^resume.etc3}}
                             <input class="input-smallbox" name="etc3" type="text" placeholder="창업망함"
                                 style="width: 200px;">
+                            {{/resume.etc3}}
+                            {{#resume.etcPeriod3}}
+                            <input type="month" name="etcPeriod3" style="border: transparent;"
+                                value="{{resume.etcPeriod3}}">
+                            {{/resume.etcPeriod3}}
+                            {{^resume.etcPeriod3}}
                             <input type="month" name="etcPeriod3" style="border: transparent;">
+                            {{/resume.etcPeriod3}}
                         </div>
                     </div>
                 </div>
@@ -171,15 +249,15 @@
                 <div style="display: flex; flex-direction: column; margin-left: 0; margin-top: 15px; margin-left: 0;">
                     <div style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row; align-items: center;">
-                            <input class="input-box" name="school" style="width: 100px;" type="text"
-                                placeholder="ㅇㅇ대학교">
-                            <input class="input-box" name="major" style="width: 100px;" type="text" placeholder="xx학과">
-
-                            <input type="month" style="border: transparent;" name="education">
+                            <input class="input-box" name="school" style="width: 100px;" type="text" placeholder="ㅇㅇ대학교"
+                                value="{{resume.school}}">
+                            <input class="input-box" name="major" style="width: 100px;" type="text" placeholder="xx학과"
+                                value="{{resume.major}}">
+                            <input type="month" style="border: transparent;" value="{{resume.education}}">
                             <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;">
                                 <ul>
                                     <li>
-                                        <option value="선택">선택</option>
+                                        <option value="" selected disabled hidden>{{resume.education}}</option>
                                     </li>
                                     <li>
                                         <option value="고졸">고졸</option>
@@ -247,9 +325,10 @@
 
             <textarea id="myTextarea" name="content" class="box" rows="10"
                 placeholder="자기를 소개할 수 있는 글을 작성해주세요. ex) 성장과정, 지원동기 등 "
-                style="padding: 20px; width: 1000px; margin-top: 20px; margin-bottom: 20px;"></textarea>
+                style="padding: 20px; width: 1000px; margin-top: 20px; margin-bottom: 20px;">{{resume.content}}</textarea>
         </div>
         <br>
+
 
 
         <!-- 링크 -->
@@ -257,12 +336,32 @@
             <div style="font-weight: bold; font-size: 20px;"> Github, 포트폴리오 링크</div>
             <hr class="line" style="border: 10px;">
             <div style="display: flex; flex-direction: row; align-items: center;">
+                {{#resume.link1}}
+                <input type="text" name="link1" style="border: transparent; font-size: 15px;width: 700px;"
+                    contenteditable="true" placeholder="link를 입력하세요" value="{{resume.link1}}">
+                {{/resume.link1}}
+                {{^resume.link1}}
                 <input type="text" name="link1" style="border: transparent; font-size: 15px;width: 700px;"
                     contenteditable="true" placeholder="link를 입력하세요">
+                {{/resume.link1}}
+
+                {{#resume.link2}}
+                <input type="text" name="link2" style="border: transparent; font-size: 15px;width: 700px;"
+                    contenteditable="true" placeholder="link를 입력하세요" value="{{resume.link2}}">
+                {{/resume.link2}}
+                {{^resume.link2}}
                 <input type="text" name="link2" style="border: transparent; font-size: 15px;width: 700px;"
                     contenteditable="true" placeholder="link를 입력하세요">
+                {{/resume.link2}}
+
+                {{#resume.link3}}
+                <input type="text" name="link3" style="border: transparent; font-size: 15px;width: 700px;"
+                    contenteditable="true" placeholder="link를 입력하세요" value="{{resume.link3}}">
+                {{/resume.link3}}
+                {{^resume.link3}}
                 <input type="text" name="link3" style="border: transparent; font-size: 15px;width: 700px;"
                     contenteditable="true" placeholder="link를 입력하세요">
+                {{/resume.link3}}
             </div>
         </div>
         <br>
@@ -270,8 +369,7 @@
 
         <!-- 작성완료 버튼 -->
         <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
-            <button class="button" type="submit">작성완료</button>
-
+            <button class="button" type="submit">수정 완료</button>
         </div>
         <input class="input-box" name="workField" value="백엔드"></input>
     </div>
