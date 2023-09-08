@@ -32,7 +32,7 @@ public class NoticeRequestDTO {
 
     @Data
     @AllArgsConstructor
-    public static class DetailDTO{
+    public static class DetailDTO {
         private String userImg;
         private String semiTitle;
         private String semiContent;
@@ -46,7 +46,15 @@ public class NoticeRequestDTO {
         private String deadLine;
     }
 
+    @Data
+    @AllArgsConstructor
+    public static class NoticeSummaryDTO {
+        private String userImg;
+        private String bizName;
+        private String workField;
+        private String address;
+        private String address2;
 
-
+    }
 
 }

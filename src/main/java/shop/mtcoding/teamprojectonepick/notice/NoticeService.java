@@ -11,12 +11,16 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
+import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.NoticeSummaryDTO;
+import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
@@ -120,7 +124,7 @@ public class NoticeService {
 
     @Transactional
     public void 삭제하기(Integer id) {
-            noticeRepository.deleteById(id);
+        noticeRepository.deleteById(id);
     }
 
 }

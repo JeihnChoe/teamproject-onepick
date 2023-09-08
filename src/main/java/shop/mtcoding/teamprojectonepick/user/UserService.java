@@ -39,19 +39,6 @@ public class UserService {
     @Transactional
     public void 기업유저회원가입(UserRequestDTO.BizJoinDTO bizjoinDTO) {
 
-        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
-        String fileName = uuid + "_" + bizjoinDTO.getPic().getOriginalFilename();
-        System.out.println("fileName : " + fileName);
-
-        // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
-        // 해당 실행파일 경로에 images 폴더가 필요함
-        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
-        try {
-            Files.write(filePath, bizjoinDTO.getPic().getBytes());
-        } catch (Exception e) {
-            throw new MyException(e.getMessage());
-        }
-
         User user = User.builder()
                 .loginId(bizjoinDTO.getLoginId())
                 .password(bizjoinDTO.getPassword())
@@ -59,7 +46,6 @@ public class UserService {
                 .username(bizjoinDTO.getUsername())
                 .email(bizjoinDTO.getEmail())
                 .tel(bizjoinDTO.getTel())
-                .picUrl(bizjoinDTO.getPic())
                 .usercode(bizjoinDTO.getUsercode())
                 .build();
         userRepository.save(user);

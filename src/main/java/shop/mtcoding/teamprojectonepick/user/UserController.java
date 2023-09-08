@@ -94,7 +94,8 @@ public class UserController {
     }
 
     @PostMapping("/bizUserJoin")
-    public String bizuserJoin(UserRequestDTO.BizJoinDTO bizjoinDTO) {
+    public String bizUserJoin(UserRequestDTO.BizJoinDTO bizjoinDTO) {
+
         userService.기업유저회원가입(bizjoinDTO);
 
         return "/user/loginForm";
