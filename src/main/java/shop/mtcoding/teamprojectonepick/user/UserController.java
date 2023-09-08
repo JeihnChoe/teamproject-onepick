@@ -58,13 +58,7 @@ public class UserController {
     @PostMapping("/userLogin")
     public String userLogin(UserRequestDTO.LoginDTO loginDTO) {
         User sessionUser = userService.유저로그인(loginDTO);
-        if (sessionUser.usercode == 1) {
-            session.setAttribute("user", sessionUser);
-
-        } else if (sessionUser.usercode == 2) {
-            session.setAttribute("sessionBiz", sessionUser);
-        }
-
+        // TODO: 공지 팀원!!
         session.setAttribute("sessionUser", sessionUser);
 
         return "redirect:/";

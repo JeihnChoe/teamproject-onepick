@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import shop.mtcoding.teamprojectonepick._core.error.ex.MyApiException;
 import shop.mtcoding.teamprojectonepick._core.util.Script;
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.DetailDTO;
 import shop.mtcoding.teamprojectonepick.resume.Resume;
@@ -50,8 +51,11 @@ public class NoticeController {
 
     @GetMapping("/api/searchNotice")
     public @ResponseBody List<Notice> findByNoticeOpen(@RequestParam(defaultValue = "open") String open) {
-
-        return noticeRepository.findByOpen("on");
+        // User sessionUser = (User) session.getAttribute("sessionUser");
+        // if (sessionUser.getUsercode() != 1) {
+        // throw new MyApiException("기업 회원이 아닙니다");
+        // }
+        return noticeRepository.findByOpen(4, "on");
     }
 
     @GetMapping("/api/noticeAll")
