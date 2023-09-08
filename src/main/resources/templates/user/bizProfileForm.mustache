@@ -14,22 +14,27 @@
                     <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
                 </div>
                 <div style="margin-top: 20px;">
-                    <input name="username" value="{{userInfo.bizname}} " readonly
-                        style="text-align: center; border: none; font-weight: bold; width: 150px;">
+                    <div style="text-align: center; border: none; font-weight: bold; width: 150px;">
+                        {{userInfo.bizname}}
+                    </div>
+                </div>
+                <div style=" margin-top: 20px; color: var(--font_02);">
+                </div>
+                <div style="border: none; width: 150px;">
+                    {{userInfo.username}}
+                </div>
+                <div style=" margin-top: 20px; color: var(--font_02);">
+                </div>
+                <div style="border: none; width: 150px;">
+                    {{userInfo.email}}
+                </div>
 
-                    </input>
-                </div>
-                <div style=" margin-top: 20px; color: var(--font_02);">
-                </div>
-                <input type="text" name="username" value="{{userInfo.username}}" readonly
-                    style=" border: none;  width: 150px;">
-                <div style=" margin-top: 20px; color: var(--font_02);">
-                </div>
-                <input type="text" name="email" value="{{userInfo.email}}" readonly
-                    style=" border: none;  width: 150px;">
                 <div style=" margin-top: 10px; color: var(--font_02)">
                 </div>
-                <input type="text" name="tel" value="{{userInfo.tel}}" readonly style=" border: none;  width: 150px;">
+                <div style="border: none; width: 150px;">
+                    {{userInfo.tel}}
+                </div>
+
                 <br>
             </div>
 
