@@ -1,10 +1,5 @@
-package shop.mtcoding.teamprojectonepick.apply;
+package shop.mtcoding.teamprojectonepick.tech.notice;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,35 +9,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import shop.mtcoding.teamprojectonepick.notice.Notice;
-import shop.mtcoding.teamprojectonepick.resume.Resume;
+import shop.mtcoding.teamprojectonepick.tech.Tech;
 
 @NoArgsConstructor
 @Data
-@Table(name = "apply_tb")
+@Table(name = "tech_notice_tb")
 @Entity
-public class Apply {
+public class TechNotice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Resume resume;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "notice_id")
     private Notice notice;
 
-    private Date applicationDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "tech_id") // tech 엔티티의 외래 키 컬럼과 매핑
+    private Tech tech;
 
-    public Apply(Integer id, Resume resume, Notice notice, Date applicationDate) {
+    @Builder
+    public TechNotice(Integer id, Notice notice, Tech tech) {
         this.id = id;
-        this.resume = resume;
         this.notice = notice;
-        this.applicationDate = applicationDate;
+        this.tech = tech;
     }
 
-    
 }

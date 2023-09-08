@@ -1,6 +1,5 @@
-package shop.mtcoding.teamprojectonepick.techResume;
+package shop.mtcoding.teamprojectonepick.tech.resume;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,13 +22,13 @@ public class TechResume {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    Resume resume;
+    private Resume resume;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    Tech tech;
+    private Tech tech;
 
     @Builder
     public TechResume(Integer id, Resume resume, Tech tech) {

@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @PostMapping("/userUpdate")
-    public String update(UserRequestDTO.UpdateDTO updateDTO) {
+    public String update(UserRequest.UpdateDTO updateDTO) {
         System.out.println(updateDTO);
         // 1. 회원수정 (서비스)
         // 2. 세션동기화
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/bizUserUpdate")
-    public String bizUpdate(UserRequestDTO.BizUpdateDTO bizUpdateDTO) {
+    public String bizUpdate(UserRequest.BizUpdateDTO bizUpdateDTO) {
         System.out.println(bizUpdateDTO);
         // 1. 회원수정 (서비스)
         // 2. 세션동기화
@@ -56,7 +56,7 @@ public class UserController {
     }
 
     @PostMapping("/userLogin")
-    public String userLogin(UserRequestDTO.LoginDTO loginDTO) {
+    public String userLogin(UserRequest.LoginDTO loginDTO) {
         User sessionUser = userService.유저로그인(loginDTO);
         // TODO: 공지 팀원!!
         session.setAttribute("sessionUser", sessionUser);
@@ -80,7 +80,7 @@ public class UserController {
     }
 
     @PostMapping("/userJoin")
-    public String userJoin(UserRequestDTO.JoinDTO joinDTO) {
+    public String userJoin(UserRequest.JoinDTO joinDTO) {
 
         userService.유저회원가입(joinDTO);
 
@@ -88,7 +88,7 @@ public class UserController {
     }
 
     @PostMapping("/bizUserJoin")
-    public String bizUserJoin(UserRequestDTO.BizJoinDTO bizjoinDTO) {
+    public String bizUserJoin(UserRequest.BizJoinDTO bizjoinDTO) {
 
         userService.기업유저회원가입(bizjoinDTO);
 
@@ -111,7 +111,7 @@ public class UserController {
     public String userProfile(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원프로필조회(sessionUser.getId());
-        UserResponseDTO.UserProfileFormDTO userProfileFormDTO = new UserResponseDTO.UserProfileFormDTO(
+        UserResponse.UserProfileFormDTO userProfileFormDTO = new UserResponse.UserProfileFormDTO(
                 "" + user.getPicUrl(),
                 user.getUsername(),
                 user.getEmail(), user.getTel());
@@ -127,7 +127,7 @@ public class UserController {
     public String fixUserProfile(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보조회(sessionUser.getId());
-        UserResponseDTO.UserInfoResponseDTO userInfoResponseDTO = new UserResponseDTO.UserInfoResponseDTO(user.getId(),
+        UserResponse.UserInfoResponseDTO userInfoResponseDTO = new UserResponse.UserInfoResponseDTO(user.getId(),
                 user.getPassword(), user.getUsername(), user.getTel(),
                 user.getBirth(), user.getAddress(), "" + user.getPicUrl());
         model.addAttribute("userInfo", userInfoResponseDTO);
@@ -140,7 +140,7 @@ public class UserController {
     public String bizProfileForm(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원프로필조회(sessionUser.getId());
-        UserResponseDTO.BizUserProfileFormDTO bizuserProfileFormDTO = new UserResponseDTO.BizUserProfileFormDTO(
+        UserResponse.BizUserProfileFormDTO bizuserProfileFormDTO = new UserResponse.BizUserProfileFormDTO(
                 "" + user.getPicUrl(),
                 user.getBizname(),
                 user.getUsername(), user.getEmail(), user.getTel());
@@ -152,7 +152,7 @@ public class UserController {
     public String fixBizProfileForm(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원정보조회(sessionUser.getId());
-        UserResponseDTO.BizUserInfoResponseDTO bizUserInfoResponseDTO = new UserResponseDTO.BizUserInfoResponseDTO(
+        UserResponse.BizUserInfoResponseDTO bizUserInfoResponseDTO = new UserResponse.BizUserInfoResponseDTO(
                 user.getPassword(), user.getBizname(), user.getUsername(), user.getTel(), user.getAddress(),
                 user.getAddress2(),
                 "" + user.getPicUrl());

@@ -4,16 +4,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.DetailDTO;
-import shop.mtcoding.teamprojectonepick.tech.Tech;
 
 @Component
-public class NoticeRequestDTO {
+public class NoticeRequest {
 
     @Data
     public static class SaveDTO {
@@ -50,7 +44,6 @@ public class NoticeRequestDTO {
 
     @Data
     @AllArgsConstructor
-
     public class UpdateDTO {
         private String open;
         private MultipartFile userImg;

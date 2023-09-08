@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-public class UserRequestDTO {
+public class UserRequest {
     @Getter
     @Setter
     public static class JoinDTO {

@@ -11,12 +11,12 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import shop.mtcoding.teamprojectonepick.resume.ResumeRequestDTO.SaveDTO;
-import shop.mtcoding.teamprojectonepick.resume.ResumeRequestDTO.UpdateDTO;
+import shop.mtcoding.teamprojectonepick.resume.ResumeRequest.SaveDTO;
+import shop.mtcoding.teamprojectonepick.resume.ResumeRequest.UpdateDTO;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
-import shop.mtcoding.teamprojectonepick.techResume.TechResume;
-import shop.mtcoding.teamprojectonepick.techResume.TechResumeRepository;
+import shop.mtcoding.teamprojectonepick.tech.resume.TechResume;
+import shop.mtcoding.teamprojectonepick.tech.resume.TechResumeRepository;
 import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service

@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
-public interface ResumeRequestDTO {
+public interface ResumeRequest {
 
     @Data
     public static class SaveDTO {
