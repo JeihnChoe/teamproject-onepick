@@ -3,10 +3,7 @@
 
     <!--왼쪽 1번째박스-->
     <div class="left-container" style="margin-right: 50px;">
-        <form action="/BizuserProfileForm" method="post" name="BizuserProfileFormDTO " enctype="multipart/form-data">
-        </form>
-        <div style=" color:var(--font_01); margin-top: 45px;">
-        </div>
+
         <div class="box" style="width: 200px; margin-top: 20px; text-align: center; ">
             <div class="box" style="align-content:  center;">
 
@@ -50,7 +47,7 @@
                 </div>
                 <div style="display: flex; justify-content: space-around;margin-top: 30px;">
 
-                    <div>관심있음</div>
+                    <div>관심이력서보기</div>
                     <div>
                         <!-- like_tb에서 카운트 -->
                         2
@@ -68,7 +65,7 @@
 
             <hr class="line">
 
-            <div style="margin-top: 30px;margin-bottom: 30px;">이력서관리</div>
+            <div style="margin-top: 30px;margin-bottom: 30px;">공고현황관리</div>
 
             <hr class="line">
 
@@ -85,37 +82,37 @@
         <div style="margin-top: 45px; width: 850px; height: 150px; display: flex; justify-content: space-around">
             <div class="box" style="width: 150px; height: 120px;">
                 <div
-                    style="text-align: center; margin-top: 35px; font-weight: bold; border-right: 5px; border-color: black;">
+                    style="text-align: center; margin-top: 25px; font-weight: bold; border-right: 5px; border-color: black;">
                     0
                 </div>
-                <div style="text-align: center;  margin-top: 35px; color: var(--font_01); ">
+                <div style="text-align: center;  margin-top: 15px; color: var(--font_01); ">
                     지원완료
                 </div>
             </div>
 
             <div class="box" style="width: 150px; height: 120px; border-right: 5px; border-color: black;">
-                <div style="text-align: center; margin-top: 35px; font-weight: bold;">
+                <div style="text-align: center; margin-top: 25px; font-weight: bold;">
                     0
                 </div>
-                <div style="text-align: center;  margin-top: 35px; ;color: var(--font_01);">
+                <div style="text-align: center;  margin-top: 15px; ;color: var(--font_01);">
                     서류전형통과
                 </div>
             </div>
 
             <div class="box" style="width: 150px; height: 120px;">
-                <div style="text-align: center; margin-top: 35px; font-weight: bold;">
+                <div style="text-align: center; margin-top: 25px; font-weight: bold;">
                     0
                 </div>
-                <div style="text-align: center;  margin-top: 35px; ;color: var(--font_01);">
+                <div style="text-align: center;  margin-top: 15px; ;color: var(--font_01);">
                     최종합격
                 </div>
             </div>
 
             <div class="box" style="width: 150px; height: 120px;">
-                <div style="text-align: center; margin-top: 35px; font-weight: bold;">
+                <div style="text-align: center; margin-top: 25px; font-weight: bold;">
                     0
                 </div>
-                <div style="text-align: center;  margin-top: 35px; ;color: var(--font_01);">
+                <div style="text-align: center;  margin-top: 15px; color: var(--font_01);">
                     불합격
                 </div>
             </div>
@@ -126,71 +123,44 @@
         </div>
 
         <!--오른쪽 2번째박스-->
-        <div class="box"
-            style="margin-top: 20px; width: 850px; display: grid; grid-template-columns: repeat(3,1fr); gap: 15; margin-bottom: 20px;">
-
-
+        <div class="box">
             <!--내부박스-->
-            <div style="width: 230px; height: 280px; margin-top: 15px; margin-bottom: 15px;">
-
-                <!--사진창-->
-                <div style="align-content: center;">
-                    <img src="/images/공고사진.png" style="border-radius: 15px; width: 240px;">
-                </div>
-
-                <!--공고명 / 하트표시-->
-                <div style="display: flex; justify-content: space-between;">
-                    <div style=" margin : 10px; font-weight: bold; font-size: 22px;">notice_tb - title</div>
-                    <div style="margin-right: 0;">ㅁ</div>
-                </div>
-
-                <!--채용포지션-->
-                <div style="color: var(--font_01);margin : 10px; font-size: 18px;">채용포지션</div>
-
-                <!--회사명-->
-                <div style="color: var(--font_03); margin : 10px;font-size: 15px;">회사명</div>
-
-                <!--채용지역-->
-                <div style="color: var(--font_03);  margin : 10px; font-size: 15px;">채용지역</div>
-
+            <div class="grid-box" style="margin-top: 20px; width: 850px; display: grid;  gap: 15; margin-bottom: 20px;"
+                id="notice-box">
             </div>
-
-            <!--내부박스-->
-            <div style="width: 230px; height: 280px; margin-top: 15px; margin-bottom: 15px;">
-
-                <!--사진창-->
-                <div style="align-content: center;">
-                    <img src="/images/공고사진.png" style="border-radius: 15px; width: 240px;">
-                </div>
-
-                <!--공고명 / 하트표시-->
-                <div style="display: flex; justify-content: space-between;">
-                    <div style=" margin : 10px; font-weight: bold; font-size: 22px;">notice_tb - title</div>
-                    <div style="margin-right: 0;">ㅁ</div>
-                </div>
-
-                <!--채용포지션-->
-                <div style="color: var(--font_01);margin : 10px; font-size: 18px;">채용포지션</div>
-
-                <!--회사명-->
-                <div style="color: var(--font_03); margin : 10px;font-size: 15px;">회사명</div>
-
-                <!--채용지역-->
-                <div style="color: var(--font_03);  margin : 10px; font-size: 15px;">채용지역</div>
-
-            </div>
-
-
-
-
-
-
         </div>
-
     </div>
-
 </div>
 </body>
+<script>
+    render();
 
+    async function render() {
+        let responseBody = await download();
+        responseBody.forEach((notice) => {
+            $("#notice-box").append(noticeBox(notice));
+        });
+    }
+
+    function noticeBox(notice) {
+
+
+        return `<div class="card" onclick="location.href="/notice">
+                <img class="card-img-top" style="height:120px; width:130" src="${notice.userImg}" alt="Card image" >
+                <div class="card-body">
+                    <h5 class="card-title">${notice.bizName}</h4>
+                        <p class="card-text">${notice.workField}</p>
+                        <p class="card-text">${notice.address} ${notice.address2}</p>
+                </div>
+            </div>`;
+    }
+    async function download() {
+        let response = await fetch("api/searchNotice");
+        let responseBody = await response.json();
+
+        return responseBody;
+    }
+
+</script>
 
 {{>/layout/footer}}

@@ -1,5 +1,6 @@
 package shop.mtcoding.teamprojectonepick.notice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +17,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import shop.mtcoding.teamprojectonepick._core.error.ex.MyApiException;
 import shop.mtcoding.teamprojectonepick._core.util.Script;
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.DetailDTO;
+import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.techNotice.TechNotice;
 import shop.mtcoding.teamprojectonepick.techNotice.TechNoticeRepository;
+import shop.mtcoding.teamprojectonepick.techResume.TechResume;
 import shop.mtcoding.teamprojectonepick.user.User;
 import shop.mtcoding.teamprojectonepick.user.UserResponseDTO;
 
@@ -46,9 +50,17 @@ public class NoticeController {
     private TechNoticeRepository techNoticeRepository;
 
     @GetMapping("/api/searchNotice")
-    public @ResponseBody List<Notice> open(@RequestParam(defaultValue = "open") String open) {
+    public @ResponseBody List<Notice> findByNoticeOpen(@RequestParam(defaultValue = "open") String open) {
+        // User sessionUser = (User) session.getAttribute("sessionUser");
+        // if (sessionUser.getUsercode() != 1) {
+        // throw new MyApiException("기업 회원이 아닙니다");
+        // }
+        return noticeRepository.findByOpen(4, "on");
+    }
 
-        return noticeRepository.findByOpen("on");
+    @GetMapping("/api/noticeAll")
+    public @ResponseBody List<Notice> findAllNotice() {
+        return noticeRepository.findAll();
     }
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -69,8 +81,19 @@ public class NoticeController {
         return "redirect:/bizProfileForm";
     }
 
+
+    // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+    // @GetMapping("/detailNoticeForm/{id}")
+    // public String detailNoticeForm(@PathVariable Integer id, Model model) {
+    // Notice notice = noticeService.상세보기(id);
+    // model.addAttribute("notice", notice);
+    // return "notice/detailNoticeForm";
+    // }
+
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
     @GetMapping("/detailNoticeForm/{id}")
     public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
@@ -78,6 +101,21 @@ public class NoticeController {
         notice.setUserImg("" + notice.getUserImg());
         request.setAttribute("notice", notice);
         request.setAttribute("techNotice", techNotices);
+
+        // NoticeRequestDTO.DetailDTO detailDTO = new NoticeRequestDTO.DetailDTO(
+        // "" + notice.getUserImg(),
+        // notice.getSemiTitle(),
+        // notice.getSemiContent(),
+        // notice.getWorkField(),
+        // notice.getBizName(),
+        // notice.getAddress(),
+        // notice.getAddress2(),
+        // notice.getCareer(),
+        // notice.getEducation(),
+        // notice.getMainContent(),
+        // notice.getDeadLine()
+        // );
+        // model.addAttribute("noticeInfo", detailDTO);
         return ("/notice/detailNoticeForm");
     }
 
@@ -120,4 +158,5 @@ public class NoticeController {
         return Script.href("/userProfileForm","삭제되었습니다.");
     }
     // 공고목록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
 }

@@ -31,12 +31,14 @@ public class UserService {
                 .tel(joinDTO.getTel())
                 .birth(joinDTO.getBirth())
                 .usercode(joinDTO.getUsercode())
+                .picUrl(joinDTO.getPicUrl())
                 .build();
         userRepository.save(user);
     }
 
     @Transactional
     public void 기업유저회원가입(UserRequestDTO.BizJoinDTO bizjoinDTO) {
+
         User user = User.builder()
                 .loginId(bizjoinDTO.getLoginId())
                 .password(bizjoinDTO.getPassword())
@@ -44,7 +46,6 @@ public class UserService {
                 .username(bizjoinDTO.getUsername())
                 .email(bizjoinDTO.getEmail())
                 .tel(bizjoinDTO.getTel())
-
                 .usercode(bizjoinDTO.getUsercode())
                 .build();
         userRepository.save(user);

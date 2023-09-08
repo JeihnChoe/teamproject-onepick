@@ -16,6 +16,7 @@ public class UserRequestDTO {
         private String email;
         private String tel;
         private String birth;
+        private String picUrl;
         private int usercode;
     }
 

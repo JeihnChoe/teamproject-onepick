@@ -34,7 +34,7 @@ public class NoticeRequestDTO {
 
     @Data
     @AllArgsConstructor
-    public static class DetailDTO{
+    public static class DetailDTO {
         private String userImg;
         private String semiTitle;
         private String semiContent;
@@ -50,6 +50,7 @@ public class NoticeRequestDTO {
 
     @Data
     @AllArgsConstructor
+
     public class UpdateDTO {
         private String open;
         private MultipartFile userImg;
@@ -68,5 +69,6 @@ public class NoticeRequestDTO {
 
 
 
+    }
 
 }

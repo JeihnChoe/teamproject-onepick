@@ -58,13 +58,7 @@ public class UserController {
     @PostMapping("/userLogin")
     public String userLogin(UserRequestDTO.LoginDTO loginDTO) {
         User sessionUser = userService.유저로그인(loginDTO);
-        if (sessionUser.usercode == 1) {
-            session.setAttribute("user", sessionUser);
-
-        } else if (sessionUser.usercode == 2) {
-            session.setAttribute("sessionBiz", sessionUser);
-        }
-
+        // TODO: 공지 팀원!!
         session.setAttribute("sessionUser", sessionUser);
 
         return "redirect:/";
@@ -87,13 +81,15 @@ public class UserController {
 
     @PostMapping("/userJoin")
     public String userJoin(UserRequestDTO.JoinDTO joinDTO) {
+
         userService.유저회원가입(joinDTO);
 
         return "/user/loginForm";
     }
 
     @PostMapping("/bizUserJoin")
-    public String bizuserJoin(UserRequestDTO.BizJoinDTO bizjoinDTO) {
+    public String bizUserJoin(UserRequestDTO.BizJoinDTO bizjoinDTO) {
+
         userService.기업유저회원가입(bizjoinDTO);
 
         return "/user/loginForm";

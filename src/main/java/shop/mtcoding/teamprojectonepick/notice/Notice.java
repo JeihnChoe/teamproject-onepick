@@ -100,7 +100,7 @@ public class Notice {
                 this.education = education;
                 this.mainContent = mainContent;
                 this.deadLine = deadLine;
-                this.user = user;
+                this.user = user; // ORM
                 this.techNotices = techNotices;
         }
 

@@ -18,18 +18,9 @@
 
 header {
     position: fixed;
-    margin-bottom: 80px;
     top: 0;
-    left: 0;
-    height: 100px;
-    z-index: 100;
-    /* 다른 요소 위에 헤더를 표시하기 위한 z-index 설정 */
     width: 100%;
-}
-
-body {
-    margin-top: 50px;
-
+    z-index: 100;
 }
 
 footer {
@@ -50,8 +41,8 @@ footer {
 
 .line {
 
-    height: 0.5px;
-    background-color: rgba(0, 0, 0, 0.15);
+    height: 1.5px;
+    background-color: rgba(0, 0, 0, 0.3);
     border: 0;
 
 }
