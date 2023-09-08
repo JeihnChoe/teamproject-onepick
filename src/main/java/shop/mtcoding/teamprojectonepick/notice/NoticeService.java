@@ -19,9 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
-
-import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.NoticeSummaryDTO;
-
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequestDTO.UpdateDTO;
 
 import shop.mtcoding.teamprojectonepick.resume.Resume;
@@ -122,7 +119,7 @@ public class NoticeService {
 
         List<TechNotice> techNotices = new ArrayList<>();
 
-        //    User user = User.builder().id(sessionUserId).build();
+        // User user = User.builder().id(sessionUserId).build();
         // Resume resume = resumeRepository.findById(resumeId).get();
         // resume.setTitle(updateDTO.getTitle());
 
@@ -140,17 +137,16 @@ public class NoticeService {
             notice.setEducation(updateDTO.getEducation());
             notice.setMainContent(updateDTO.getMainContent());
             notice.setDeadLine(updateDTO.getDeadLine());
-       
 
-        for (Integer techIds : techId) {
-            Tech tech = techRepository.findById(techIds).get();
-            TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
-            techNoticeRepository.save(techNotice);
+            for (Integer techIds : techId) {
+                Tech tech = techRepository.findById(techIds).get();
+                TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
+                techNoticeRepository.save(techNotice);
 
-        }
+            }
 
-        noticeRepository.save(notice);
-    } // flush (더티체킹)
+            noticeRepository.save(notice);
+        } // flush (더티체킹)
 
-}
+    }
 }

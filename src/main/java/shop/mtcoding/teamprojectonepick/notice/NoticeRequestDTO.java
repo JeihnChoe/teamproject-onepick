@@ -67,8 +67,4 @@ public class NoticeRequestDTO {
         private String techNotice;
     }
 
-
-
-    }
-
 }
