@@ -35,7 +35,7 @@ public class NoticeController {
     private TechRepository techRepository;
 
     @Autowired
-private NoticeRepository noticeRepository;
+    private NoticeRepository noticeRepository;
 
     private NoticeRequestDTO noticeRequestDTO;
 
@@ -51,16 +51,16 @@ private NoticeRepository noticeRepository;
         return noticeRepository.findByOpen("on");
     }
 
-    // 공고등록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // 공고등록 1번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @GetMapping("/writeNoticeForm")
-
     public String writeNoticeForm(HttpServletRequest request) {
         List<Tech> techs = techRepository.findAll();
         request.setAttribute("techs", techs);
-
         return "/notice/writeNoticeForm";
     }
 
+    // 공고등록 2번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @PostMapping("/notice/writeNotice")
     public String writeNotice(NoticeRequestDTO.SaveDTO saveDTO,
             @RequestParam(name = "tech-notice") List<Integer> techId, @RequestParam("userImg") MultipartFile file) {
@@ -69,48 +69,55 @@ private NoticeRepository noticeRepository;
         return "redirect:/bizProfileForm";
     }
 
-    // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-
-    // @GetMapping("/detailNoticeForm/{id}")
-    // public String detailNoticeForm(@PathVariable Integer id, Model model) {
-    // Notice notice = noticeService.상세보기(id);
-    // model.addAttribute("notice", notice);
-    // return "notice/detailNoticeForm";
-    // }
-        @GetMapping("/detailNoticeForm/{id}")
-        public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // 공고상세ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @GetMapping("/detailNoticeForm/{id}")
+    public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
         List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
         notice.setUserImg("" + notice.getUserImg());
         request.setAttribute("notice", notice);
         request.setAttribute("techNotice", techNotices);
-// NoticeRequestDTO.DetailDTO detailDTO = new NoticeRequestDTO.DetailDTO(
-        // "" + notice.getUserImg(),
-        // notice.getSemiTitle(),
-        // notice.getSemiContent(),
-        // notice.getWorkField(),
-        // notice.getBizName(),
-        // notice.getAddress(),
-        // notice.getAddress2(),
-        // notice.getCareer(),
-        // notice.getEducation(),
-        // notice.getMainContent(),
-        // notice.getDeadLine()
-        // );
-        // model.addAttribute("noticeInfo", detailDTO);
         return ("/notice/detailNoticeForm");
     }
 
-    // 공고수정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // 공고수정 1번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @GetMapping("/updateNoticeForm/{id}")
+    public String updateNoticeForm(@PathVariable Integer id, Model model) {
+        Notice notice = noticeService.공고조회(id);
+        List<Tech> techs = techRepository.findAll();
+        model.addAttribute("techs", techs);
+        model.addAttribute("notice", notice); // request에 담는 것과 동일
+        return "notice/updateNoticeForm";
+    }
+
+    // 공고수정 2번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    @PostMapping("/notice/updateNotice")
+    public String updateNotice(@RequestParam(name = "tech-notice") List<Integer> techId, NoticeRequestDTO.UpdateDTO updateDTO, @RequestParam("userImg") MultipartFile file) {
+        
+        // where 데이터, body, session값
+        // noticeService.공고수정하기(updateDTO, techId);
+        return "redirect:/bizProfileForm";
+    }
+
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     // 공고삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-   
+
     @PostMapping("/deleteNotice/{id}")
-    public @ResponseBody String delete(@PathVariable Integer id){
+    public @ResponseBody String delete(@PathVariable Integer id) {
         System.out.println("삭제테스트1");
         noticeService.삭제하기(id);
         System.out.println("삭제테스트2");
-        return Script.href("/userProfileForm");
+        return Script.href("/userProfileForm","삭제되었습니다.");
     }
     // 공고목록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 }
