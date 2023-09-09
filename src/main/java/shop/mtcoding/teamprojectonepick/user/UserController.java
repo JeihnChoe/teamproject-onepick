@@ -26,14 +26,14 @@ public class UserController {
     @Autowired
     private ResumeRepository resumeRepository;
 
-    @PostMapping("/logout")
+    @PostMapping("/logout") // 로그아웃
     public String logout() {
         session.invalidate();
         System.out.println("로그아웃테스트 : ");
         return "redirect:/";
     }
 
-    @PostMapping("/userUpdate")
+    @PostMapping("/userUpdate") // 수정하기
     public String update(UserRequest.UpdateDTO updateDTO) {
         System.out.println(updateDTO);
         // 1. 회원수정 (서비스)
@@ -45,7 +45,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("/bizUserUpdate")
+    @PostMapping("/bizUserUpdate") // 기업회원수정
     public String bizUpdate(UserRequest.BizUpdateDTO bizUpdateDTO) {
         System.out.println(bizUpdateDTO);
         // 1. 회원수정 (서비스)
@@ -57,7 +57,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("/userLogin")
+    @PostMapping("/userLogin") // 개인유저 로그인
     public String userLogin(UserRequest.LoginDTO loginDTO) {
         User sessionUser = userService.유저로그인(loginDTO);
         if (sessionUser.usercode == 1) {
@@ -82,12 +82,12 @@ public class UserController {
         return "/user/joinForm";
     }
 
-    @GetMapping("/userJoinForm")
+    @GetMapping("/userJoinForm") // 개인유저회원가입페이지
     public String userJoinForm() {
         return ("/user/userJoinForm");
     }
 
-    @PostMapping("/userJoin")
+    @PostMapping("/userJoin") // 회원가입포스트
     public String userJoin(UserRequest.JoinDTO joinDTO) {
 
         userService.유저회원가입(joinDTO);
@@ -95,7 +95,7 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @PostMapping("/bizUserJoin")
+    @PostMapping("/bizUserJoin") // 기업회원가입 포스트
     public String bizUserJoin(UserRequest.BizJoinDTO bizjoinDTO) {
 
         userService.기업유저회원가입(bizjoinDTO);
@@ -103,7 +103,7 @@ public class UserController {
         return "/user/loginForm";
     }
 
-    @GetMapping("/bizJoinForm")
+    @GetMapping("/bizJoinForm") // 기업회원가입페이지
     public String bizJoinForm() {
         return "/user/bizJoinForm";
     }
@@ -115,7 +115,7 @@ public class UserController {
 
     // 개인 변동사항
 
-    @GetMapping("/userProfileForm")
+    @GetMapping("/userProfileForm") // 개인유저프로필페이지
     public String userProfile(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원프로필조회(sessionUser.getId());
@@ -134,7 +134,7 @@ public class UserController {
         return ("/user/userProfileForm");
     }
 
-    @GetMapping("/fixUserProfileForm")
+    @GetMapping("/fixUserProfileForm") // 개인수정페이지
     public String fixUserProfile(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원정보조회(sessionUser.getId());
@@ -147,7 +147,7 @@ public class UserController {
 
     // 기업 변동사항
 
-    @GetMapping("/bizProfileForm")
+    @GetMapping("/bizProfileForm") // 기업회원프로필페이지
     public String bizProfileForm(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원프로필조회(sessionUser.getId());
@@ -159,7 +159,7 @@ public class UserController {
         return "/user/bizProfileForm";
     }
 
-    @GetMapping("/fixBizProfileForm")
+    @GetMapping("/fixBizProfileForm") // 기업회원수정페이지
     public String fixBizProfileForm(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원정보조회(sessionUser.getId());
@@ -174,6 +174,28 @@ public class UserController {
 
         model.addAttribute("userInfo", bizUserInfoResponseDTO);
         return "/user/fixBizProfileForm";
+    }
+
+    // 탈퇴하기
+    @PostMapping("/userDelete") // 개인 유저 회원 탈퇴
+    public String userDelete() {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
+        userService.회원탈퇴(sessionUser.getId());
+        session.invalidate();
+
+        return "redirect:/";
+    }
+
+    @PostMapping("/bizUserDelete") // 기업 유저 회원 탈퇴
+    public String bizUserDelete() {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+
+        userService.기업회원탈퇴(sessionUser.getId());
+
+        session.invalidate();
+
+        return "redirect:/";
     }
 
 }

@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Builder;
@@ -69,6 +72,7 @@ public class Notice {
         // 회사랑 포링키 엮어주기
         @JsonIgnore
         @ManyToOne(fetch = FetchType.LAZY)
+        @OnDelete(action = OnDeleteAction.CASCADE)
         private User user; // 1+N
 
         @JsonIgnore // 아래는 양방향 매핑이다.
