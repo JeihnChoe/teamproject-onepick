@@ -10,11 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import lombok.extern.slf4j.Slf4j;
 import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
 
+@Slf4j
 @Controller
-
 public class UserController {
     @Autowired
     private HttpSession session;
@@ -119,9 +120,12 @@ public class UserController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.회원프로필조회(sessionUser.getId());
         UserResponse.UserProfileFormDTO userProfileFormDTO = new UserResponse.UserProfileFormDTO(
-                "" + user.getPicUrl(),
+                user.getPicUrl(),
                 user.getUsername(),
                 user.getEmail(), user.getTel());
+
+        log.info("userInfo : {}", userProfileFormDTO);
+
         model.addAttribute("userInfo", userProfileFormDTO);
 
         List<Resume> resumeList = resumeRepository.findByUserId(sessionUser.getId());
@@ -136,7 +140,7 @@ public class UserController {
         User user = userService.회원정보조회(sessionUser.getId());
         UserResponse.UserInfoResponseDTO userInfoResponseDTO = new UserResponse.UserInfoResponseDTO(user.getId(),
                 user.getPassword(), user.getUsername(), user.getTel(),
-                user.getBirth(), user.getAddress(), "" + user.getPicUrl());
+                user.getBirth(), user.getAddress(), user.getPicUrl());
         model.addAttribute("userInfo", userInfoResponseDTO);
         return ("/user/fixUserProfileForm");
     }
@@ -148,7 +152,7 @@ public class UserController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원프로필조회(sessionUser.getId());
         UserResponse.BizUserProfileFormDTO bizuserProfileFormDTO = new UserResponse.BizUserProfileFormDTO(
-                "" + user.getPicUrl(),
+                user.getPicUrl(),
                 user.getBizname(),
                 user.getUsername(), user.getEmail(), user.getTel());
         model.addAttribute("userInfo", bizuserProfileFormDTO);
@@ -160,9 +164,14 @@ public class UserController {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원정보조회(sessionUser.getId());
         UserResponse.BizUserInfoResponseDTO bizUserInfoResponseDTO = new UserResponse.BizUserInfoResponseDTO(
-                user.getPassword(), user.getBizname(), user.getUsername(), user.getTel(), user.getAddress(),
+                user.getPassword(),
+                user.getBizname(),
+                user.getUsername(),
+                user.getTel(),
+                user.getAddress(),
                 user.getAddress2(),
-                "" + user.getPicUrl());
+                user.getPicUrl());
+
         model.addAttribute("userInfo", bizUserInfoResponseDTO);
         return "/user/fixBizProfileForm";
     }

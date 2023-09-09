@@ -8,7 +8,12 @@
             <div class="box" style="align-content:  center;">
 
                 <div>
-                    <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
+                    {{#userInfo.picUrl}}
+                    <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;"/>
+                    {{/userInfo.picUrl}}
+                    {{^userInfo.picUrl}}
+                    <img src="/upload/_default_img.png" style="border-radius: 50%; width: 150px; height: 150px;"/>
+                    {{/userInfo.picUrl}}
                 </div>
                 <div style="margin-top: 20px;">
                     <div style="text-align: center; border: none; font-weight: bold; width: 150px;">

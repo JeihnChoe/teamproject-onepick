@@ -2,6 +2,7 @@ package shop.mtcoding.teamprojectonepick.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 public class UserResponse {
     @Getter
@@ -30,6 +31,7 @@ public class UserResponse {
     }
 
     @Getter
+    @ToString
     @AllArgsConstructor
     static class UserProfileFormDTO {
 
