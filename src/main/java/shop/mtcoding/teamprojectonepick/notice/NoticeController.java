@@ -20,6 +20,7 @@ import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
 import shop.mtcoding.teamprojectonepick.tech.notice.TechNoticeRepository;
+import shop.mtcoding.teamprojectonepick.user.User;
 
 @Controller
 public class NoticeController {
@@ -63,6 +64,7 @@ public class NoticeController {
         // TODO: 인증필요
         List<Tech> techs = techRepository.findAll();
         request.setAttribute("techs", techs);
+        System.out.println("테스트 : 공고 페이지 가져옴");
         return "/notice/writeNoticeForm";
     }
 
@@ -70,14 +72,17 @@ public class NoticeController {
     @PostMapping("/notice/writeNotice")
     public String writeNotice(NoticeRequest.SaveDTO saveDTO,
             @RequestParam(name = "tech-notice") List<Integer> techId, @RequestParam("userImg") MultipartFile file) {
-        // TODO: 인증필요        
-        noticeService.공고등록(saveDTO, techId);
-        return "redirect:/bizProfileForm";
+        // TODO: 인증필요
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        System.out.println("테스트 : 공고 등록 시작 전");
+        noticeService.공고등록(saveDTO, techId, sessionUser.getId());
+        System.out.println("테스트 : 공고 등록함");
+        return "redirect:/user/bizProfileForm";
     }
 
-
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    // 공고상세 페이지 가져오기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // 공고상세 페이지
+    // 가져오기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @GetMapping("/notice/{id}")
     public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
@@ -96,22 +101,25 @@ public class NoticeController {
     @GetMapping("/notice/updateNoticeForm/{id}")
     public String updateNoticeForm(@PathVariable Integer id, Model model) {
         Notice notice = noticeService.공고조회(id);
+        List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
         List<Tech> techs = techRepository.findAll();
         model.addAttribute("techs", techs);
         model.addAttribute("notice", notice); // request에 담는 것과 동일
+        model.addAttribute("techNotices", techNotices);
+        System.out.println("테스트 : 모델에 담아서 폼으로 보내는 단계");
         return "notice/updateNoticeForm";
     }
 
     // 공고수정 2번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @PostMapping("/notice/{id}/update")
-    public String updateNotice(
-            @PathVariable Integer id,
-            @RequestParam(name = "tech-notice") List<Integer> techId,
-            NoticeRequest.UpdateDTO updateDTO, @RequestParam("userImg") MultipartFile file) {
-
+    public String updateNotice(@PathVariable Integer id, @RequestParam(name = "tech-notice") List<Integer> techId,
+            NoticeRequest.UpdateDTO updateDTO) {
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        System.out.println("테스트: 아이디 받아와서 업데이트하기 전");
         // where 데이터, body, session값
-        // noticeService.공고수정하기(updateDTO, techId);
+        noticeService.공고수정하기(sessionUser.getId(), techId, id, updateDTO);
+        System.out.println("테스트: 아이디 받아와서 업데이트한 후 메인으로 복귀");
         return "redirect:/bizProfileForm";
     }
 
@@ -123,14 +131,17 @@ public class NoticeController {
     // 공고삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     /**
-    * 공고 삭제
-    * 진성훈
-    **/
+     * 공고 삭제
+     * 진성훈
+     **/
     @PostMapping("/notice/{id}/delete")
     public @ResponseBody String delete(@PathVariable Integer id) {
-        noticeService.삭제하기(id);
-        return Script.href("/userProfileForm", "삭제되었습니다.");
-    }
+        System.out.println("딜리트 실행전");
 
+        noticeService.삭제하기(id);
+        System.out.println("딜리트 실행후");
+
+        return Script.href("/user/userProfileForm");
+    }
 
 }
