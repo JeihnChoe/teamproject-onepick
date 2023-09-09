@@ -11,6 +11,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
+import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRequest.SaveDTO;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRequest.UpdateDTO;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
@@ -31,16 +33,23 @@ public class ResumeService {
 
     @Transactional
     public void 이력서작성(SaveDTO saveDTO, List<Integer> techId, Integer sessionUserId) {
-        UUID uuid = UUID.randomUUID();
-        String fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
-        System.out.println("fileName : " + fileName);
+        String fileName = null;
+        if (!saveDTO.getResumeImg().isEmpty()) {
+            UUID uuid = UUID.randomUUID();
+            fileName = uuid + "_" + saveDTO.getResumeImg().getOriginalFilename();
+            System.out.println("fileName : " + fileName);
 
-        Path filePath = Paths.get("./upload/" + fileName);
-        try {
-            Files.write(filePath, saveDTO.getResumeImg().getBytes()); // 버퍼에 쓴다.
-        } catch (Exception e) {
-            e.printStackTrace();
+            Path filePath = Paths.get("./upload/" + fileName);
+            try {
+                Files.write(filePath, saveDTO.getResumeImg().getBytes()); // 버퍼에 쓴다.
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        // else {
+        // fileName = saveDTO.getPreviewImg();
+        // System.out.println("기본이미지 : " + fileName);
+        // }
 
         User user = User.builder().id(sessionUserId).build();
         Resume resume = Resume.builder()
@@ -125,15 +134,75 @@ public class ResumeService {
         resume.setLink3(updateDTO.getLink3());
         resume.setWorkField(updateDTO.getWorkField());
 
-        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
-        System.out.println("사진이름 : " + updateDTO.getResumeImg().getOriginalFilename());
-        String fileName = uuid + "_" + updateDTO.getResumeImg().getOriginalFilename();
-        resume.setResumeImg(fileName);
         for (Integer techIds : techId) {
             Tech tech = techRepository.findById(techIds).get();
             TechResume techResume = TechResume.builder().resume(resume).tech(tech).build();
             techResumeRepository.save(techResume);
         }
+
+        return resume;
+    }
+
+    @Transactional
+    public Resume 이력서수정하기(UpdateDTO updateDTO, Integer resumeId, Integer sessionUserId) {
+        // User user = User.builder().id(sessionUserId).build();
+        Resume resume = resumeRepository.findById(resumeId).get();
+        resume.setTitle(updateDTO.getTitle());
+        resume.setSemiContent(updateDTO.getSemiContent());
+        resume.setContent(updateDTO.getContent());
+        resume.setEducation(updateDTO.getEducation());
+        resume.setSchool(updateDTO.getSchool());
+        resume.setMajor(updateDTO.getMajor());
+        resume.setCareer1(updateDTO.getCareer1());
+        resume.setCareerPeriodS1(updateDTO.getCareerPeriodS1());
+        resume.setCareerPeriodE1(updateDTO.getCareerPeriodE1());
+        resume.setCareer1(updateDTO.getCareer2());
+        resume.setCareerPeriodS2(updateDTO.getCareerPeriodS2());
+        resume.setCareerPeriodE2(updateDTO.getCareerPeriodE2());
+        resume.setCareer1(updateDTO.getCareer3());
+        resume.setCareerPeriodS3(updateDTO.getCareerPeriodS3());
+        resume.setCareerPeriodE3(updateDTO.getCareerPeriodE3());
+        resume.setOpen(updateDTO.getOpen());
+        resume.setEtc1(updateDTO.getEtc1());
+        resume.setEtc2(updateDTO.getEtc2());
+        resume.setEtc3(updateDTO.getEtc3());
+        resume.setEtcPeriod1(updateDTO.getEtcPeriod1());
+        resume.setEtcPeriod2(updateDTO.getEtcPeriod2());
+        resume.setEtcPeriod3(updateDTO.getEtcPeriod3());
+        resume.setLink1(updateDTO.getLink1());
+        resume.setLink2(updateDTO.getLink2());
+        resume.setLink3(updateDTO.getLink3());
+        resume.setWorkField(updateDTO.getWorkField());
+
+        String fileName = null;
+        if (!updateDTO.getResumeImg().isEmpty()) {
+            UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+            fileName = uuid + "_" + updateDTO.getResumeImg().getOriginalFilename();
+            System.out.println("fileName : " + fileName);
+
+            // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
+            // 해당 실행파일 경로에 images 폴더가 필요함
+            Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
+            try {
+                Files.write(filePath, updateDTO.getResumeImg().getBytes());
+            } catch (Exception e) {
+
+                throw new MyException(e);
+            }
+        }
+        // else {
+        // fileName = updateDTO.getPreviewImg();
+        // }
+        if (fileName != null) {
+            resume.setResumeImg(fileName);
+        }
+        // resumeRepository.save(resume);
+        // for (Integer techIds : techId) {
+        // Tech tech = techRepository.findById(techIds).get();
+        // TechResume techResume =
+        // TechResume.builder().resume(resume).tech(tech).build();
+        // techResumeRepository.save(techResume);
+        // System.out.println(resume);
 
         return resume;
     }

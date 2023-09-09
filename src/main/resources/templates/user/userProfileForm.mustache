@@ -5,15 +5,16 @@
 
         <div class="box" style="width: 200px; margin-top: 20px; text-align: center; ">
             <div class="box" style="align-content:  center;">
+
                 <div>
-                {{#userInfo.picUrl}}
-                <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;"/>
-                {{/userInfo.picUrl}}
-                {{^userInfo.picUrl}}
-                <img src="/upload/_default_img.png" style="border-radius: 50%; width: 150px; height: 150px;"/>
-                {{/userInfo.picUrl}}
-                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)"/>
-                 
+                    {{#userInfo.picUrl}}
+                    <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;" />
+                    {{/userInfo.picUrl}}
+                    {{^userInfo.picUrl}}
+                    <img src="/upload/_default_img.png" style="border-radius: 50%; width: 150px; height: 150px;" />
+                    {{/userInfo.picUrl}}
+                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
+
                 </div>
                 <div style="margin-top: 20px;">
                 </div>
@@ -27,7 +28,7 @@
                 <div style="margin-top: 10px; color: var(--font_02)">
                     {{userInfo.tel}}
                 </div>
-                
+
                 <br>
             </div>
 
@@ -37,12 +38,12 @@
 
             <div style="margin-top: 20px; color: var(--font_02);"></div>
             <div style="border: none; width: 150px;">
-                
+
             </div>
 
             <div style="margin-top: 10px; color: var(--font_02)"></div>
             <div style="border: none; width: 150px;">
-                
+
             </div>
 
 
@@ -55,7 +56,7 @@
                         <!-- apply_tb에서 카운트 -->
                         9
                     </div>
-                    
+
 
                 </div>
                 <div style="display: flex; justify-content: space-around; margin-top: 30px;">
@@ -81,7 +82,7 @@
 
             <div style="margin-top: 30px;margin-bottom: 30px;">
                 {{#resumeList}}
-                <a href="/resume/{{id}}/viewResumeForm">이력서관리</a>
+                <a href="/resume/{{id}}/viewForm">이력서관리</a>
                 {{/resumeList}}
             </div>
 
@@ -98,7 +99,7 @@
         <hr class="line">
 
         <div style="margin-top: 30px; margin-bottom: 30px;">
-            <a href="/resume/writeResumeForm">이력서 작성</a>
+            <a href="/resume/writeForm">이력서 작성</a>
         </div>
 
     </div>
@@ -150,19 +151,20 @@
         <!--오른쪽 2번째박스-->
         <div class="box">
 
-        <!--내부박스-->
-        <div class="grid-box" style="margin-top: 20px; width: 850px; display: grid;  gap: 15; margin-bottom: 20px;"
-        id="resume-box"></div>
-         <a class="card" href="/resume/writeForm" style="width:250px; align-items: center;" >
-            <img class="card-img-top" src="/images/new.png" alt="Card image"  style="margin: 10px; height:50px; width:50px; border-radius: 50%; " >
-            <div class="card-body">
-                <h6 class="card-title" style="text-align: center;">새 이력서 작성하기</h6>
-            </div>
-        </a>
-            </div>
+            <!--내부박스-->
+            <div class="grid-box" style="margin-top: 20px; width: 850px; display: grid;  gap: 15; margin-bottom: 20px;"
+                id="resume-box"></div>
+            <a class="card" href="/resume/writeForm" style="width:250px; align-items: center;">
+                <img class="card-img-top" src="/images/new.png" alt="Card image"
+                    style="margin: 10px; height:50px; width:50px; border-radius: 50%; ">
+                <div class="card-body">
+                    <h6 class="card-title" style="text-align: center;">새 이력서 작성하기</h6>
+                </div>
+            </a>
         </div>
-
     </div>
+
+</div>
 
 </div>
 </body>

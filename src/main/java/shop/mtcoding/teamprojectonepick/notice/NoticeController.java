@@ -40,8 +40,6 @@ public class NoticeController {
     @Autowired
     private TechNoticeRepository techNoticeRepository;
 
-
-    
     @GetMapping("/api/noticeSession")
     public @ResponseBody List<Notice> findByNotice(@RequestParam(defaultValue = "on") String open) {
         // User sessionUser = (User) session.getAttribute("sessionUser");
@@ -55,16 +53,16 @@ public class NoticeController {
             return noticeRepository.findByUserId(sessionUser.getId(), "off");
         } else {
             return noticeRepository.findAll();
-            
+
         }
 
     }
 
-
     @GetMapping("/detailNoticeForm")
-    public String detailNoticeForm(){
+    public String detailNoticeForm() {
         return "/notice/detailNoticeForm";
     }
+
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // 공고 페이지 가져오기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @GetMapping("/notice/writeNoticeForm")
@@ -81,11 +79,13 @@ public class NoticeController {
     public String writeNotice(NoticeRequest.SaveDTO saveDTO,
             @RequestParam(name = "tech-notice") List<Integer> techId, @RequestParam("userImg") MultipartFile file) {
         // TODO: 인증필요
+
         User sessionUser = (User) session.getAttribute("sessionUser");
         System.out.println("테스트 : 공고 등록 시작 전");
         noticeService.공고등록(saveDTO, techId, sessionUser.getId());
         System.out.println("테스트 : 공고 등록함");
         return "redirect:/user/bizProfileForm";
+
     }
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

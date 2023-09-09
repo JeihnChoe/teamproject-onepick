@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class ApplyController {
+public class ApplyController { // 주석
 
     @Autowired
     private ApplyService applyService;

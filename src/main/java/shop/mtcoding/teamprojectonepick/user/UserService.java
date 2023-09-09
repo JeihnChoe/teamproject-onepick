@@ -75,18 +75,20 @@ public class UserService {
     @Transactional
     public User 회원수정(UpdateDTO updateDTO, Integer id) {
 
-        // UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
-        String fileName = "_" + updateDTO.getPic().getOriginalFilename();
-        System.out.println("fileName : " + fileName);
+        String fileName = null;
+        if (!updateDTO.getPic().isEmpty()) {
+            UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+            fileName = uuid + "_" + updateDTO.getPic().getOriginalFilename();
+            System.out.println("fileName : " + fileName);
 
-        // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
-        // 해당 실행파일 경로에 images 폴더가 필요함
-        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
-        try {
-            Files.write(filePath, updateDTO.getPic().getBytes());
-        } catch (Exception e) {
-
-            throw new MyException(e);
+            // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
+            // 해당 실행파일 경로에 images 폴더가 필요함
+            Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
+            try {
+                Files.write(filePath, updateDTO.getPic().getBytes());
+            } catch (Exception e) {
+                throw new MyException(e);
+            }
         }
 
         // 1. 조회 (영속화)
@@ -97,7 +99,10 @@ public class UserService {
         user.setTel(updateDTO.getTel());
         user.setBirth(updateDTO.getBirth());
         user.setAddress(updateDTO.getAddress());
-        user.setPicUrl(fileName);
+        // 새로 받은 파일이 없으면 안바꿈!!
+        if (fileName != null) {
+            user.setPicUrl(fileName);
+        }
         System.out.println("테스트" + fileName);
         return user;
 
@@ -105,17 +110,20 @@ public class UserService {
 
     @Transactional
     public User 기업회원수정(BizUpdateDTO bizUpdateDTO, Integer id) {
-        UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
-        String fileName = uuid + "_" + bizUpdateDTO.getPic().getOriginalFilename();
-        System.out.println("fileName : " + fileName);
+        String fileName = null;
+        if (!bizUpdateDTO.getPic().isEmpty()) {
+            UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
+            fileName = uuid + "_" + bizUpdateDTO.getPic().getOriginalFilename();
+            System.out.println("fileName : " + fileName);
 
-        // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
-        // 해당 실행파일 경로에 images 폴더가 필요함
-        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
-        try {
-            Files.write(filePath, bizUpdateDTO.getPic().getBytes());
-        } catch (Exception e) {
-            throw new MyException(e);
+            // 프로젝트 실행 파일변경 -> blogv2-1.0.jar
+            // 해당 실행파일 경로에 images 폴더가 필요함
+            Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
+            try {
+                Files.write(filePath, bizUpdateDTO.getPic().getBytes());
+            } catch (Exception e) {
+                throw new MyException(e);
+            }
         }
         // 1. 조회 (영속화)
         User user = userRepository.findById(id).get();
@@ -126,7 +134,9 @@ public class UserService {
         user.setTel(bizUpdateDTO.getTel());
         user.setAddress(bizUpdateDTO.getAddress());
         user.setAddress2(bizUpdateDTO.getAddress2());
-        user.setPicUrl(fileName);
+        if (fileName != null) {
+            user.setPicUrl(fileName);
+        }
 
         return user;
     }
