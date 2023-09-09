@@ -1,22 +1,26 @@
 {{>/layout/header}}
-<form action="/updateResume/{{id}}" method="post" enctype="multipart/form-data">
+<form action="/resume/{{id}}/update" method="post" name="updateDTO" enctype="multipart/form-data">
     <div class="main-container" style="display: flex; flex-direction: column;">
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
                 <div style="margin-right: 20px;">이력서 공개여부</div>
-                <input type="radio" id="on" name="open" value="{{resume.open}}">
+                <input type="radio" id="on" name="open" {{#resume.open}}checked{{/resume.open}} value="{{resume.open}}">
                 <label for="on">공개</label>
 
-                <input type="radio" id="off" name="open" value="{{resume.open}}" style="margin-left: 50px;">
+                <input type="radio" id="off" name="open" {{#resume.open}}checked{{/resume.open}} value="{{resume.open}}" style="margin-left: 50px;">
                 <label for="off">비공개</label>
             </div>
             <br>
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column;">
-                    <img class="box" id="preview"
-                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;">
-
-                    </img>
+                    {{#resume.resumeImg}}
+                    <img class="box" id="preview"  src="/upload/{{resume.resumeImg}}" name="previewImg"
+                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
+                    {{/resume.resumeImg}}
+                    {{^resume.resumeImg}}
+                    <img class="box" id="preview" src="/upload/_default_img.png" name="previewImg"
+                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
+                    {{/resume.resumeImg}}
                     <input type="file" name="resumeImg" style="margin-left: 70px;" onchange="changePic(event)">
                 </div>
                 <div>
@@ -253,20 +257,20 @@
                                 value="{{resume.school}}">
                             <input class="input-box" name="major" style="width: 100px;" type="text" placeholder="xx학과"
                                 value="{{resume.major}}">
-                            <input type="month" style="border: transparent;" value="{{resume.education}}">
-                            <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;">
+                            {{! <input type="month" style="border: transparent;" value="{{resume.education}}"> }}
+                            <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;" name="education">
                                 <ul>
                                     <li>
-                                        <option value="" selected disabled hidden>{{resume.education}}</option>
+                                        <option value="" disabled hidden>{{resume.education}}</option>
                                     </li>
                                     <li>
-                                        <option value="고졸">고졸</option>
+                                        <option value="고졸" {{#eduDTO.isGojol}}selected{{/eduDTO.isGojol}}>고졸</option>
                                     </li>
                                     <li>
-                                        <option value="대졸">대졸</option>
+                                        <option value="대졸" {{#eduDTO.isDaejol}}selected{{/eduDTO.isDaejol}}>대졸</option>
                                     </li>
                                     <li>
-                                        <option value="대학원졸 이상">대학원졸 이상</option>
+                                        <option value="대학원졸 이상" {{#eduDTO.isDaejolMore}}selected{{/eduDTO.isDaejolMore}}>대학원졸 이상</option>
                                     </li>
 
                                 </ul>
@@ -307,12 +311,12 @@
 
             <div class="box-invisible" style=" display: flex;flex-wrap: wrap; flex-direction: row;  width: 1000px;">
                 <br>
-                {{#techs}}
+                {{#testDTOs}}
                 <div style=" display: flex; flex-direction: row;">
-                    <input type="checkbox" name="tech-resume" value="{{id}}" style="margin-right: 5px;">
+                    <input type="checkbox" {{#checked}}checked{{/checked}} name="tech-resume" value="{{id}}" style="margin-right: 5px;">
                     <div style="margin-right: 15px;">{{techname}}</div>
                 </div>
-                {{/techs}}
+                {{/testDTOs}}
             </div>
         </div>
 

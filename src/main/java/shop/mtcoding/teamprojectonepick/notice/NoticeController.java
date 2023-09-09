@@ -70,14 +70,14 @@ public class NoticeController {
     @PostMapping("/notice/writeNotice")
     public String writeNotice(NoticeRequest.SaveDTO saveDTO,
             @RequestParam(name = "tech-notice") List<Integer> techId, @RequestParam("userImg") MultipartFile file) {
-        // TODO: 인증필요        
+        // TODO: 인증필요
         noticeService.공고등록(saveDTO, techId);
         return "redirect:/bizProfileForm";
     }
 
-
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    // 공고상세 페이지 가져오기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    // 공고상세 페이지
+    // 가져오기ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @GetMapping("/notice/{id}")
     public String detailNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
@@ -123,14 +123,13 @@ public class NoticeController {
     // 공고삭제ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
     /**
-    * 공고 삭제
-    * 진성훈
-    **/
+     * 공고 삭제
+     * 진성훈
+     **/
     @PostMapping("/notice/{id}/delete")
     public @ResponseBody String delete(@PathVariable Integer id) {
         noticeService.삭제하기(id);
         return Script.href("/userProfileForm", "삭제되었습니다.");
     }
-
 
 }

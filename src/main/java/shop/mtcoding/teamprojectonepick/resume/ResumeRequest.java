@@ -35,6 +35,7 @@ public interface ResumeRequest {
         String link3;
         String workField;
         MultipartFile resumeImg;
+        String previewImg;
     }
 
     @Data
@@ -66,6 +67,9 @@ public interface ResumeRequest {
         String link3;
         String workField;
         MultipartFile resumeImg;
+        String previewImg;
+        private String techname;
+        private Boolean checked;
     }
 
 }

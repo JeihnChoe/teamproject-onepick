@@ -9,10 +9,14 @@
         <br>
         <div style="display: flex; flex-direction: row;">
             <div style="display: flex; flex-direction: column;">
+            {{#resume.resumeImg}}
                 <img class="box" id="preview" src="/upload/{{resume.resumeImg}}"
-                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;">
-
-                </img>
+                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
+            {{/resume.resumeImg}}
+            {{^resume.resumeImg}}
+                <img class="box" id="preview" src="/upload/_default_img.png"
+                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
+            {{/resume.resumeImg}}
                 <input type="file" name="resumeImg" style="margin-left: 70px;" onchange="changePic(event)">
             </div>
             <div>
@@ -294,9 +298,9 @@
     <!-- 작성완료 버튼 -->
     <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
 
-        <a href="/updateResumeForm/{{id}}" type="submit" class="btn btn-light" style="margin-right: 100px;">수정</a>
+        <a href="/resume/{{id}}/updateForm" type="submit" class="btn btn-light" style="margin-right: 100px;">수정</a>
 
-        <form action="/deleteResume/{{id}}" method="post">
+        <form action="/resume/{{id}}/delete" method="post">
             <button type="submit" class="btn btn-light">삭제</button>
         </form>
 
