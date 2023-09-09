@@ -16,7 +16,7 @@ public class UserRequest {
         private String email;
         private String tel;
         private String birth;
-        private String picUrl;
+       
         private String address;
         private int usercode;
     }

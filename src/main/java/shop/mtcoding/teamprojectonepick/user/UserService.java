@@ -31,7 +31,7 @@ public class UserService {
                 .tel(joinDTO.getTel())
                 .birth(joinDTO.getBirth())
                 .usercode(joinDTO.getUsercode())
-                .picUrl(joinDTO.getPicUrl())
+              
                 .build();
         userRepository.save(user);
     }
@@ -160,4 +160,21 @@ public class UserService {
         User user = userRepository.findById(id).get();
         return user;
     }
+
+    @Transactional
+    public void 회원탈퇴(Integer id) {
+
+        User user = userRepository.findById(id).orElseThrow(() -> new MyException("해당 사용자를 찾을 수 없습니다."));
+
+        userRepository.delete(user);
+    }
+
+    @Transactional
+    public void 기업회원탈퇴(Integer id) {
+
+        User user = userRepository.findById(id).orElseThrow(() -> new MyException("기업 사용자를 찾을 수 없습니다."));
+
+        userRepository.delete(user);
+    }
+
 }
