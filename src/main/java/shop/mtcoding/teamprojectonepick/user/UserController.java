@@ -20,7 +20,8 @@ public class UserController {
     private HttpSession session;
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private ResumeRepository resumeRepository;
 
@@ -58,7 +59,13 @@ public class UserController {
     @PostMapping("/userLogin")
     public String userLogin(UserRequest.LoginDTO loginDTO) {
         User sessionUser = userService.유저로그인(loginDTO);
-        // TODO: 공지 팀원!!
+        if (sessionUser.usercode == 1) {
+            session.setAttribute("user", sessionUser);
+
+        } else if (sessionUser.usercode == 2) {
+            session.setAttribute("sessionBiz", sessionUser);
+        }
+
         session.setAttribute("sessionUser", sessionUser);
 
         return "redirect:/";

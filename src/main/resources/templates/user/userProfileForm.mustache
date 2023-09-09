@@ -7,20 +7,40 @@
             <div class="box" style="align-content:  center;">
 
                 <div>
-                    <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
-                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
+                    <img src="./upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
+                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)">
+                 </input>
                 </div>
                 <div style="margin-top: 20px;">
                 </div>
-                <div name="username" value="{{userInfo.username}}" readonly type="text"
-                    style="text-align: center; border: none; font-weight: bold; width: 150px; ">
+                <div style="text-align: center; border: none; font-weight: bold; width: 150px; ">
+                    {{userInfo.username}}
                 </div>
-                <div style="margin-top: 20px; color: var(--font_02);"></div>
-                <input name="email" value="{{userInfo.email}}" readonly style="border: none; width: 150px;"></input>
-                <div style="margin-top: 10px; color: var(--font_02)"></div>
-                <input name="tel" value="{{userInfo.tel}}" readonly style="border: none; width: 150px;">
+                <div style="margin-top: 20px; color: var(--font_02);">
+                    {{userInfo.email}}
+                </div>
+                <div style="border: none; width: 150px;"></div>
+                <div style="margin-top: 10px; color: var(--font_02)">
+                    {{userInfo.tel}}
+                </div>
+                
                 <br>
             </div>
+
+            <div style="text-align: center; border: none; font-weight: bold; width: 150px;">
+
+            </div>
+
+            <div style="margin-top: 20px; color: var(--font_02);"></div>
+            <div style="border: none; width: 150px;">
+                
+            </div>
+
+            <div style="margin-top: 10px; color: var(--font_02)"></div>
+            <div style="border: none; width: 150px;">
+                
+            </div>
+
 
             <hr class="line">
 
@@ -29,28 +49,12 @@
                     <div>지원현황</div>
                     <div>
                         <!-- apply_tb에서 카운트 -->
-                        10
+                        9
                     </div>
-
-
-                    <div style="text-align: center; border: none; font-weight: bold; width: 150px;">
-                        {{userInfo.username}}
-                    </div>
-
-                    <div style="margin-top: 20px; color: var(--font_02);"></div>
-                    <div style="border: none; width: 150px;">
-                        {{userInfo.email}}
-                    </div>
-
-                    <div style="margin-top: 10px; color: var(--font_02)"></div>
-                    <div style="border: none; width: 150px;">
-                        {{userInfo.tel}}
-                    </div>
-
-                    <br>
+                    
 
                 </div>
-                <div style="display: flex; justify-content: space-around;margin-top: 30px;">
+                <div style="display: flex; justify-content: space-around; margin-top: 30px;">
 
                     <div>관심있음</div>
                     <div>
@@ -59,7 +63,7 @@
                     </div>
 
                 </div>
-                <div style="display: flex; justify-content: space-around;margin-top: 30px; margin-bottom: 30px;">
+                <div style="display: flex; justify-content: space-around; margin-top: 30px; margin-bottom: 30px;">
                     <div>받은제안</div>
                     <div>
                         <!-- ??????_tb에서 카운트 -->
@@ -73,7 +77,7 @@
 
             <div style="margin-top: 30px;margin-bottom: 30px;">
                 {{#resumeList}}
-                <a href="/viewResumeForm/{{id}}">이력서관리</a>
+                <a href="/resume/{{id}}/viewResumeForm">이력서관리</a>
                 {{/resumeList}}
             </div>
 
@@ -90,7 +94,7 @@
         <hr class="line">
 
         <div style="margin-top: 30px; margin-bottom: 30px;">
-            <a href="/writeResumeForm">이력서 작성</a>
+            <a href="/resume/writeResumeForm">이력서 작성</a>
         </div>
 
     </div>
