@@ -22,13 +22,13 @@
                 </div>
                 <div style=" margin-top: 20px; color: var(--font_02);">
                 </div>
-                <div style="border: none; width: 150px;">
+                <div style="border: none; width: 150px;color: var(--font_02);">
                     {{userInfo.email}}
                 </div>
 
                 <div style=" margin-top: 10px; color: var(--font_02)">
                 </div>
-                <div style="border: none; width: 150px;">
+                <div style="border: none; width: 150px;color: var(--font_02);">
                     {{userInfo.tel}}
                 </div>
 
@@ -128,6 +128,13 @@
             <div class="grid-box" style="margin-top: 20px; width: 850px; display: grid;  gap: 15; margin-bottom: 20px;"
                 id="notice-box">
             </div>
+
+            <a class="card" href="/notice/writeNoticeForm" style="width:250px; align-items: center;" >
+                <img class="card-img-top" src="/images/new.png" alt="Card image"  style="margin: 10px; height:50px; width:50px; border-radius: 50%; " >
+                <div class="card-body">
+                    <h6 class="card-title" style="text-align: center;">새공고 작성하기</h6>
+                </div>
+            </a>
         </div>
     </div>
 </div>
@@ -143,10 +150,8 @@
     }
 
     function noticeBox(notice) {
-
-
-        return `<div class="card" onclick="location.href="/notice">
-                <img class="card-img-top" style="height:120px; width:130" src="${notice.userImg}" alt="Card image" >
+        return `<div class="card" style="width:250px">
+                <img class="card-img-top" src="${notice.userImg}" alt="Card image" style="height:120px; width:130">
                 <div class="card-body">
                     <h5 class="card-title">${notice.bizName}</h4>
                         <p class="card-text">${notice.workField}</p>
@@ -155,7 +160,7 @@
             </div>`;
     }
     async function download() {
-        let response = await fetch("api/searchNotice");
+        let response = await fetch("api/noticeSession?open=on");
         let responseBody = await response.json();
 
         return responseBody;
