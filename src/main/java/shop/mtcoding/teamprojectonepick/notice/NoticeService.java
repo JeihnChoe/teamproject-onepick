@@ -26,6 +26,7 @@ import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
 import shop.mtcoding.teamprojectonepick.tech.notice.TechNoticeRepository;
+import shop.mtcoding.teamprojectonepick.user.User;
 
 @Service
 public class NoticeService {
@@ -44,7 +45,7 @@ public class NoticeService {
     // 공고등록ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @Transactional
-    public void 공고등록(NoticeRequest.SaveDTO saveDTO, List<Integer> techId) {
+    public void 공고등록(NoticeRequest.SaveDTO saveDTO, List<Integer> techId, Integer sessionUserId) {
 
         UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
         String fileName = uuid + "_" + saveDTO.getUserImg().getOriginalFilename();
@@ -58,7 +59,7 @@ public class NoticeService {
         }
 
         List<TechNotice> techNotices = new ArrayList<>();
-
+        User user = User.builder().id(sessionUserId).build();
         Notice notice = Notice.builder()
                 .open(saveDTO.getOpen())
                 .userImg(fileName)
@@ -73,6 +74,7 @@ public class NoticeService {
                 .mainContent(saveDTO.getMainContent())
                 .deadLine(saveDTO.getDeadLine())
                 .techNotices(techNotices)
+                .user(user)
                 .build();
 
         // 기술스택 리스트넣기
@@ -105,48 +107,36 @@ public class NoticeService {
     // 공고수정ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     @Transactional
-    public void 공고수정하기(Integer id, UpdateDTO updateDTO, List<Integer> techId) {
+    public Notice 공고수정하기(Integer sessionUserId, List<Integer> techId, Integer noticeId, UpdateDTO updateDTO) {// ,
+                                                                                                              // List<Integer>
+                                                                                                              // techId
+
+        // List<TechNotice> techNotices = new ArrayList<>();
+        Notice notice = noticeRepository.findById(noticeId).get();
+        notice.setOpen(updateDTO.getOpen());
+        notice.setSemiTitle(updateDTO.getSemiTitle());
+        notice.setSemiContent(updateDTO.getSemiContent());
+        notice.setWorkField(updateDTO.getWorkField());
+        notice.setBizName(updateDTO.getBizName());
+        notice.setAddress(updateDTO.getAddress());
+        notice.setAddress2(updateDTO.getAddress2());
+        notice.setCareer(updateDTO.getCareer());
+        notice.setEducation(updateDTO.getEducation());
+        notice.setMainContent(updateDTO.getMainContent());
+        notice.setDeadLine(updateDTO.getDeadLine());
 
         UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
         String fileName = uuid + "_" + updateDTO.getUserImg().getOriginalFilename();
+        notice.setUserImg(fileName);
 
-        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
-        try {
-            Files.write(filePath, updateDTO.getUserImg().getBytes());
-        } catch (Exception e) {
-            e.printStackTrace();
+        for (Integer techIds : techId) {
+            Tech tech = techRepository.findById(techIds).get();
+            TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
+            techNoticeRepository.save(techNotice);
+
         }
 
-        List<TechNotice> techNotices = new ArrayList<>();
+        return notice;
+    } // flush (더티체킹)
 
-        // User user = User.builder().id(sessionUserId).build();
-        // Resume resume = resumeRepository.findById(resumeId).get();
-        // resume.setTitle(updateDTO.getTitle());
-
-        Optional<Notice> noticeOP = noticeRepository.findById(id);
-        if (noticeOP.isPresent()) {
-            Notice notice = noticeOP.get();
-            notice.setOpen(updateDTO.getOpen());
-            notice.setSemiTitle(updateDTO.getSemiTitle());
-            notice.setSemiContent(updateDTO.getSemiContent());
-            notice.setWorkField(updateDTO.getWorkField());
-            notice.setBizName(updateDTO.getBizName());
-            notice.setAddress(updateDTO.getAddress());
-            notice.setAddress2(updateDTO.getAddress2());
-            notice.setCareer(updateDTO.getCareer());
-            notice.setEducation(updateDTO.getEducation());
-            notice.setMainContent(updateDTO.getMainContent());
-            notice.setDeadLine(updateDTO.getDeadLine());
-
-            for (Integer techIds : techId) {
-                Tech tech = techRepository.findById(techIds).get();
-                TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
-                techNoticeRepository.save(techNotice);
-
-            }
-
-            noticeRepository.save(notice);
-        } // flush (더티체킹)
-
-    }
 }
