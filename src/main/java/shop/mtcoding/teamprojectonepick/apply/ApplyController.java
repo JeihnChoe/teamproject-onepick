@@ -16,7 +16,7 @@ import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
 
 @Controller
-public class ApplyController {
+public class ApplyController { // 주석
 
     @Autowired
     private ApplyRepository applyRepository; // ApplicationRepository 추가
