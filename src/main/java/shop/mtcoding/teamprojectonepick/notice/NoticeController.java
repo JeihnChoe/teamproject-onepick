@@ -43,19 +43,19 @@ public class NoticeController {
 
     
     @GetMapping("/api/noticeSession")
-    public @ResponseBody List<Notice> findByNotice(@RequestParam(defaultValue = "open") String open) {
+    public @ResponseBody List<Notice> findByNotice(@RequestParam(defaultValue = "on") String open) {
         // User sessionUser = (User) session.getAttribute("sessionUser");
         // if (sessionUser.getUsercode() != 1) {
         // throw new MyApiException("기업 회원이 아닙니다");
         // }
         User sessionUser = (User) session.getAttribute("sessionUser");
-
         if (open.equals("on")) {
             return noticeRepository.findByUserId(sessionUser.getId(), "on");
         } else if (open.equals("off")) {
             return noticeRepository.findByUserId(sessionUser.getId(), "off");
         } else {
             return noticeRepository.findAll();
+            
         }
 
     }

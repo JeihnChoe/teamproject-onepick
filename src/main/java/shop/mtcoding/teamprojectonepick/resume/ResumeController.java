@@ -29,6 +29,9 @@ public class ResumeController {
         private ResumeService resumeService;
 
         @Autowired
+        private ResumeRepository resumeRepository;
+
+        @Autowired
         private TechResumeRepository techResumeRepository;
 
         @Autowired
@@ -46,7 +49,8 @@ public class ResumeController {
                 List<Tech> techs = techRepository.findAll();
                 List<ResumeResponse.TechDTO> techDTOs = new ArrayList<>();
                 for (Tech tech : techs) {
-                        ResumeResponse.TechDTO techDTO = new ResumeResponse.TechDTO(tech.getId(), tech.getTechname(), true);
+                        ResumeResponse.TechDTO techDTO = new ResumeResponse.TechDTO(tech.getId(), tech.getTechname(),
+                                        true);
                         techDTOs.add(techDTO);
                 }
                 request.setAttribute("techs", techDTOs);
@@ -80,7 +84,7 @@ public class ResumeController {
         // 완료
         @PostMapping("/resume/{id}/deleteResume")
         public @ResponseBody String delete(@PathVariable Integer id) {
-                resumeService.삭제하기(id); 
+                resumeService.삭제하기(id);
                 return Script.href("/userProfileForm", "삭제되었습니다.");
         }
 
@@ -88,13 +92,12 @@ public class ResumeController {
         public String updateResumeForm(@PathVariable Integer id, Model model) {
                 Resume resume = resumeService.이력서상세보기(id);
                 List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResumeJoinUser(id);
-                
+
                 List<Tech> techs = techRepository.findAll();
-                
+
                 // 태그 디티오
                 model.addAttribute("techs", techs);
-                
-                
+
                 model.addAttribute("resume", resume);
                 // System.out.println("테스트 : " + checkedTechs);
                 model.addAttribute("techResumes", techResumes);
@@ -108,6 +111,18 @@ public class ResumeController {
                 System.out.println("테스트 : " + id);
                 // resumeService.이력서수정하기(updateDTO, techId, sessionUser.getId(), id);
                 return "redriect:/";
+        }
+
+        @GetMapping("/api/resumeSession")
+        public @ResponseBody List<Resume> findByUserId() {
+
+                // User sessionUser = (User) session.getAttribute("sessionUser");
+                // if (sessionUser.getUsercode() != 1) {
+                // throw new MyApiException("기업 회원이 아닙니다");
+                // }
+                User sessionUser = (User) session.getAttribute("sessionUser");
+                return resumeRepository.findByUserId(sessionUser.getId());
+
         }
 
 }

@@ -67,6 +67,7 @@ public class Notice {
         private String deadLine; // 마감일
 
         // 회사랑 포링키 엮어주기
+        @JsonIgnore
         @ManyToOne(fetch = FetchType.LAZY)
         private User user; // 1+N
 

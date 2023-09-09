@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -105,11 +108,13 @@ public class Resume {
     private String resumeImg;
 
     // @JsonIgnoreProperties({"password", "email", "createdAt"}) 나중에 필요하면 쓰기
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
     // @JsonIgnoreProperties({ "resume" }) // 무한 직렬화 막아줌. ajax쓸 때 사용. Reply내부의
     // board를 안주겠다.??
+    @JsonIgnore
     @OneToMany(mappedBy = "resume", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TechResume> techResume = new ArrayList<>();
 

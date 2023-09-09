@@ -165,7 +165,7 @@
             </div>`;
     }
     async function download() {
-        let response = await fetch("api/noticeSession?open=on");
+        let response = await fetch("/api/noticeSession");
         let responseBody = await response.json();
 
         return responseBody;
