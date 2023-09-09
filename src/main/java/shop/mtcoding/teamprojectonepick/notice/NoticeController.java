@@ -1,5 +1,6 @@
 package shop.mtcoding.teamprojectonepick.notice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -104,12 +105,16 @@ public class NoticeController {
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // 공고수정 1번ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-    @GetMapping("/notice/updateNoticeForm/{id}")
+    @GetMapping("/notice/{id}/updateNoticeForm/")
     public String updateNoticeForm(@PathVariable Integer id, Model model) {
         Notice notice = noticeService.공고조회(id);
         List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
         List<Tech> techs = techRepository.findAll();
-        model.addAttribute("techs", techs);
+
+        // 공고 기술스택 체크한 부분 DTO로 파싱
+        ArrayList<NoticeResponse.TechDTO> techDTOs = noticeService.techParse(techs, techNotices);
+
+        model.addAttribute("techDTOs", techDTOs);
         model.addAttribute("notice", notice); // request에 담는 것과 동일
         model.addAttribute("techNotices", techNotices);
         System.out.println("테스트 : 모델에 담아서 폼으로 보내는 단계");
@@ -121,12 +126,13 @@ public class NoticeController {
     @PostMapping("/notice/{id}/update")
     public String updateNotice(@PathVariable Integer id, @RequestParam(name = "tech-notice") List<Integer> techId,
             NoticeRequest.UpdateDTO updateDTO) {
+
         User sessionUser = (User) session.getAttribute("sessionUser");
         System.out.println("테스트: 아이디 받아와서 업데이트하기 전");
         // where 데이터, body, session값
         noticeService.공고수정하기(sessionUser.getId(), techId, id, updateDTO);
         System.out.println("테스트: 아이디 받아와서 업데이트한 후 메인으로 복귀");
-        return "redirect:/bizProfileForm";
+        return "redirect:/user/bizProfileForm";
     }
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

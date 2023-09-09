@@ -1,18 +1,19 @@
 {{>/layout/header}}
-<form action="/notice/{{id}}/update" method="post" enctype="multipart/form-data">
+<form action="/notice/{{id}}/update" name="updateDTO" method="post" enctype="multipart/form-data">
     <div class="main-container" style="display: flex; flex-direction: column;">
         <div style="margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: row;  margin: 20px; ">
                 <div style="margin-right: 20px;">공고 공개여부</div>
-                <input type="radio" id="on" name="open" value="on">
+                <input type="radio" id="on" name="open" {{#notice.open}}checked{{/notice.open}} value="{{notice.open}}">
                 <label for="on">공개</label>
-                <input type="radio" id="off" name="open" value="off" style="margin-left: 50px;">
+                <input type="radio" id="off" name="open" {{#notice.open}}checked{{/notice.open}} value="{{notice.open}}"
+                    style="margin-left: 50px;">
                 <label for="off">비공개</label>
             </div>
             <br>
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column;">
-                    <img class="box" src="/upload/{{notice.userImg}}"
+                    <img class="box" src="/upload/{{notice.userImg}}" name="previewImg"
                         style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%; "
                         id="preview">
                     </img>
@@ -53,7 +54,8 @@
                     </div>
                     <div class="box-invisible" style="width: fit-content; margin-left: 0;">
 
-                        <input class="input-box" type="text" name="workField" placeholder={{notice.workField}}>
+                        <input class="input-box" type="text" name="workField" placeholder="입력하세요.."
+                            value="{{notice.workField}}">
                     </div>
                 </div>
             </div>
@@ -64,8 +66,8 @@
                         기업명
                     </div>
                     <div class="box-invisible" style="width: fit-content; margin-left: 0;">
-                        <input class="input-box" type="text" name="bizName" placeholder={{notice.bizName}}
-                            style=" margin-left: 0;">
+                        <input class="input-box" type="text" name="bizName" placeholder="입력하세요.."
+                            value="{{notice.bizName}}" style=" margin-left: 0;">
                     </div>
                 </div>
             </div>
@@ -185,12 +187,13 @@
 
             <div style=" display: flex; flex-direction: column; margin-top: 30px;">
                 <br>
-                {{#techs}}
+                {{#techDTOs}}
                 <div style=" display: flex; flex-direction: row;">
-                    <input type="checkbox" name="tech-notice" value="{{id}}">
+                    <input type="checkbox" name="tech-notice" name="tech-resume" value="{{id}}"
+                        {{#checked}}checked{{/checked}}>
                     <div style="margin-right: 10px;">{{techname}}</div>
                 </div>
-                {{/techs}}
+                {{/techDTOs}}
             </div>
         </div>
         <div style="display: flex; flex-direction: column; margin-top: 30px;">

@@ -147,7 +147,7 @@ public class UserController {
 
     // 기업 변동사항
 
-    @GetMapping("/bizProfileForm")
+    @GetMapping("/user/bizProfileForm")
     public String bizProfileForm(Model model) {
         User sessionUser = (User) session.getAttribute("sessionUser");
         User user = userService.기업회원프로필조회(sessionUser.getId());

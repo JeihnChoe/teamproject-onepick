@@ -44,7 +44,7 @@ public class NoticeRequest {
 
     @Data
     @AllArgsConstructor
-    public class UpdateDTO {
+    public static class UpdateDTO {
         private String open;
         private MultipartFile userImg;
         private String semiTitle;
@@ -58,6 +58,7 @@ public class NoticeRequest {
         private String mainContent;
         private String deadLine;
         private String techNotice;
+        private String previewImg;
     }
 
 }

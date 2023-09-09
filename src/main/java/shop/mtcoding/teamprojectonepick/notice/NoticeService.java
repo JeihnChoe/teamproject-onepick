@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import shop.mtcoding.teamprojectonepick._core.error.ex.MyException;
 import shop.mtcoding.teamprojectonepick._core.vo.MyPath;
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequest.UpdateDTO;
-
+import shop.mtcoding.teamprojectonepick.notice.NoticeResponse.TechDTO;
 import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
@@ -94,6 +94,8 @@ public class NoticeService {
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     public Notice 공고조회(Integer id) {
         Optional<Notice> noticeOP = noticeRepository.findById(id);
+        Notice notice = noticeOP.get();
+        String open = notice.getOpen();
         return noticeOP.get();
     }
 
@@ -129,6 +131,13 @@ public class NoticeService {
         String fileName = uuid + "_" + updateDTO.getUserImg().getOriginalFilename();
         notice.setUserImg(fileName);
 
+        Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
+        try {
+            Files.write(filePath, updateDTO.getUserImg().getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         for (Integer techIds : techId) {
             Tech tech = techRepository.findById(techIds).get();
             TechNotice techNotice = TechNotice.builder().notice(notice).tech(tech).build();
@@ -139,4 +148,23 @@ public class NoticeService {
         return notice;
     } // flush (더티체킹)
 
+    @Transactional
+    public ArrayList<NoticeResponse.TechDTO> techParse(List<Tech> techs, List<TechNotice> techNotices) {
+        ArrayList<NoticeResponse.TechDTO> techDTOs = new ArrayList<>();
+
+        for (Tech tech : techs) {
+            NoticeResponse.TechDTO techDTO = new TechDTO();
+            techDTO.setId(tech.getId());
+            techDTO.setTechname(tech.getTechname());
+
+            for (TechNotice techNotice : techNotices) {
+                if (techNotice.getTech().getId() == tech.getId()) {
+                    techDTO.setChecked(true);
+                }
+            }
+            techDTOs.add(techDTO);
+        }
+
+        return techDTOs;
+    }
 }
