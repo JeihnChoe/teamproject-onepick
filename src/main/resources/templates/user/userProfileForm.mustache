@@ -6,16 +6,15 @@
         <div class="box" style="width: 200px; margin-top: 20px; text-align: center; ">
             <div class="box" style="align-content:  center;">
 
-
                 <div>
                     {{#userInfo.picUrl}}
-                    <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
+                    <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;" />
                     {{/userInfo.picUrl}}
                     {{^userInfo.picUrl}}
-                    <img src="/upload/_default_img.png" style="border-radius: 50%; width: 150px; height: 150px;">
+                    <img src="/upload/_default_img.png" style="border-radius: 50%; width: 150px; height: 150px;" />
                     {{/userInfo.picUrl}}
-                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)">
-                 </input>
+                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
+
                 </div>
                 <div style="margin-top: 20px;">
                 </div>
@@ -29,7 +28,7 @@
                 <div style="margin-top: 10px; color: var(--font_02)">
                     {{userInfo.tel}}
                 </div>
-                
+
                 <br>
             </div>
 
@@ -39,12 +38,12 @@
 
             <div style="margin-top: 20px; color: var(--font_02);"></div>
             <div style="border: none; width: 150px;">
-                
+
             </div>
 
             <div style="margin-top: 10px; color: var(--font_02)"></div>
             <div style="border: none; width: 150px;">
-                
+
             </div>
 
 
@@ -57,7 +56,7 @@
                         <!-- apply_tb에서 카운트 -->
                         9
                     </div>
-                    
+
 
                 </div>
                 <div style="display: flex; justify-content: space-around; margin-top: 30px;">
@@ -147,72 +146,57 @@
                     불합격
                 </div>
             </div>
-
-
-
-
         </div>
 
         <!--오른쪽 2번째박스-->
-        <div class="box"
-            style="margin-top: 20px; width: 850px; display: grid; grid-template-columns: repeat(3,1fr); gap: 15; margin-bottom: 20px;">
-
+        <div class="box">
 
             <!--내부박스-->
-            <div style="width: 230px; height: 280px; margin-top: 15px; margin-bottom: 15px;">
-
-                <!--사진창-->
-                <div style="align-content: center;">
-                    <img src="/images/공고사진.png" style="border-radius: 15px; width: 240px;">
+            <div class="grid-box" style="margin-top: 20px; width: 850px; display: grid;  gap: 15; margin-bottom: 20px;"
+                id="resume-box"></div>
+            <a class="card" href="/resume/writeForm" style="width:250px; align-items: center;">
+                <img class="card-img-top" src="/images/new.png" alt="Card image"
+                    style="margin: 10px; height:50px; width:50px; border-radius: 50%; ">
+                <div class="card-body">
+                    <h6 class="card-title" style="text-align: center;">새 이력서 작성하기</h6>
                 </div>
-
-                <!--공고명 / 하트표시-->
-                <div style="display: flex; justify-content: space-between;">
-                    <div style=" margin : 10px; font-weight: bold; font-size: 22px;">notice_tb - title</div>
-                    <div style="margin-right: 0;">ㅁ</div>
-                </div>
-
-                <!--채용포지션-->
-                <div style="color: var(--font_01);margin : 10px; font-size: 18px;">채용포지션</div>
-
-                <!--회사명-->
-                <div style="color: var(--font_03); margin : 10px;font-size: 15px;">회사명</div>
-
-                <!--채용지역-->
-                <div style="color: var(--font_03);  margin : 10px; font-size: 15px;">채용지역</div>
-
-            </div>
-
-            <!--내부박스-->
-            <div style="width: 230px; height: 280px; margin-top: 15px; margin-bottom: 15px;">
-
-                <!--사진창-->
-                <div style="align-content: center;">
-                    <img src="/images/공고사진.png" style="border-radius: 15px; width: 240px;">
-                </div>
-
-                <!--공고명 / 하트표시-->
-                <div style="display: flex; justify-content: space-between;">
-                    <div style=" margin : 10px; font-weight: bold; font-size: 22px;">notice_tb - title</div>
-                    <div style="margin-right: 0;">ㅁ</div>
-                </div>
-
-                <!--채용포지션-->
-                <div style="color: var(--font_01);margin : 10px; font-size: 18px;">채용포지션</div>
-
-                <!--회사명-->
-                <div style="color: var(--font_03); margin : 10px;font-size: 15px;">회사명</div>
-
-                <!--채용지역-->
-                <div style="color: var(--font_03);  margin : 10px; font-size: 15px;">채용지역</div>
-
-            </div>
+            </a>
         </div>
-
     </div>
 
 </div>
+
+</div>
 </body>
+
+<script>
+    render();
+
+    async function render() {
+        let responseBody = await download();
+        responseBody.forEach((resume) => {
+            $("#resume-box").append(resumeBox(resume));
+        });
+    }
+
+    function resumeBox(resume) {
+        return `<div class="card" style="width:250px">
+                
+                <div class="card-body">
+                    
+                    <a h5 class="card-title" href="/resume/{id}/viewResumeForm">${resume.title}</h4>
+                        
+                </div>
+            </div>`;
+    }
+    async function download() {
+        let response = await fetch("/api/resumeSession");
+        let responseBody = await response.json();
+
+        return responseBody;
+    }
+
+</script>
 
 
 {{>/layout/footer}}

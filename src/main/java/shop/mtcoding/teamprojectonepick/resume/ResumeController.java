@@ -30,6 +30,9 @@ public class ResumeController {
         private ResumeService resumeService;
 
         @Autowired
+        private ResumeRepository resumeRepository;
+
+        @Autowired
         private TechResumeRepository techResumeRepository;
 
         @Autowired
@@ -46,7 +49,14 @@ public class ResumeController {
 
                 List<Tech> techs = techRepository.findAll();
 
-                request.setAttribute("techs", techs);
+                List<ResumeResponse.TechDTO> techDTOs = new ArrayList<>();
+                for (Tech tech : techs) {
+                        ResumeResponse.TechDTO techDTO = new ResumeResponse.TechDTO(tech.getId(), tech.getTechname(),
+                                        true);
+                        techDTOs.add(techDTO);
+                }
+                request.setAttribute("techs", techDTOs);
+
                 return "/resume/writeResumeForm";
         }
 
@@ -87,6 +97,7 @@ public class ResumeController {
                 List<TechResume> techResumes = techResumeRepository.mFindByIdJoinResumeJoinUser(id);
 
                 List<Tech> techs = techRepository.findAll();
+
                 List<ResumeResponse.TechDTO> techDTOs = new ArrayList<>();
                 for (Tech tech : techs) {
                         boolean checked = false;
@@ -101,6 +112,8 @@ public class ResumeController {
                 // 태그 디티오
                 model.addAttribute("techs", techs); // 이거 삭제
                 model.addAttribute("testDTOs", techDTOs);
+
+                // 태그 디티오
 
                 model.addAttribute("resume", resume);
                 model.addAttribute("eduDTO", new ResumeResponse.EduDTO(resume.getEducation()));
@@ -117,6 +130,18 @@ public class ResumeController {
                 System.out.println(updateDTO.getTitle());
                 resumeService.이력서수정하기(updateDTO, id, sessionUser.getId());
                 return "redirect:/";
+        }
+
+        @GetMapping("/api/resumeSession")
+        public @ResponseBody List<Resume> findByUserId() {
+
+                // User sessionUser = (User) session.getAttribute("sessionUser");
+                // if (sessionUser.getUsercode() != 1) {
+                // throw new MyApiException("기업 회원이 아닙니다");
+                // }
+                User sessionUser = (User) session.getAttribute("sessionUser");
+                return resumeRepository.findByUserId(sessionUser.getId());
+
         }
 
 }

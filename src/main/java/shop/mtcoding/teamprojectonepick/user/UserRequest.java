@@ -17,6 +17,7 @@ public class UserRequest {
         private String tel;
         private String birth;
         private String picUrl;
+        private String address;
         private int usercode;
     }
 
@@ -29,6 +30,8 @@ public class UserRequest {
         private String email;
         private String tel;
         private String bizname;
+        private String address;
+        private String address2;
         private int usercode;
     }
 
