@@ -5,11 +5,15 @@
 
         <div class="box" style="width: 200px; margin-top: 20px; text-align: center; ">
             <div class="box" style="align-content:  center;">
-
                 <div>
-                    <img src="./upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;">
-                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)">
-                 </input>
+                {{#userInfo.picUrl}}
+                <img src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;"/>
+                {{/userInfo.picUrl}}
+                {{^userInfo.picUrl}}
+                <img src="/upload/_default_img.png" style="border-radius: 50%; width: 150px; height: 150px;"/>
+                {{/userInfo.picUrl}}
+                    <input hidden name="pic" style="margin-left: 70px;" onchange="changePic(event)"/>
+                 
                 </div>
                 <div style="margin-top: 20px;">
                 </div>
