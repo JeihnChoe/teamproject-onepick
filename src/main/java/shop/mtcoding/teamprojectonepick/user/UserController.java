@@ -15,7 +15,7 @@ import shop.mtcoding.teamprojectonepick.resume.Resume;
 import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
 
 @Slf4j
-@Controller
+@Controller // 얘는 페이지 반환 용도, 얘는 페이지를 반환
 public class UserController {
     @Autowired
     private HttpSession session;
@@ -89,6 +89,11 @@ public class UserController {
 
     @PostMapping("/userJoin") // 회원가입포스트
     public String userJoin(UserRequest.JoinDTO joinDTO) {
+        // 비밀번호랑 비밀번호 확인이 같지 않으면 오류 발생
+        if (!joinDTO.getPassword().equals(joinDTO.getPasswordConfirm())) {
+            // TODO 예외 클래스 만들어서 ControllerAdvice에서 처리하기!!
+            throw new RuntimeException("비밀번호가 동일하지 않음!!");
+        }
 
         userService.유저회원가입(joinDTO);
 
@@ -97,6 +102,10 @@ public class UserController {
 
     @PostMapping("/bizUserJoin") // 기업회원가입 포스트
     public String bizUserJoin(UserRequest.BizJoinDTO bizjoinDTO) {
+        if (!bizjoinDTO.getPassword().equals(bizjoinDTO.getPasswordConfirm())) {
+            // TODO 예외 클래스 만들어서 ControllerAdvice에서 처리하기!!
+            throw new RuntimeException("비밀번호가 동일하지 않음!!");
+        }
 
         userService.기업유저회원가입(bizjoinDTO);
 

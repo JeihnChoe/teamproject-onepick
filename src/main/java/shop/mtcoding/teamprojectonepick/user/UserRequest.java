@@ -1,5 +1,6 @@
 package shop.mtcoding.teamprojectonepick.user;
 
+import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
@@ -7,25 +8,40 @@ import lombok.Setter;
 import lombok.ToString;
 
 public class UserRequest {
-    @Getter
-    @Setter
+    @Data
     public static class JoinDTO {
         private String loginId;
+        private boolean loginIdCheck;
         private String password;
+        private String passwordConfirm;
         private String username;
         private String email;
         private String tel;
         private String birth;
-       
+
         private String address;
         private int usercode;
+    }
+
+    @Data
+    public static class LoginIdCheckDTO {
+        private String loginId;
+    }
+
+    @Getter
+    @Setter
+    public static class PasswordRequestDTO {
+        private String password;
+        private String confirmPassword;
     }
 
     @Getter
     @Setter
     public static class BizJoinDTO {
         private String loginId;
+        private boolean loginIdCheck;
         private String password;
+        private String passwordConfirm;
         private String username;
         private String email;
         private String tel;
