@@ -9,13 +9,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import shop.mtcoding.teamprojectonepick._core.error.ex.MyApiException;
 import shop.mtcoding.teamprojectonepick._core.util.Script;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
@@ -48,7 +48,10 @@ public class ResumeController {
                 // request.setAttribute("techResume", techResume);
 
                 List<Tech> techs = techRepository.findAll();
-
+                User sessionUser = (User) session.getAttribute("sessionUser");
+                if (sessionUser == null) {
+                        throw new MyApiException("로그인 후 이용해주세요");
+                }
                 List<ResumeResponse.TechDTO> techDTOs = new ArrayList<>();
                 for (Tech tech : techs) {
                         ResumeResponse.TechDTO techDTO = new ResumeResponse.TechDTO(tech.getId(), tech.getTechname(),
@@ -110,7 +113,7 @@ public class ResumeController {
                 }
 
                 // 태그 디티오
-                model.addAttribute("techs", techs); // 이거 삭제
+                // model.addAttribute("techs", techs); // 이거 삭제
                 model.addAttribute("testDTOs", techDTOs);
 
                 // 태그 디티오
@@ -123,12 +126,13 @@ public class ResumeController {
         }
 
         @PostMapping("/resume/{id}/update")
-        public String updateResume(@PathVariable Integer id, ResumeRequest.UpdateDTO updateDTO) {
+        public String updateResume(@PathVariable Integer id, ResumeRequest.UpdateDTO updateDTO,
+                        @RequestParam(name = "tech-resume") List<Integer> techId) {
                 User sessionUser = (User) session.getAttribute("sessionUser");
                 // System.out.println("테스트 : " + techId);
                 System.out.println("테스트1 : " + id);
                 System.out.println(updateDTO.getTitle());
-                resumeService.이력서수정하기(updateDTO, id, sessionUser.getId());
+                resumeService.이력서수정하기(updateDTO, techId, id, sessionUser.getId());
                 return "redirect:/";
         }
 
