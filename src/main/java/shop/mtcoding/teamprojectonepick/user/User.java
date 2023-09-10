@@ -22,7 +22,6 @@ public class User {
     @Id
     // 유저
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     Integer id;
 
     @Column(nullable = false, length = 10000)

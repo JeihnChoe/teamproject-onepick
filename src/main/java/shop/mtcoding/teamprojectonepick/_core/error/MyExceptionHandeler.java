@@ -13,6 +13,9 @@ import shop.mtcoding.teamprojectonepick._core.util.Script;
 @RestControllerAdvice
 @Slf4j
 public class MyExceptionHandeler {
+
+    // TODO request -> filter -> dispatcherServlet -> interceptor -> controllerAdvice & restControllerAdvice -> controller -> service
+
     @ExceptionHandler(MyException.class)
     public String error(MyException e) {
         log.error("error", e);
