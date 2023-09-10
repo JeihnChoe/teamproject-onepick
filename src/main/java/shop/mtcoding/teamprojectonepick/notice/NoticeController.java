@@ -60,6 +60,7 @@ public class NoticeController {
 
     @GetMapping("/detailNoticeForm")
     public String detailNoticeForm() {
+       
         return "/notice/detailNoticeForm";
     }
 

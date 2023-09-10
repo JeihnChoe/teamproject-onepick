@@ -3,6 +3,7 @@ package shop.mtcoding.teamprojectonepick.user;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,10 @@ public class UserService {
 
     @Transactional
     public void 유저회원가입(UserRequest.JoinDTO joinDTO) {
+        if (!joinDTO.isLoginIdCheck()) {
+            throw new LoginIdNotCheckedException();
+        }
+
         User user = User.builder()
                 .loginId(joinDTO.getLoginId())
                 .password(joinDTO.getPassword())
@@ -31,13 +36,16 @@ public class UserService {
                 .tel(joinDTO.getTel())
                 .birth(joinDTO.getBirth())
                 .usercode(joinDTO.getUsercode())
-              
+
                 .build();
         userRepository.save(user);
     }
 
     @Transactional
     public void 기업유저회원가입(UserRequest.BizJoinDTO bizjoinDTO) {
+           if (!bizjoinDTO.isLoginIdCheck()) {
+            throw new LoginIdNotCheckedException();
+        }
 
         User user = User.builder()
                 .loginId(bizjoinDTO.getLoginId())
@@ -176,5 +184,24 @@ public class UserService {
 
         userRepository.delete(user);
     }
+    @Transactional
+    public void resetPassword(Integer loginId, String newPassword) {
+        // 사용자 ID를 기반으로 사용자 정보를 조회.
+        User user = userRepository.findById(loginId).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
+        // 새로운 비밀번호로 업데이트.
+        user.setPassword(newPassword);
+
+        // 변경된 비밀번호를 저장.
+        userRepository.save(user);
+    }
+
+    public boolean 로그인아이디중복체크(String loginId) {
+        // true가 아니면? 그 아이디를 쓰는 사람이 있음. 오류 발생!!
+        if (!userRepository.findByLoginId(loginId).isEmpty()) {
+            throw new LoginIdDuplicatedException();
+        }
+
+        return true;
+    }
 }

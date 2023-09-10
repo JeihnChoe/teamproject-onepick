@@ -5,7 +5,7 @@
             <h2>당신의 픽 OnePick</h2>
             <h2>환영해요. 기업담당자님</h2>
         </div>
-        <form id="bizlogin-form" action="/bizUserJoin" method="post">
+        <form id="bizlogin-form" action="/bizUserJoin" method="post" name="bizjoinDTO">
             <div class="body-container">
                 <div style="margin-left: 50px; margin-right: 100px;">
                     <br>
@@ -17,8 +17,27 @@
                             ID
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="baronjae" name="loginId">
-                            </input>
+                            <input id="login-id-input" class="input-box" contenteditable="true" placeholder="baronjae" name="loginId">
+                            <input id="login-id-check-input" hidden="hidden" type="radio" name="loginIdCheck">
+                            <button type="button" onclick="(() => {
+                                    $.post({
+                                        type: 'POST',
+                                        url: '/api/users/login-id-check',
+                                        data: JSON.stringify({
+                                            loginId: $('#login-id-input').val()
+                                        }),
+                                        contentType: 'application/json',
+                                        success: function (data) {
+                                            alert(data)
+                                            $('#login-id-check-input').attr('checked', 'checked')
+                                            $('#login-id-input').attr('readonly', 'readonly')
+                                        },
+                                        error: function (req) {
+                                            alert(req.responseText)
+                                        }
+                                    })
+                                })()">중복확인
+                            </button>
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
@@ -27,8 +46,7 @@
                             비밀번호
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="1234" name="password">
-                            </input>
+                            <input  id="password-input" type="password" class="input-box" contenteditable="true" placeholder="1234" name="password">
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
@@ -37,8 +55,7 @@
                             비밀번호확인
                         </div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="1234">
-                            </input>
+                            <input id="password-check-input" type="password"s class="input-box" contenteditable="true" placeholder="1234" name="passwordConfirm">
                         </div>
                     </div>
 
@@ -89,7 +106,25 @@
                 <br>
                 <br>
                 <div style="display: flex; justify-content: center;">
-                    <button type="submit" class="button">회원가입하기</button>
+                    <button type="button" class="button" onclick="(() => {
+                        // jquery
+                        const passwordValue = $('#password-input').val()
+                        if (passwordValue.length < 6) {
+                            alert('비밀번호는 6자 이상이어야 합니다.')
+                            $('#password-input').focus()
+                            return;
+                        }
+
+                        const passwordCheckValue = $('#password-check-input').val()
+                        if (passwordValue !== passwordCheckValue) {
+                            alert('비밀번호가 일치하지 않습니다.')
+                            $('#password-check-input').focus()
+                            // 비밀번호 일치하지 않으면 여기서 끝. 폼 전송 안됌
+                            return
+                        }
+                        // 폼 전송
+                        document.bizjoinDTO.submit()
+                    })()">회원가입하기</button>
                 </div>
 
             </div>
