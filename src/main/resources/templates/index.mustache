@@ -9,12 +9,11 @@
             <div style="margin-top: 25px; display: flex; margin-right: 500px;align-self: center; ">
                 <h5 style="margin: 8px;;color: var(--font_01);">직무</h5>
                 <div>
-                    <select id="workField" class="form-control">
+                    <select id="workField1" class="form-control">
                         <option value="전체">전체</option>
                         <option value="백엔드">백엔드</option>
-                        <option value="프론트엔드">프론트엔드</option>
+                        <option value="프론트">프론트</option>
                         <option value="앱개발">앱개발</option>
-
                     </select>
                 </div>
             </div>
@@ -63,54 +62,47 @@
 
         <h6>총 2,111건</h6>
         <hr class="line">
-
-
-
         <div class="grid-box" id="notice-box">
 
-
-
-
         </div>
-
     </div>
-
 </div>
 
-<script>
-    render();
 
-    $("#open", "#workField", "#address", "#career", "#education").change(() => {
-        let value = $("#open", "#workField", "#address", "#career", "#education").val();
-        alert(value);
+
+<script>
+    render('');
+
+
+    $("#workField").change(() => {
+        let value = $("#workField").val();
         render(value);
     });
 
-    async function render() {
-        let responseBody = await download();
-        responseBody.forEach((Notice) => {
-            $("#notice-box").append(noticeBox(Notice));
+    async function render(value) {
+        $("#notice-box").html("");
+        let responseBody = await download(value);
+        responseBody.forEach((notice) => {
+            $("#notice-box").append(noticeBox(notice));
         });
     }
 
-    function noticeBox(Notice) {
+    function noticeBox(notice) {
         return `<div class="card" style="width:250px">
                 <div class="card-body">
-                    <h5 class="card-title">${Notice.career}</h4>
-                        <p class="card-text">${Notice.workField}</p>
-                        <p class="card-text">${Notice.address} ${Notice.education}</p>
+                    <h4 class="card-title">${notice.career}</h4>
+                        <p class="card-text">${notice.workField}</p>
+                        <p class="card-text">${notice.address} ${notice.education}</p>
                 </div>
             </div>`;
     }
-    async function download() {
-        let response = await fetch("/api/noticeIndex?open=" + Notice.open + "&workField=" + Notice.workField + "&address=" + Notice.address + "&career=" + Notice.career + "&education=" + Notice.education);
-        console.log("테스트" + response)
+    async function download(value) {
+        let response = await fetch("/api/noticeIndex?");
         let responseBody = await response.json();
-
-
 
         return responseBody;
     }
+
 
 </script>
 

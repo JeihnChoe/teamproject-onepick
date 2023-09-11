@@ -32,6 +32,20 @@ values('저는 학점이 4.5인 만점자입니다!', '간단한닥나단', '안
 insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
 values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '서울', '광진구', '신입', '대졸', '메인컨텐츠','종료일',4);
 insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('엘지', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '서울', '광진구', '신입', '대졸', '메인컨텐츠','종료일',5);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '서울', '광진구', '1~2년차', '고졸', '메인컨텐츠','종료일',4);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '부산', '동래구', '신입', '대학원졸', '메인컨텐츠','종료일',4);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','프론트', '부산', '동래구', '신입', '대학원졸', '메인컨텐츠','종료일',4);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '서울', '광진구', '신입', '대졸', '메인컨텐츠','종료일',4);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','프론트', '서울', '광진구', '신입', '대졸', '메인컨텐츠','종료일',4);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','프론트', '서울', '광진구', '3~5년차', '대졸', '메인컨텐츠','종료일',4);
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
 values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','앱개발', '부산', '광진구', '1~2년차', '무관', '메인컨텐츠','종료일',4);
 insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
 values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','프론트', '서울', '광진구', '3~5년차', '고졸', '메인컨텐츠','종료일',4);
@@ -49,7 +63,8 @@ insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_fi
 values('카카오', 'on', '/upload/kakao.png', '[카카오] 백엔드 개발자 구합니다.', '카카오어플을 만드는 회사입니다.','백엔드',  '서울', '광진구', '3~5년차', '대졸', '메인컨텐츠','종료일',6);
 insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
 values('카카오', 'off', '/upload/kakao.png', '[카카오] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드',  '서울', '광진구', '6년차이상', '대학원졸이상', '메인컨텐츠','종료일',6);
-
+insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
+values('삼성', 'off', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '서울', '광진구', '신입', '대졸', '메인컨텐츠','종료일',4);
 
 
 -- tech_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

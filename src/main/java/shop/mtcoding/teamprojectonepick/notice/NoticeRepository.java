@@ -24,8 +24,4 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
     // @Param("address") String address, @Param("career") String career,
     // @Param("education") String education);
 
-    @Query("select n from Notice n where n.open=:open and n.workField = :workField and n.address = :address and n.career = :career and n.education= :education")
-    List<MyIndexDTO> findByIndexDTO(@Param("open") String open, @Param("workField") String workField,
-            @Param("address") String address, @Param("career") String career, @Param("education") String education);
-
 }
