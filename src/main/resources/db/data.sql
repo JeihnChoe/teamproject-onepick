@@ -30,7 +30,7 @@ values('저는 학점이 4.5인 만점자입니다!', '간단한닥나단', '안
 
 -- notice_tb 더미데이터------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
-values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '서울', '광진구', '신입', '무관', '메인컨텐츠','종료일',4);
+values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','백엔드', '서울', '광진구', '신입', '대졸', '메인컨텐츠','종료일',4);
 insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  
 values('삼성', 'on', '/upload/samsung.png', '[삼성] 백엔드 개발자 구합니다.', '세미컨텐츠','앱개발', '부산', '광진구', '1~2년차', '무관', '메인컨텐츠','종료일',4);
 insert into notice_tb(biz_name,open, user_img, semi_title, semi_content, work_field,  address, address2, career, education, main_content, dead_line,user_id)  

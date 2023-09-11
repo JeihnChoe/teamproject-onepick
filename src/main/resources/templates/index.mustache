@@ -69,6 +69,8 @@
         <div class="grid-box" id="notice-box">
 
 
+
+
         </div>
 
     </div>
@@ -78,26 +80,34 @@
 <script>
     render();
 
+    $("#open", "#workField", "#address", "#career", "#education").change(() => {
+        let value = $("#open", "#workField", "#address", "#career", "#education").val();
+        alert(value);
+        render(value);
+    });
+
     async function render() {
         let responseBody = await download();
-        responseBody.forEach((notice) => {
-            $("#notice-box").append(noticeBox(notice));
+        responseBody.forEach((Notice) => {
+            $("#notice-box").append(noticeBox(Notice));
         });
     }
 
-    function noticeBox(notice) {
+    function noticeBox(Notice) {
         return `<div class="card" style="width:250px">
-                <img class="card-img-top" src="${notice.userImg}" alt="Card image" style="height:120px; width:130">
                 <div class="card-body">
-                    <h5 class="card-title">${notice.bizName}</h4>
-                        <p class="card-text">${notice.workField}</p>
-                        <p class="card-text">${notice.address} ${notice.address2}</p>
+                    <h5 class="card-title">${Notice.career}</h4>
+                        <p class="card-text">${Notice.workField}</p>
+                        <p class="card-text">${Notice.address} ${Notice.education}</p>
                 </div>
             </div>`;
     }
     async function download() {
-        let response = await fetch("api/notice?open=on");
+        let response = await fetch("/api/noticeIndex?open=" + Notice.open + "&workField=" + Notice.workField + "&address=" + Notice.address + "&career=" + Notice.career + "&education=" + Notice.education);
+        console.log("테스트" + response)
         let responseBody = await response.json();
+
+
 
         return responseBody;
     }

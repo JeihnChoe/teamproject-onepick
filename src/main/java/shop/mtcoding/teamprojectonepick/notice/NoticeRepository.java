@@ -14,9 +14,18 @@ public interface NoticeRepository extends JpaRepository<Notice, Integer> {
     // fetch r.user ru where r.id = :id")
     // Notice mFindByIdJoinTechNoticeInUser(@Param("id") Integer id);
 
+    // <DB에서 조회해서 DTO로 바로 받는 법>
+    // @Query("select new shop.mtcoding.teamprojectonepick.notice.MyIndexDTO(n.open,
+    // n.workField, n.address, n.career, n.education) from Notice n where
+    // n.open=:open and n.workField = :workField and n.address = :address and
+    // n.career = :career and n.education= :education")
+    // List<MyIndexDTO> findByIndexDTO(@Param("open") String open,
+    // @Param("workField") String workField,
+    // @Param("address") String address, @Param("career") String career,
+    // @Param("education") String education);
 
     @Query("select n from Notice n where n.open=:open and n.workField = :workField and n.address = :address and n.career = :career and n.education= :education")
-    List<NoticeRequest.IndexDTO> findByIndexDTO(@Param("open") String open, @Param("workField") String workField, @Param("address") String address, @Param("career") String career, @Param("education") String education);
+    List<MyIndexDTO> findByIndexDTO(@Param("open") String open, @Param("workField") String workField,
+            @Param("address") String address, @Param("career") String career, @Param("education") String education);
 
 }
-

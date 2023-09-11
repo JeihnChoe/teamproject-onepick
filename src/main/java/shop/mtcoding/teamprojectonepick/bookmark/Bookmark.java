@@ -1,6 +1,5 @@
 package shop.mtcoding.teamprojectonepick.bookmark;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,5 +33,5 @@ public class Bookmark {
         this.user = user;
         this.resume = resume;
     }
-    
+
 }

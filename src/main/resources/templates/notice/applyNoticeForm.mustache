@@ -1,0 +1,197 @@
+{{>/layout/header}}
+
+<div class="main-container" style="display: flex; flex-direction: column; ">
+    <div style="margin-left: 50px; margin-right: 50px;">
+
+        <br>
+        <div style="display: flex; flex-direction: row; margin: 20px; ">
+            <div style="display: flex; flex-direction: column;">
+                <img class="box" src="/upload/{{notice.userImg}}"
+                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%; "
+                    id="preview">
+                </img>
+            </div>
+            <div>
+                <div>
+                    <div class="box" style="margin-left: 80px;">
+                        <div style="display: flex; flex-direction: row; ">
+                            <textarea class="input-box" id="myTextarea" rows="1" maxlength="200" name="semiTitle"
+                                placeholder="공고의 제목을 입력해주세요" style="height: 30px; width: 600px; resize: none;"
+                                onkeydown="preventEnterKey(event)">{{notice.semiTitle}}</textarea>
+                        </div>
+                        <hr class="line" style="margin: 0;">
+                        <br>
+                        <div style="display: flex; flex-direction: row; align-items: center;">
+                            <textarea class="input-box" id="myTextarea" name="semiContent" rows="4" maxlength="200"
+                                placeholder="간단한 기업소개글 입력해주세요."
+                                style="margin:0; width: 600px; height: 120px; resize: none;"
+                                onkeydown="preventEnterKey(event)">{{notice.semiContent}}</textarea>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div style="font-weight: bold; font-size: 30px; margin-left: 80px; margin-top: 50px;">
+        지원자격 상세</div>
+    <hr class="line" style="margin-top: 10px; margin-left: 80px; margin-right: 80px;">
+    <div style="float: left;">
+        <div class="box-invisible" style="display: flex; flex-direction: row; ">
+            <div class="box-invisible" style="width: 50%; display: flex; flex-direction: row;  margin-left: 50px;">
+                <div class="box-invisible"
+                    style="width: fit-content; margin-left: 30px; margin-right: 10px; font-weight: bold; font-size: 20px; align-self: center;">
+                    채용분야
+                </div>
+                <div class="box-invisible" style="width: fit-content; margin-left: 0;">
+                    {{notice.workField}}
+                </div>
+            </div>
+        </div>
+
+        <div class="box-invisible" style="display: flex; flex-direction: row;">
+            <div class="box-invisible" style="width: 50%; display: flex; flex-direction: row;  margin-left: 50px;">
+                <div class="box-invisible"
+                    style="width: fit-content; margin-left: 30px; margin-right: 10px; font-weight: bold; font-size: 20px; align-self: center;">
+                    기업명
+                </div>
+                <div class="box-invisible" style="width: fit-content; margin-left: 0;">
+                    {{notice.bizName}}
+                </div>
+            </div>
+        </div>
+
+        <div class="box-invisible" style="display: flex; flex-direction: row;">
+            <div class="box-invisible" style="width: 50%; display: flex; flex-direction: row;  margin-left: 50px;">
+                <div class="box-invisible"
+                    style="width: fit-content; margin-left: 30px; margin-right: 10px; font-weight: bold; font-size: 20px;">
+                    근무 지역</div>
+                <div name="address">
+                    {{notice.address}}
+                </div>
+                -
+                <div name="address2">
+                    {{notice.address2}}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="box-invisible" style="display: flex; flex-direction: row;">
+            <div class="box-invisible" style="width: 50%; display: flex; flex-direction: row;  margin-left: 50px;">
+                <div class="box-invisible"
+                    style="width: fit-content; margin-left: 30px; margin-right: 10px; font-weight: bold; font-size: 20px;">
+                    요구 경력</div>
+                <div name="career">
+                    {{notice.career}}
+                </div>
+            </div>
+        </div>
+
+        <div class="box-invisible" style="display: flex; flex-direction: row;">
+            <div class="box-invisible" style="width: 50%; display: flex; flex-direction: row;  margin-left: 50px;">
+                <div class="box-invisible"
+                    style="width: fit-content; margin-left: 30px; margin-right: 10px; font-weight: bold; font-size: 20px;">
+                    요구 학력</div>
+                <div name="education">
+                    {{notice.education}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display: flex; margin-left: 100px; margin-top: 30px" ;>
+        <div style=" font-weight: bold; font-size: 20px; ">기술스택</div>
+
+        <div style=" display: flex; flex-direction: row; margin-top: 30px;">
+            <br>
+            {{#techNotice}}
+            <div style=" display: flex; flex-direction: row;">
+                <div class="box" name="techNotice" style="margin-right: 10px;" value="{{id}}">{{tech.techname}}</div>
+            </div>
+            {{/techNotice}}
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; margin-top: 30px;">
+        <div style="font-weight: bold; font-size: 20px;  margin-left: 110px;">자기소개서</div>
+
+        <div id="myTextarea" class="box" rows="10" name="mainContent"
+            style="width: 1000px; margin-top: 20px; margin-bottom: 20px;">
+            {{notice.mainContent}}
+        </div>
+
+    </div>
+
+
+    <div class="box-invisible" style="display: flex; flex-direction: row;">
+
+        <div class="box-invisible"
+            style="width: fit-content; margin-left:90px; margin-right: 10px; font-weight: bold; font-size: 20px;">
+            마감일</div>
+        <div class="box" name="deadLine" style="width: 110px; margin-left: 0px;">
+            {{notice.deadLine}}
+        </div>
+    </div>
+    <div class="box-invisible" style="display: flex; justify-content: center;">
+
+        <div class="button" action="/apply/{{id}}" method="post">
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                "지원하기"
+            </button>
+
+
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div style="margin-right: 0;">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                style="margin-right: 0;"></button>
+                        </div>
+                        <div class="modal-header" id="resume-box">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+
+
+<script>
+    render();
+
+    async function render() {
+        let responseBody = await download();
+        responseBody.forEach((resume) => {
+            $("#resume-box").append(resumeBox(resume));
+        });
+    }
+
+    function resumeBox(resume) {
+        return `<div class="card" style="width:250px">
+            
+            <div class="card-body">
+                
+                <a h4 class="card-title" href="/resume/{id}/viewResumeForm">${resume.title}</h4>
+                    
+            </div>
+        </div>`;
+    }
+    async function download() {
+        let response = await fetch("/api/resumeSession");
+        let responseBody = await response.json();
+
+        return responseBody;
+    }
+</script>
+{{>/layout/footer}}

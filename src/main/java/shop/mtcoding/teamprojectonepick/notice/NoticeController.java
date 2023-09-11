@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.teamprojectonepick._core.util.Script;
+import shop.mtcoding.teamprojectonepick.notice.NoticeRequest.IndexDTO;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
@@ -56,12 +57,6 @@ public class NoticeController {
 
         }
 
-    }
-
-    @GetMapping("/detailNoticeForm")
-    public String detailNoticeForm() {
-       
-        return "/notice/detailNoticeForm";
     }
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -151,16 +146,25 @@ public class NoticeController {
         return Script.href("/user/userProfileForm");
     }
 
+    @GetMapping("/apply/{id}")
+    public String applyNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
+        Notice notice = noticeService.공고조회(id);
+        List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
+        notice.setUserImg("" + notice.getUserImg());
+        request.setAttribute("notice", notice);
+        request.setAttribute("techNotice", techNotices);
+        return "/notice/applyNoticeForm";
+    }
+
     @GetMapping("/api/noticeIndex")
-    public List<NoticeRequest.IndexDTO> noticeIndex(@RequestParam(defaultValue = "on") String open,
-                                                    @RequestParam(defaultValue = "전체") String workField,
-                                                    @RequestParam(defaultValue = "전체") String address,
-                                                    @RequestParam(defaultValue = "무관") String career,
-                                                    @RequestParam(defaultValue = "무관") String education){
+    public @ResponseBody List<Notice> noticeIndex(
+            @RequestParam(defaultValue = "on") String open,
+            @RequestParam(defaultValue = "백엔드") String workField,
+            @RequestParam(defaultValue = "서울") String address,
+            @RequestParam(defaultValue = "신입") String career,
+            @RequestParam(defaultValue = "대졸") String education) {
 
-        List<NoticeRequest.IndexDTO> noticeIndex = noticeRepository.findByIndexDTO("on", "프론트", "서울", "신입", "고졸");
-
-        return noticeIndex;
+        return null;
     }
 
 }
