@@ -7,19 +7,20 @@
                 <input type="radio" id="on" name="open" {{#resume.open}}checked{{/resume.open}} value="{{resume.open}}">
                 <label for="on">공개</label>
 
-                <input type="radio" id="off" name="open" {{#resume.open}}checked{{/resume.open}} value="{{resume.open}}" style="margin-left: 50px;">
+                <input type="radio" id="off" name="open" {{#resume.open}}checked{{/resume.open}} value="{{resume.open}}"
+                    style="margin-left: 50px;">
                 <label for="off">비공개</label>
             </div>
             <br>
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column;">
                     {{#resume.resumeImg}}
-                    <img class="box" id="preview"  src="/upload/{{resume.resumeImg}}" name="previewImg"
-                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
+                    <img class="box" id="preview" src="/upload/{{resume.resumeImg}}" name="previewImg"
+                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;" />
                     {{/resume.resumeImg}}
                     {{^resume.resumeImg}}
                     <img class="box" id="preview" src="/upload/_default_img.png" name="previewImg"
-                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
+                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;" />
                     {{/resume.resumeImg}}
                     <input type="file" name="resumeImg" style="margin-left: 70px;" onchange="changePic(event)">
                 </div>
@@ -72,11 +73,11 @@
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
                             {{#resume.career1}}
-                            <input class="input-box" type="text" placeholder="네이버" name="career1"
+                            <input class="input-box" type="text" placeholder="경력1" name="career1"
                                 style="width: 100px; margin-left: 0;" value="{{resume.career1}}">
                             {{/resume.career1}}
                             {{^resume.career1}}
-                            <input class="input-box" type="text" placeholder="네이버" name="career1"
+                            <input class="input-box" type="text" placeholder="경력1" name="career1"
                                 style="width: 100px; margin-left: 0;">
                             {{/resume.career1}}
 
@@ -102,11 +103,11 @@
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
                             {{#resume.career2}}
-                            <input class="input-box" type="text" placeholder="카카오톡" name="career2"
+                            <input class="input-box" type="text" placeholder="경력2" name="career2"
                                 style="width: 100px; margin-left: 0;" value="{{resume.career2}}">
                             {{/resume.career2}}
                             {{^resume.career2}}
-                            <input class="input-box" type="text" placeholder="카카오톡" name="career2"
+                            <input class="input-box" type="text" placeholder="경력2" name="career2"
                                 style="width: 100px; margin-left: 0;">
                             {{/resume.career2}}
 
@@ -132,11 +133,11 @@
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
                             {{#resume.career3}}
-                            <input class="input-box" type="text" placeholder="라쿠배몰두센" name="career3"
+                            <input class="input-box" type="text" placeholder="경력3" name="career3"
                                 style="width: 100px; margin-left: 0;" value="{{resume.career3}}">
                             {{/resume.career3}}
                             {{^resume.career3}}
-                            <input class="input-smallbox" type="text" placeholder="라쿠배몰두센" name="career3">
+                            <input class="input-smallbox" type="text" placeholder="경력3" name="career3">
                             {{/resume.career3}}
 
                             {{#resume.careerPeriodS3}}
@@ -257,8 +258,8 @@
                                 value="{{resume.school}}">
                             <input class="input-box" name="major" style="width: 100px;" type="text" placeholder="xx학과"
                                 value="{{resume.major}}">
-                            {{! <input type="month" style="border: transparent;" value="{{resume.education}}"> }}
-                            <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;" name="education">
+                            <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;"
+                                name="education">
                                 <ul>
                                     <li>
                                         <option value="" disabled hidden>{{resume.education}}</option>
@@ -270,7 +271,8 @@
                                         <option value="대졸" {{#eduDTO.isDaejol}}selected{{/eduDTO.isDaejol}}>대졸</option>
                                     </li>
                                     <li>
-                                        <option value="대학원졸 이상" {{#eduDTO.isDaejolMore}}selected{{/eduDTO.isDaejolMore}}>대학원졸 이상</option>
+                                        <option value="대학원졸 이상"
+                                            {{#eduDTO.isDaejolMore}}selected{{/eduDTO.isDaejolMore}}>대학원졸 이상</option>
                                     </li>
 
                                 </ul>
@@ -313,7 +315,8 @@
                 <br>
                 {{#testDTOs}}
                 <div style=" display: flex; flex-direction: row;">
-                    <input type="checkbox" {{#checked}}checked{{/checked}} name="tech-resume" value="{{id}}" style="margin-right: 5px;">
+                    <input type="checkbox" {{#checked}}checked{{/checked}} name="tech-resume" value="{{id}}"
+                        style="margin-right: 5px;">
                     <div style="margin-right: 15px;">{{techname}}</div>
                 </div>
                 {{/testDTOs}}
@@ -375,7 +378,7 @@
         <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
             <button class="button" type="submit">수정 완료</button>
         </div>
-        <input class="input-box" name="workField" value="백엔드"></input>
+        <input hidden class="input-box" name="workField" value="백엔드"></input>
     </div>
 </form>
 </div>

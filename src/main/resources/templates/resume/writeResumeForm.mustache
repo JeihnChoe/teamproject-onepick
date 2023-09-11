@@ -14,7 +14,7 @@
             <div style="display: flex; flex-direction: row;">
                 <div style="display: flex; flex-direction: column;">
                     <img class="box" id="preview" src="/upload/_default_img.png" name="previewImg"
-                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
+                        style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;" />
                     <input type="file" name="resumeImg" style="margin-left: 70px;" onchange="changePic(event)">
                 </div>
                 <div>
@@ -84,7 +84,7 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
-                            <input class="input-box" type="text" placeholder="네이버" name="career1"
+                            <input class="input-box" type="text" placeholder="경력1" name="career1"
                                 style="width: 100px; margin-left: 0;">
                             <input type="month" style="border: transparent;" name="careerPeriodS1">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
@@ -94,7 +94,7 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
-                            <input class="input-box" type="text" placeholder="카카오톡" name="career2"
+                            <input class="input-box" type="text" placeholder="경력2" name="career2"
                                 style="width: 100px; margin-left: 0;">
                             <input type="month" style="border: transparent;" name="careerPeriodS2">
                             <div style="margin-left: 10px; margin-right: 10px; margin-top: 10px"> ~ </div>
@@ -104,7 +104,7 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
-                            <input class="input-smallbox" type="text" placeholder="라쿠배몰두센" name="career3">
+                            <input class="input-smallbox" type="text" placeholder="경력3" name="career3">
                             <input type="month" style="border: transparent;" name="careerPeriodS3">
                             <div style="margin-left: 10px; margin-right: 10px; "> ~ </div>
                             <input type="month" style="border: transparent;" name="careerPeriodE3">
@@ -129,7 +129,7 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
-                            <input class="input-smallbox" name="etc1" type="text" placeholder="해커대회 금상"
+                            <input class="input-smallbox" name="etc1" type="text" placeholder="수상이력1"
                                 style="width: 200px;">
                             <input type="month" name="etcPeriod1" style="border: transparent;">
                         </div>
@@ -137,7 +137,7 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
-                            <input class="input-smallbox" name="etc2" type="text" placeholder="창업대회 대상"
+                            <input class="input-smallbox" name="etc2" type="text" placeholder="수상이력2"
                                 style="width: 200px;">
                             <input type="month" name="etcPeriod2" style="border: transparent;">
                         </div>
@@ -145,7 +145,7 @@
                     <div class="box-invisible"
                         style=" display: flex; flex-direction: column; justify-content: space-between;">
                         <div style=" display: flex; flex-direction: row;">
-                            <input class="input-smallbox" name="etc3" type="text" placeholder="창업망함"
+                            <input class="input-smallbox" name="etc3" type="text" placeholder="수상이력3"
                                 style="width: 200px;">
                             <input type="month" name="etcPeriod3" style="border: transparent;">
                         </div>
@@ -174,11 +174,9 @@
                             <input class="input-box" name="major" style="width: 100px;" type="text" placeholder="xx학과">
 
                             {{! <input type="month" style="border: transparent;" name="education"> }}
-                            <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;" name="education">
+                            <select class="box" data-bs-toggle="dropdown" style="width: 150px; margin-left: 30px;"
+                                name="education">
                                 <ul>
-                                    <li>
-                                        <option value="선택">선택</option>
-                                    </li>
                                     <li>
                                         <option value="고졸">고졸</option>
                                     </li>
@@ -229,7 +227,7 @@
                 <br>
                 {{#techs}}
                 <div style=" display: flex; flex-direction: row;">
-                
+
                     <input type="checkbox" name="tech-resume" value="{{id}}" style="margin-right: 5px;">
                     <div style="margin-right: 15px;">{{techname}}</div>
                 </div>
@@ -271,8 +269,10 @@
         <div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 50px;">
             <button class="button" type="submit">작성완료</button>
 
+
+
         </div>
-        <input class="input-box" name="workField" value="백엔드"></input>
+        <input hidden class="input-box" name="workField" value="백엔드"></input>
     </div>
 </form>
 </div>

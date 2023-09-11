@@ -2,13 +2,15 @@
 <div class="main-container" style="display: flex; flex-direction: column;">
     <div class="box" style="width: 700px; margin-top: 80px;">
         <form action="/userUpdate" method="post" name="updateDTO" enctype="multipart/form-data">
-            <div style="text-align: center; margin-top: 50px;"> 
+            <div style="text-align: center; margin-top: 50px;">
                 <div>
                     {{#userInfo.picUrl}}
-                    <img id="preview" src="/upload/{{userInfo.picUrl}}" style="border-radius: 50%; width: 150px; height: 150px;"/>
+                    <img id="preview" src="/upload/{{userInfo.picUrl}}"
+                        style="border-radius: 50%; width: 150px; height: 150px;" />
                     {{/userInfo.picUrl}}
                     {{^userInfo.picUrl}}
-                    <img id="preview" src="/upload/_default_img.png" style="border-radius: 50%; width: 150px; height: 150px;"/>
+                    <img id="preview" src="/upload/_default_img.png"
+                        style="border-radius: 50%; width: 150px; height: 150px;" />
                     {{/userInfo.picUrl}}
                     <br>
                     <input type="file" name="pic" style="margin-left: 70px;" onchange="changePic(event)" />
@@ -25,31 +27,31 @@
                     <div class="body-text">
                         <div class="body-head">비밀번호</div>
                         <div class="body-main">
-                            <input name="password" class="input-box" contenteditable="true" 
-                                   placeholder="baronjae" value="{{userInfo.password}}"/>
+                            <input name="password" type="password" class="input-box" contenteditable="true"
+                                id="password-input" />
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
                     <div class="body-text">
                         <div class="body-head">비밀번호 확인</div>
                         <div class="body-main">
-                            <input class="input-box" contenteditable="true" placeholder="baronjae"/>
+                            <input id="password-check-input" class="input-box" type="password" contenteditable="true"
+                                id="password-check-input" name="passwordConfirm">
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
                     <div class="body-text">
                         <div class="body-head">이름</div>
                         <div class="body-main">
-                            <input name="username" class="input-box" contenteditable="true" placeholder="seong hun Jin"
-                                   value="{{userInfo.username}}"/>
+                            <input name="username" class="input-box" contenteditable="true"
+                                value="{{userInfo.username}}" />
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
                     <div class="body-text">
                         <div class="body-head">휴대폰번호</div>
                         <div class="body-main">
-                            <input name="tel" class="input-box" contenteditable="true" placeholder="01094719693"
-                                   value="{{userInfo.tel}}"/>
+                            <input name="tel" class="input-box" contenteditable="true" value="{{userInfo.tel}}" />
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
@@ -57,15 +59,14 @@
                         <div class="body-head">주소</div>
                         <div class="body-main">
                             <input name="address" class="input-box" contenteditable="true"
-                                   placeholder="부산 진구 중앙대로 688, 305호" value="{{#userInfo.address}}{{userInfo.address}}{{/userInfo.address}}"/>
+                                value="{{#userInfo.address}}{{userInfo.address}}{{/userInfo.address}}" />
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
                     <div class="body-text">
                         <div class="body-head">생년월일</div>
                         <div class="body-main">
-                            <input name="birth" class="input-box" contenteditable="true" placeholder="1993.04.22"
-                                value="{{userInfo.birth}}"/>
+                            <input name="birth" class="input-box" contenteditable="true" value="{{userInfo.birth}}" />
                         </div>
                     </div>
                     <hr class="line" style="margin-top: 0px;">
@@ -73,7 +74,25 @@
                 <br>
                 <br>
                 <div style="display: flex; justify-content: center;">
-                    <button type="submit" class="button">수정완료</button>
+                    <button type="submit" class="button" onclick="(() => {
+                        // jquery
+                        const passwordValue = $('#password-input').val()
+                        if (passwordValue.length < 6) {
+                            alert('비밀번호는 6자 이상이어야 합니다.')
+                            $('#password-input').focus()
+                            return;
+                        }
+
+                        const passwordCheckValue = $('#password-check-input').val()
+                        if (passwordValue !== passwordCheckValue) {
+                            alert('비밀번호가 일치하지 않습니다.')
+                            $('#password-check-input').focus()
+                            // 비밀번호 일치하지 않으면 여기서 끝. 폼 전송 안됌
+                            return
+                        }
+                        // 폼 전송
+                        document.joinDTO.submit()
+                    })()">수정완료</button>
                 </div>
             </div>
         </form>
@@ -96,7 +115,7 @@
     <div style="display: flex; justify-content: center;">
         <a href="/loginForm">
             <form action="/userDelete" method="post">
-            <button class="button" type="submit" id="userDelete">탈퇴하기</button>
+                <button class="button" type="submit" id="userDelete">탈퇴하기</button>
             </form>
         </a>
 

@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.teamprojectonepick._core.util.Script;
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequest.IndexDTO;
+import shop.mtcoding.teamprojectonepick.resume.Resume;
+import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
@@ -36,6 +38,9 @@ public class NoticeController {
     private NoticeRepository noticeRepository;
 
     @Autowired
+    private ResumeRepository resumeRepository;
+
+    @Autowired
     private HttpSession session;
 
     @Autowired
@@ -43,10 +48,7 @@ public class NoticeController {
 
     @GetMapping("/api/noticeSession")
     public @ResponseBody List<Notice> findByNotice(@RequestParam(defaultValue = "on") String open) {
-        // User sessionUser = (User) session.getAttribute("sessionUser");
-        // if (sessionUser.getUsercode() != 1) {
-        // throw new MyApiException("기업 회원이 아닙니다");
-        // }
+
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (open.equals("on")) {
             return noticeRepository.findByUserId(sessionUser.getId(), "on");
@@ -146,12 +148,24 @@ public class NoticeController {
         return Script.href("/user/userProfileForm");
     }
 
-    // @RequestParam(defaultValue = "서울") String address,
-    // @RequestParam(defaultValue = "신입") String career,
-    // @RequestParam(defaultValue = "대졸") String education
+
+    @GetMapping("/apply/{id}")
+    public String applyNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
+        Notice notice = noticeService.공고조회(id);
+        List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Resume> resumes = resumeRepository.findByUserId(sessionUser.getId());
+        notice.setUserImg("" + notice.getUserImg());
+        request.setAttribute("notice", notice);
+        request.setAttribute("techNotice", techNotices);
+        request.setAttribute("resumes", resumes);
+        System.out.println("테스트 : " + resumes.size());
+        return "/notice/applyNoticeForm";
+    }
 
     @Autowired
     private NoticeQueryRepository noticeQueryRepository;
+
 
     @GetMapping("/api/noticeIndex")
     public @ResponseBody List<Notice> noticeIndex(String workField, String address, String career, String education) { // 최초:

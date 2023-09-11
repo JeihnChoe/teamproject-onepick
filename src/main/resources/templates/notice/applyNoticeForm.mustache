@@ -115,7 +115,7 @@
         </div>
     </div>
     <div style="display: flex; flex-direction: column; margin-top: 30px;">
-        <div style="font-weight: bold; font-size: 20px;  margin-left: 110px;">자기소개서</div>
+        <div style="font-weight: bold; font-size: 20px;  margin-left: 110px;">세부내용</div>
 
         <div id="myTextarea" class="box" rows="10" name="mainContent"
             style="width: 1000px; margin-top: 20px; margin-bottom: 20px;">
@@ -136,62 +136,61 @@
     </div>
     <div class="box-invisible" style="display: flex; justify-content: center;">
 
-        <div class="button" action="/apply/{{id}}" method="post">
-
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                "지원하기"
+        <form>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
+                style="width: 120px;">
+                지원하기
             </button>
-
+            <!--<button onclick="(function () {
+                document.dto.submit()
+            })()">지원하기</button>-->
 
             <!-- The Modal -->
             <div class="modal" id="myModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
-                        <!-- Modal Header -->
-                        <div style="margin-right: 0;">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                style="margin-right: 0;"></button>
-                        </div>
-                        <div class="modal-header" id="resume-box">
+                        <div class="modal-body">
+                            {{#resumes}}
+                            <button type="button" class="btn btn-danger form-control my-1" data-bs-dismiss="modal"
+                                onclick="apply('{{notice.id}}', '{{id}}')">{{title}}</button>
+                            {{/resumes}}
                         </div>
 
                     </div>
                 </div>
             </div>
 
-        </div>
+        </form>
     </div>
 
 </div>
 </body>
 
-
 <script>
-    render();
+    async function apply(noticeId, resumeId) {
+        //alert(noticeId);
+        //alert(resumeId);
 
-    async function render() {
-        let responseBody = await download();
-        responseBody.forEach((resume) => {
-            $("#resume-box").append(resumeBox(resume));
+        let data = {
+            noticeId: noticeId,
+            resumeId: resumeId
+        };
+
+        let response = await fetch("/apply", {
+            method: "post",
+            body: JSON.stringify(data), // javascript 오브젝트 -> json 문자열
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            }
         });
-    }
+        let responseBody = await response.json(); // json 문자열 -> javascript 오브젝트
+        console.log(responseBody);
 
-    function resumeBox(resume) {
-        return `<div class="card" style="width:250px">
-            
-            <div class="card-body">
-                
-                <a h4 class="card-title" href="/resume/{id}/viewResumeForm">${resume.title}</h4>
-                    
-            </div>
-        </div>`;
-    }
-    async function download() {
-        let response = await fetch("/api/resumeSession");
-        let responseBody = await response.json();
-
-        return responseBody;
+        if (responseBody.sucuess == true) {
+            location.href = "/userProfileForm";
+        }
     }
 </script>
+
 {{>/layout/footer}}

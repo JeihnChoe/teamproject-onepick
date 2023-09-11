@@ -2,22 +2,21 @@
 <div class="main-container" style="display: flex; flex-direction: column;">
     <div style="margin-left: 50px; margin-right: 50px;">
         <div style="display: flex; flex-direction: row;  margin: 20px; ">
-            <div style="margin-right: 20px;">이력서 공개여부</div>
-            <div name="open">{{resume.open}}</div>
+            <div hidden style="margin-right: 20px;">이력서 공개여부</div>
+            <div hidden name="open">{{resume.open}}</div>
         </div>
 
         <br>
         <div style="display: flex; flex-direction: row;">
             <div style="display: flex; flex-direction: column;">
-            {{#resume.resumeImg}}
+                {{#resume.resumeImg}}
                 <img class="box" id="preview" src="/upload/{{resume.resumeImg}}"
-                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
-            {{/resume.resumeImg}}
-            {{^resume.resumeImg}}
+                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;" />
+                {{/resume.resumeImg}}
+                {{^resume.resumeImg}}
                 <img class="box" id="preview" src="/upload/_default_img.png"
-                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;"/>
-            {{/resume.resumeImg}}
-                <input type="file" name="resumeImg" style="margin-left: 70px;" onchange="changePic(event)">
+                    style="width: 20%; height: 200px; width: 200px; margin-bottom: 20px; border-radius: 50%;" />
+                {{/resume.resumeImg}}
             </div>
             <div>
                 <div>

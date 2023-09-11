@@ -133,19 +133,19 @@ public class ResumeController {
                 System.out.println("테스트1 : " + id);
                 System.out.println(updateDTO.getTitle());
                 resumeService.이력서수정하기(updateDTO, techId, id, sessionUser.getId());
-                return "redirect:/";
+                return "redirect:/userProfileForm";
         }
 
-        @GetMapping("/api/resumeSession")
-        public @ResponseBody List<Resume> findByUserId() {
+        // @GetMapping("/api/resumeSession")
+        // public @ResponseBody List<Resume> findByUserId() {
 
-                // User sessionUser = (User) session.getAttribute("sessionUser");
-                // if (sessionUser.getUsercode() != 1) {
-                // throw new MyApiException("기업 회원이 아닙니다");
-                // }
-                User sessionUser = (User) session.getAttribute("sessionUser");
-                return resumeRepository.findByUserId(sessionUser.getId());
+        // // User sessionUser = (User) session.getAttribute("sessionUser");
+        // // if (sessionUser.getUsercode() != 1) {
+        // // throw new MyApiException("기업 회원이 아닙니다");
+        // // }
+        // User sessionUser = (User) session.getAttribute("sessionUser");
+        // return resumeRepository.findByUserId(sessionUser.getId());
 
-        }
+        // }
 
 }

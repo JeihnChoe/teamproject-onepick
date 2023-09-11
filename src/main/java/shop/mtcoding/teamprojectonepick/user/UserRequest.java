@@ -63,10 +63,12 @@ public class UserRequest {
     @ToString
     public static class UpdateDTO {
         private String password;
+        private String passwordConfirm;
         private String username;
         private String tel;
         private String birth;
         private String address;
+
         private MultipartFile pic;
     }
 
@@ -75,6 +77,7 @@ public class UserRequest {
     @ToString
     public static class BizUpdateDTO {
         private String password;
+        private String passwordConfirm;
         private String bizname;
         private String username;
         private String tel;
