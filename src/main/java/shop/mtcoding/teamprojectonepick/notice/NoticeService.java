@@ -48,7 +48,7 @@ public class NoticeService {
     public void 공고등록(NoticeRequest.SaveDTO saveDTO, List<Integer> techId, Integer sessionUserId) {
 
         UUID uuid = UUID.randomUUID(); // 랜덤한 해시값을 만들어줌
-        String fileName = uuid + "_" + saveDTO.getUserImg().getOriginalFilename();
+        String fileName = uuid +  saveDTO.getUserImg().getOriginalFilename();
         System.out.println("fileName : " + fileName);
 
         Path filePath = Paths.get(MyPath.IMG_PATH + fileName);
@@ -62,7 +62,7 @@ public class NoticeService {
         User user = User.builder().id(sessionUserId).build();
         Notice notice = Notice.builder()
                 .open(saveDTO.getOpen())
-                .userImg(fileName)
+                .userImg(filePath.toString())
                 .semiTitle(saveDTO.getSemiTitle())
                 .semiContent(saveDTO.getSemiContent())
                 .workField(saveDTO.getWorkField())
