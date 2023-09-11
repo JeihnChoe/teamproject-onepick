@@ -80,7 +80,7 @@ public class NoticeController {
         System.out.println("테스트 : 공고 등록 시작 전");
         noticeService.공고등록(saveDTO, techId, sessionUser.getId());
         System.out.println("테스트 : 공고 등록함");
-        return "redirect:/user/bizProfileForm";
+        return "redirect:/bizProfileForm";
 
     }
 
@@ -146,25 +146,17 @@ public class NoticeController {
         return Script.href("/user/userProfileForm");
     }
 
-    @GetMapping("/apply/{id}")
-    public String applyNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
-        Notice notice = noticeService.공고조회(id);
-        List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
-        notice.setUserImg("" + notice.getUserImg());
-        request.setAttribute("notice", notice);
-        request.setAttribute("techNotice", techNotices);
-        return "/notice/applyNoticeForm";
-    }
+    // @RequestParam(defaultValue = "서울") String address,
+    // @RequestParam(defaultValue = "신입") String career,
+    // @RequestParam(defaultValue = "대졸") String education
+
+    @Autowired
+    private NoticeQueryRepository noticeQueryRepository;
 
     @GetMapping("/api/noticeIndex")
-    public @ResponseBody List<Notice> noticeIndex(
-            @RequestParam(defaultValue = "on") String open,
-            @RequestParam(defaultValue = "백엔드") String workField,
-            @RequestParam(defaultValue = "서울") String address,
-            @RequestParam(defaultValue = "신입") String career,
-            @RequestParam(defaultValue = "대졸") String education) {
+    public @ResponseBody List<Notice> noticeIndex(String workField, String address, String career, String education) { // 최초:
+        return noticeQueryRepository.findByChoice("", "", "", "");
 
-        return null;
     }
 
 }
