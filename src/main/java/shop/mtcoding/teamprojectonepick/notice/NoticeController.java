@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import shop.mtcoding.teamprojectonepick._core.util.Script;
 import shop.mtcoding.teamprojectonepick.notice.NoticeRequest.IndexDTO;
+import shop.mtcoding.teamprojectonepick.resume.Resume;
+import shop.mtcoding.teamprojectonepick.resume.ResumeRepository;
 import shop.mtcoding.teamprojectonepick.tech.Tech;
 import shop.mtcoding.teamprojectonepick.tech.TechRepository;
 import shop.mtcoding.teamprojectonepick.tech.notice.TechNotice;
@@ -36,6 +38,9 @@ public class NoticeController {
     private NoticeRepository noticeRepository;
 
     @Autowired
+    private ResumeRepository resumeRepository;
+
+    @Autowired
     private HttpSession session;
 
     @Autowired
@@ -43,10 +48,7 @@ public class NoticeController {
 
     @GetMapping("/api/noticeSession")
     public @ResponseBody List<Notice> findByNotice(@RequestParam(defaultValue = "on") String open) {
-        // User sessionUser = (User) session.getAttribute("sessionUser");
-        // if (sessionUser.getUsercode() != 1) {
-        // throw new MyApiException("기업 회원이 아닙니다");
-        // }
+
         User sessionUser = (User) session.getAttribute("sessionUser");
         if (open.equals("on")) {
             return noticeRepository.findByUserId(sessionUser.getId(), "on");
@@ -80,7 +82,7 @@ public class NoticeController {
         System.out.println("테스트 : 공고 등록 시작 전");
         noticeService.공고등록(saveDTO, techId, sessionUser.getId());
         System.out.println("테스트 : 공고 등록함");
-        return "redirect:/user/bizProfileForm";
+        return "redirect:/bizProfileForm";
 
     }
 
@@ -150,9 +152,13 @@ public class NoticeController {
     public String applyNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
         List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
+        User sessionUser = (User) session.getAttribute("sessionUser");
+        List<Resume> resumes = resumeRepository.findByUserId(sessionUser.getId());
         notice.setUserImg("" + notice.getUserImg());
         request.setAttribute("notice", notice);
         request.setAttribute("techNotice", techNotices);
+        request.setAttribute("resumes", resumes);
+        System.out.println("테스트 : " + resumes.size());
         return "/notice/applyNoticeForm";
     }
 

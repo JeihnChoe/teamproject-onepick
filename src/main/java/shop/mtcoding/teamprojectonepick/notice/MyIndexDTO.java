@@ -13,4 +13,5 @@ public class MyIndexDTO {
     private String address;
     private String career;
     private String education;
+
 }

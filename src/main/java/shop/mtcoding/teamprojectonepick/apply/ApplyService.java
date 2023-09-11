@@ -26,6 +26,7 @@ public class ApplyService {
     @Autowired
     private NoticeRepository noticeRepository;
 
+    @Transactional
     public void 지원하기(Integer resumeId, Integer noticeId) {
         // 이력서와 공고의 유효성 검사
         Optional<Resume> optionalResume = resumeRepository.findById(resumeId);

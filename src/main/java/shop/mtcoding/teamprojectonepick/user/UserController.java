@@ -39,9 +39,13 @@ public class UserController {
         // 1. 회원수정 (서비스)
         // 2. 세션동기화
         User sessionUser = (User) session.getAttribute("sessionUser");
+
+        if (!updateDTO.getPassword().equals(updateDTO.getPasswordConfirm())) {
+            // TODO 예외 클래스 만들어서 ControllerAdvice에서 처리하기!!
+            throw new RuntimeException("비밀번호가 동일하지 않음!!");
+        }
         User user = userService.회원수정(updateDTO, sessionUser.getId());
         session.setAttribute("sessionUser", user);
-
         return "redirect:/";
     }
 
@@ -51,6 +55,7 @@ public class UserController {
         // 1. 회원수정 (서비스)
         // 2. 세션동기화
         User sessionUser = (User) session.getAttribute("sessionUser");
+
         User user = userService.기업회원수정(bizUpdateDTO, sessionUser.getId());
         System.out.println(sessionUser.username);
         session.setAttribute("sessionUser", user);
