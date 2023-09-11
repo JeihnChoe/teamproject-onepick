@@ -148,7 +148,6 @@ public class NoticeController {
         return Script.href("/user/userProfileForm");
     }
 
-
     @GetMapping("/apply/{id}")
     public String applyNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
@@ -166,10 +165,14 @@ public class NoticeController {
     @Autowired
     private NoticeQueryRepository noticeQueryRepository;
 
-
     @GetMapping("/api/noticeIndex")
-    public @ResponseBody List<Notice> noticeIndex(String workField, String address, String career, String education) { // 최초:
-        return noticeQueryRepository.findByChoice("", "", "", "");
+    public @ResponseBody List<Notice> noticeIndex(
+            @RequestParam(defaultValue = "") String workField,
+            @RequestParam(defaultValue = "") String address,
+            @RequestParam(defaultValue = "") String career,
+            @RequestParam(defaultValue = "") String education) { // 최초:
+
+        return noticeQueryRepository.findByChoice(workField, address, career, education);
 
     }
 
