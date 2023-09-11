@@ -1,5 +1,6 @@
 package shop.mtcoding.teamprojectonepick.notice;
 
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -44,7 +45,7 @@ public class NoticeRequest {
 
     @Data
     @AllArgsConstructor
-    public class UpdateDTO {
+    public static class UpdateDTO {
         private String open;
         private MultipartFile userImg;
         private String semiTitle;
@@ -59,5 +60,16 @@ public class NoticeRequest {
         private String deadLine;
         private String techNotice;
     }
+
+    @Data
+    @NoArgsConstructor
+    public static class IndexDTO{
+        private String open;
+        private String workField;
+        private String address;
+        private String career;
+        private String education;
+    }
+
 
 }

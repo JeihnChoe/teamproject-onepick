@@ -151,4 +151,16 @@ public class NoticeController {
         return Script.href("/user/userProfileForm");
     }
 
+    @GetMapping("/api/noticeIndex")
+    public List<NoticeRequest.IndexDTO> noticeIndex(@RequestParam(defaultValue = "on") String open,
+                                                    @RequestParam(defaultValue = "전체") String workField,
+                                                    @RequestParam(defaultValue = "전체") String address,
+                                                    @RequestParam(defaultValue = "무관") String career,
+                                                    @RequestParam(defaultValue = "무관") String education){
+
+        List<NoticeRequest.IndexDTO> noticeIndex = noticeRepository.findByIndexDTO("on", "프론트", "서울", "신입", "고졸");
+
+        return noticeIndex;
+    }
+
 }
