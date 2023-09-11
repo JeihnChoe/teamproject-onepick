@@ -9,8 +9,8 @@
             <div style="margin-top: 25px; display: flex; margin-right: 500px;align-self: center; ">
                 <h5 style="margin: 8px;;color: var(--font_01);">직무</h5>
                 <div>
-                    <select id="workField1" class="form-control">
-                        <option value="전체">전체</option>
+                    <select id="workField" class="form-control">
+                        <option value="">전체</option>
                         <option value="백엔드">백엔드</option>
                         <option value="프론트">프론트</option>
                         <option value="앱개발">앱개발</option>
@@ -24,6 +24,7 @@
                 <h5 style="margin: 8px;color: var(--font_01);">지역</h5>
                 <div class="">
                     <select id="address" class="form-control">
+                        <option value="">전체</option>
                         <option value="서울">서울</option>
                         <option value="부산">부산</option>
                         <option value="경기">경기</option>
@@ -35,6 +36,7 @@
                 <h5 style="margin: 8px; margin-left: 25px; color: var(--font_01);">경력</h5>
                 <div class="">
                     <select id="career" class="form-control">
+                        <option value="">무관</option>
                         <option value="신입">신입</option>
                         <option value="1~2년차">1~2년차</option>
                         <option value="3~5년차">3~5년차</option>
@@ -46,8 +48,9 @@
                 <h5 style="margin: 8px; margin-left: 25px; color: var(--font_01);">학력</h5>
                 <div class="">
                     <select id="education" class="form-control">
-                        <option value="무관">무관</option>
+                        <option value="">무관</option>
                         <option value="고졸">고졸</option>
+                        <option value="초대졸">초대졸</option>
                         <option value="대졸">대졸</option>
                         <option value="대학원졸이상">대학원졸이상</option>
                     </select>
@@ -73,9 +76,111 @@
 <script>
     render('');
 
+    let value = '';
 
     $("#workField").change(() => {
-        let value = $("#workField").val();
+        value = '';
+        if (workField) {
+            let v = $('#workField').val();
+            let value1 = '&workField=' + v;
+            value = value + value1;
+        }
+        if (address) {
+            let v2 = $('#address').val();
+            let value2 = '&address=' + v2;
+            value = value + value2;
+        }
+
+        if (career) {
+            let v3 = $('#career').val();
+            let value3 = '&career=' + v3;
+            value = value + value3;
+        }
+
+        if (education) {
+            let v4 = $('#education').val();
+            let value4 = '&education=' + v4;
+            value = value + value4;
+        }
+        render(value);
+    });
+
+    $("#address").change(() => {
+        value = '';
+        if (workField) {
+            let v = $('#workField').val();
+            let value1 = '&workField=' + v;
+            value = value + value1;
+        }
+        if (address) {
+            let v2 = $('#address').val();
+            let value2 = '&address=' + v2;
+            value = value + value2;
+        }
+
+        if (career) {
+            let v3 = $('#career').val();
+            let value3 = '&career=' + v3;
+            value = value + value3;
+        }
+
+        if (education) {
+            let v4 = $('#education').val();
+            let value4 = '&education=' + v4;
+            value = value + value4;
+        }
+        render(value);
+
+    }); $("#career").change(() => {
+        value = '';
+        if (workField) {
+            let v = $('#workField').val();
+            let value1 = '&workField=' + v;
+            value = value + value1;
+        }
+        if (address) {
+            let v2 = $('#address').val();
+            let value2 = '&address=' + v2;
+            value = value + value2;
+        }
+
+        if (career) {
+            let v3 = $('#career').val();
+            let value3 = '&career=' + v3;
+            value = value + value3;
+        }
+
+        if (education) {
+            let v4 = $('#education').val();
+            let value4 = '&education=' + v4;
+            value = value + value4;
+        }
+        render(value);
+
+    }); $("#education").change(() => {
+        value = '';
+        if (workField) {
+            let v = $('#workField').val();
+            let value1 = '&workField=' + v;
+            value = value + value1;
+        }
+        if (address) {
+            let v2 = $('#address').val();
+            let value2 = '&address=' + v2;
+            value = value + value2;
+        }
+
+        if (career) {
+            let v3 = $('#career').val();
+            let value3 = '&career=' + v3;
+            value = value + value3;
+        }
+
+        if (education) {
+            let v4 = $('#education').val();
+            let value4 = '&education=' + v4;
+            value = value + value4;
+        }
         render(value);
     });
 
@@ -89,15 +194,19 @@
 
     function noticeBox(notice) {
         return `<div class="card" style="width:250px">
+                <img class="card-img-top" src="${notice.userImg}" alt="Card image" style="height:120px; width:130">
                 <div class="card-body">
-                    <h4 class="card-title">${notice.career}</h4>
+                    <h5 class="card-title">${notice.bizName}</h4>
                         <p class="card-text">${notice.workField}</p>
-                        <p class="card-text">${notice.address} ${notice.education}</p>
+                        <p class="card-text">${notice.address} ${notice.address2}</p>
+                        <p class="card-text">${notice.career}</p>
+                        <p class="card-text">${notice.education}</p>
                 </div>
             </div>`;
     }
+
     async function download(value) {
-        let response = await fetch("/api/noticeIndex?");
+        let response = await fetch(`/api/noticeIndex?` + value);
         let responseBody = await response.json();
 
         return responseBody;
