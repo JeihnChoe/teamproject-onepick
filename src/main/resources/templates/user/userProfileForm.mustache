@@ -81,9 +81,7 @@
 
 
             <div style="margin-top: 30px;margin-bottom: 30px;">
-                {{#resumeList}}
-                <a class="btn btn-close-white" href="/resume/{{id}}/viewForm">이력서관리</a>
-                {{/resumeList}}
+
             </div>
 
 
@@ -153,16 +151,35 @@
 
             <!--내부박스-->
             <div class="grid-box" style="margin-top: 20px; width: 850px; display: grid;  gap: 15; margin-bottom: 20px;"
-                id="resume-box"></div>
-            <a class="card" href="/resume/writeForm" style="width:250px; align-items: center;">
-                <img class="card-img-top" src="/images/new.png" alt="Card image"
-                    style="margin: 10px; height:50px; width:50px; border-radius: 50%; ">
-                <div class="card-body">
-                    <h6 class="card-title" style="text-align: center;">새 이력서 작성하기</h6>
-                </div>
-            </a>
+                id="resume-box">
+            </div>
+
+            <a class="grid-box" href="/resume/writeForm" style="width:250px; align-items: center;"></a>
+            {{#resumeList}}
+
+            <div class="box" style="width: 150px; height: 120px; border-right: 5px; border-color: black;">
+                <a href="/resume/{{id}}/viewForm">
+
+                    <div style="text-align: center; margin-top: 15px; font-weight: bold;">
+                        {{title}}
+                    </div>
+                    <div style="text-align: center;  margin-top: 15px; ;color: var(--font_01);">
+
+                </a>
+            </div>
         </div>
+
+        {{/resumeList}}
+        <a class="card" href="/resume/writeForm" style="width:250px; align-items: center;">
+            <img class="card-img-top" src="/images/new.png" alt="Card image"
+                style="margin: 10px; height:50px; width:50px; border-radius: 50%; ">
+            <div class="card-body">
+                <h6 class="card-title" style="text-align: center;">새 이력서 작성하기</h6>
+            </div>
+        </a>
+        </a>
     </div>
+</div>
 
 </div>
 
@@ -181,11 +198,8 @@
 
     function resumeBox(resume) {
         return `<div class="card" style="width:250px">
-                
                 <div class="card-body">
-                    
-                    <a h4 class="card-title" href="/resume/{id}/viewResumeForm">${resume.title}</h4>
-                        
+                <a h4 class="card-title" href="/resume/{id}/viewResumeForm">${resume.title}</h4>
                 </div>
             </div>`;
     }

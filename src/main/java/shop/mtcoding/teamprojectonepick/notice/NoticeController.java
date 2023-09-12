@@ -151,9 +151,10 @@ public class NoticeController {
     @GetMapping("/apply/{id}")
     public String applyNoticeForm(@PathVariable Integer id, HttpServletRequest request) {
         Notice notice = noticeService.공고조회(id);
-        List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        List<Resume> resumes = resumeRepository.findByUserId(sessionUser.getId());
+        // List<TechNotice> techNotices =
+        // techNoticeRepository.mFindByIdJoinNoticeJoinUser(id);
+        List<TechNotice> techNotices = techNoticeRepository.mFindByIdJoinNotice(id);
+        List<Resume> resumes = resumeRepository.findByUserId(id);
         notice.setUserImg("" + notice.getUserImg());
         request.setAttribute("notice", notice);
         request.setAttribute("techNotice", techNotices);
