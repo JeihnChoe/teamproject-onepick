@@ -193,17 +193,17 @@
     }
 
     function noticeBox(notice) {
-        return `<div class="card" style="width:250px" >
-                    <img class="card-img-top" src="${notice.userImg}" alt="Card image" style="height:120px; width:130">
-                    <div class="card-body">
-                        <h5 class="card-title">${notice.bizName}</h4>
-                            <p class="card-text">${notice.workField}</p>
-                            <p class="card-text">${notice.address} ${notice.address2}</p>
-                            <p class="card-text">${notice.career}</p>
-                            <p class="card-text">${notice.education}</p>
-                            <p class="card-text">                            
-                    </div>
-                </div>`;
+        return `<div class="card" style="width:250px">
+                <img class="card-img-top" src="${notice.userImg}" alt="Card image" style="height:120px; width:130">
+                <div class="card-body">
+                    <h5 class="card-title">${notice.bizName}</h4>
+                        <p class="card-text">${notice.workField}</p>
+                        <p class="card-text">${notice.address} ${notice.address2}</p>
+                        <p class="card-text">${notice.career}</p>
+                        <p class="card-text">${notice.education}</p>
+                        <a class="button" href="/apply/${notice.id}">상세보기</a>
+                </div>
+            </div>`;
     }
 
     async function download(value) {
