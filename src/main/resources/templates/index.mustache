@@ -62,8 +62,8 @@
         <hr class="line">
 
         <br>
+        <div> 총 2,111건</div>
 
-        <h6>총 2,111건</h6>
         <hr class="line">
         <div class="grid-box" id="notice-box">
 
@@ -193,16 +193,17 @@
     }
 
     function noticeBox(notice) {
-        return `<div class="card" style="width:250px">
-                <img class="card-img-top" src="${notice.userImg}" alt="Card image" style="height:120px; width:130">
-                <div class="card-body">
-                    <h5 class="card-title">${notice.bizName}</h4>
-                        <p class="card-text">${notice.workField}</p>
-                        <p class="card-text">${notice.address} ${notice.address2}</p>
-                        <p class="card-text">${notice.career}</p>
-                        <p class="card-text">${notice.education}</p>
-                </div>
-            </div>`;
+        return `<div class="card" style="width:250px" >
+                    <img class="card-img-top" src="${notice.userImg}" alt="Card image" style="height:120px; width:130">
+                    <div class="card-body">
+                        <h5 class="card-title">${notice.bizName}</h4>
+                            <p class="card-text">${notice.workField}</p>
+                            <p class="card-text">${notice.address} ${notice.address2}</p>
+                            <p class="card-text">${notice.career}</p>
+                            <p class="card-text">${notice.education}</p>
+                            <p class="card-text">                            
+                    </div>
+                </div>`;
     }
 
     async function download(value) {
